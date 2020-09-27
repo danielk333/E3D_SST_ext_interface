@@ -98,7 +98,7 @@ class Daemon:
         # Try killing the daemon process    
         try:
             while 1:
-                os.kill(pid, signal.SIGTERM)
+                os.kill(pid, signal.SIGINT)
                 time.sleep(0.1)
         except OSError as err:
             e = str(err.args)
