@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://esa.ssa.sst/2.1/common/sst/" xmlns:catobj="http://esa.ssa.sst/2.1/catalogue/object/" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:comsst="http://esa.ssa.sst/2.1/common/sst/" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../common.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/object/" schemaLocation="../../catalogue/object/object.xsd"/>
+  <xsd:import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+  <xsd:complexType name="UserGroup">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Represents a group of users sharing the same privileges.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Name of the user group.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="roles" type="comsst:Role">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The list of roles this group can assume.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="users" type="comsst:User">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The list of users forming this group.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="User">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Description of an SST user.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="organization" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Organization where the user work.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="quality" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Quality of the user, for instance "Mr", "Ms", ...&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Name of the user.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="firstName" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;First name of the SST user.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mail" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;E-mail of the user.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="phone" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Phone of the user.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="updateDate" type="ndm:epochType">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Date the information has been updated. UTC time-frame.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Service">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Represent a service available to users. System capabilities identified in Use Cases are typical candidates for being Service instances. E.g. for service 4: Low fidelity re-entry prediction, High fidelity re-entry prediction and Request for high fidelity prediction.&lt;/p&gt;&lt;p&gt;The list of known services is presented below:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Cold start of a catalogue&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Extract orbit data set for a period&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Maintenance of the catalogue&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Display orbit&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Third Party validity screening process&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;ID Generation&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Sort Orbit data sets on criteria&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Filter data sets on criteria&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Extract Tracking Data&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Archive Data&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Authentication&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Extract Historical as EGDS&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Extract Historical as MEDS&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Extract Historical as OEDS&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Object identification&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Accuracy envelope detection&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Orbit Computing&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Correlation&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Compute EGDS accuracy envelope&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Compute MEDS accuracy envelope&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Compute OEDS accuracy envelope&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Display Orbit EGDS&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Display Orbit MEDS&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Display Orbit OEDS&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Modify the system thresholds&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;High fidelity screening&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Low fidelity screening&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Browse database&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Request conjunctions computing&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Produce a Bulletin&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Filter bulletin&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Check and warn bulletin&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Repeat the screening process&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Store the conjunction event&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Use Help&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Compute refined assessment&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Identifying the progenitor objects and characterising the event&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Send warning bulletins&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Object spatial density increase computing&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Event storage&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Low fidelity re-entry prediction&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;High fidelity re-entry prediction&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Send information&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Request for high fidelity prediction&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Compute orbital lifetime&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Update Information&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Identify object motion&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Identify active object&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Characterise Object&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Detect manoeuvre&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Receive orbital data&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Request for anomaly analysis&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Request for launch&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Request for controlled re-entries&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Request for tracking&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Check sensors availability&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Send answer&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Implement observation&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;List detections&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;List particles flux&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;List meteroid stream&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Store sub-catalogue&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="index" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Name of the service.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Role">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;A role is a collection of privileges on services for some objects and time spans.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="services" type="comsst:Service">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The services this role can use.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" name="objects" type="catobj:Object">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The objects on which this role can interact.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" name="timeRanges" type="com:TimeRange">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The time periods during which this role can interact.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="id" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="name" type="xsd:string">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Name of the role.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml"
+    targetNamespace="urn:ccsds:recommendation:navigation:schema:ndmxml"
+    elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+    <!--********************************************************************-->
+    <!-- NOTE: This is proposal based on the CSSDS Navigation Data Messages -->
+    <!-- This component of the schema is the "SDM" module, which contains   -->
+    <!-- elements that are used exclusively in the Sensor Data Message      -->
+    <!--********************************************************************-->
+
+    <!--********************************************************************-->
+    <!-- Include common schemas                                             -->
+    <!--********************************************************************-->
+
+    <xsd:include schemaLocation="./ndmxml-1.0-navwg-common.xsd"/>
+    <xsd:include schemaLocation="./ndmxml-1.0-ccsds-common.xsd"/>
+    <xsd:include schemaLocation="./ndmxml-1.0-cdm-1.0.xsd"/>
+
+    <!--********************************************************************-->
+    <!-- A SDM consists of a "header" and a "body".                         -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="sdmType">
+        <xsd:sequence>
+            <xsd:element name="header" type="ndm:sdmHeader"/>
+            <xsd:element name="body" type="ndm:sdmBody"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" use="required" fixed="CCSDS_SDM_VERS"/>
+        <xsd:attribute name="version" use="required" fixed="1.0"/>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- A SDM header                                                       -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="sdmHeader">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="CREATION_DATE" type="ndm:epochType"/>
+            <xsd:element name="ORIGINATOR" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- The SDM "body" consists of metadata about the sensor               -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="sdmBody">
+        <xsd:sequence>
+            <xsd:element name="segment" type="ndm:sdmSegment" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--********************************************************************-->
+    <!-- The SDM "segment" consists of a "metadata" section                 -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="sdmSegment">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="ndm:sdmMetadata" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- SDM metadata section.                                              -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="sdmMetadata">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="SENSOR_NAME" type="xsd:string"/>
+            <xsd:element name="SENSOR_ID" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="SITE_NAME" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="SITE_ID" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="SENSOR_TYPE" type="xsd:string"/>
+            <xsd:element name="OPERATOR" type="xsd:string"/>
+			<xsd:element name="OPERATOR_CONTACT_POSITION" type="xsd:string"/>
+			<xsd:element name="OPERATOR_PHONE" type="xsd:string"/>
+			<xsd:element name="OPERATOR_EMAIL" type="xsd:string"/>
+            <xsd:element name="SUCCESS_RATE" type="ndm:probabilityType" minOccurs="0"/>
+            <xsd:element name="MTBF" type="ndm:hoursType" minOccurs="0"/>
+            <xsd:element name="MTTR" type="ndm:hoursType" minOccurs="0"/>
+            <xsd:element name="WEATHER_PREDICTION" type="ndm:probabilityType" minOccurs="0"/>
+            <xsd:element name="REF_SLEW_TIME" type="ndm:timeUnits" minOccurs="0"/>
+			<xsd:element name="REF_MIN_DEAD_TIME" type="ndm:timeUnits" minOccurs="0"/>
+            <xsd:element name="LOCATION_TYPE" type="xsd:string"/>
+            <xsd:element name="CENTRAL_BODY" type="xsd:string"/>
+            <xsd:element name="REFERENCE_FRAME" type="ndm:referenceFrameType"/>
+            <xsd:element name="EPOCH" type="ndm:epochType" minOccurs="0"/>
+            <xsd:element name="X" type="ndm:positionType"/>
+            <xsd:element name="Y" type="ndm:positionType"/>
+            <xsd:element name="Z" type="ndm:positionType"/>
+            <xsd:element name="X_DOT" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="Y_DOT" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="Z_DOT" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="LON" type="ndm:longitudeType" minOccurs="0"/>
+            <xsd:element name="LAT" type="ndm:latitudeType" minOccurs="0"/>
+            <xsd:element name="ALT" type="ndm:positionType" minOccurs="0"/>
+            <xsd:element name="EPHEMERIS_FILE" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="RADAR_FENCE_MIN_ELEV" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="RADAR_FENCE_MAX_ELEV" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="RADAR_FENCE_MIN_AZIMUTH" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="RADAR_FENCE_MAX_AZIMUTH" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="MINIMUM_MOON_DISTANCE" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="MINIMUM_SUN_DISTANCE" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="MINIMUM_GP_DISTANCE" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="RADAR_REF_DISTANCE" type="ndm:distanceType" minOccurs="0"/>
+            <xsd:element name="RADAR_REF_RCS" type="ndm:areaType" minOccurs="0"/>
+			<xsd:element name="TELESCOPE_FAINTEST_VM" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="RANGE_SIGMA" type="ndm:nonNegativeDouble" minOccurs="0"/>
+            <xsd:element name="DOPPLER_SIGMA" type="ndm:nonNegativeDouble" minOccurs="0"/>
+            <xsd:element name="ANGULAR_SIGMA" type="ndm:nonNegativeDouble" minOccurs="0"/>
+            <xsd:element name="VM_SIGMA" type="ndm:nonNegativeDouble" minOccurs="0"/>
+			<xsd:element name="TIME_BIAS" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="TIME_DRIFT" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="TELESCOPE_CCD_DETECTOR_SIZE" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="TELESCOPE_APERTURE_DIAMETER" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="TELESCOPE_APERTURE_AREA" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="TELESCOPE_FOCAL_LENGTH" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="TELESCOPE_TRACKING_MODE" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="TELESCOPE_CCD_TEMPERATURE" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="TELESCOPE_X_BINNING" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="TELESCOPE_Y_BINNING" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_ANTENNA_CONSTANT" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_PULSE_REPETITION_PERIOD" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_WAVELENGTH" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_BEAMWIDTH" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_TRANSMITTED_POWER" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_PULSE_DURATION" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_NOISE_EQUIVALENT_RCS" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_TRANSMITTED_POWER_AT_NRCS" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_PULSE_DURATION_AT_NRCS" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_RANGE_AT_NRCS" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_FALSE_ALARM_TIME" type="xsd:double" minOccurs="0"/>
+			<xsd:element name="RADAR_NUMBER_INTEGRATED_PULSES" type="xsd:double" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- Other complex types unique to the SDM.                             -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="hoursType">
+        <xsd:simpleContent>
+            <xsd:extension base="ndm:nonNegativeDouble">
+                <xsd:attribute name="units" type="ndm:hoursUnits" use="required"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+
+    <xsd:simpleType name="hoursUnits">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="hours"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+	
+    <xsd:complexType name="longitudeType">
+        <xsd:simpleContent>
+            <xsd:extension base="ndm:longitudeRange">
+                <xsd:attribute name="units" type="ndm:angleUnits" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    
+    <xsd:simpleType name="longitudeRange">
+        <xsd:restriction base="ndm:angleRange">
+            <xsd:minInclusive value="-180.0"/>
+            <xsd:maxInclusive value="180.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+
+    <xsd:complexType name="latitudeType">
+        <xsd:simpleContent>
+            <xsd:extension base="ndm:latitudeRange">
+                <xsd:attribute name="units" type="ndm:angleUnits" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    
+    <xsd:simpleType name="latitudeRange">
+        <xsd:restriction base="ndm:angleRange">
+            <xsd:minInclusive value="-90.0"/>
+            <xsd:maxInclusive value="90.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+</xsd:schema>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml"
+    targetNamespace="urn:ccsds:recommendation:navigation:schema:ndmxml"
+    elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+    <!--********************************************************************-->
+    <!-- NOTE: This is proposal based on the CSSDS Navigation Data Messages -->
+    <!-- This component of the schema is the "RDM" module, which contains   -->
+    <!-- elements that are used exclusively in the Re-entry Data Message    -->
+    <!--********************************************************************-->
+
+    <!--********************************************************************-->
+    <!-- Include common schemas                                             -->
+    <!--********************************************************************-->
+
+    <xsd:include schemaLocation="./ndmxml-1.0-navwg-common.xsd"/>
+    <xsd:include schemaLocation="./ndmxml-1.0-ccsds-common.xsd"/>
+    <xsd:include schemaLocation="./ndmxml-1.0-cdm-1.0.xsd"/>
+
+
+    <!--********************************************************************-->
+    <!-- A RDM consists of a "header" and a "body".                         -->
+    <!--********************************************************************-->
+    
+    <xsd:complexType name="rdmType">
+        <xsd:sequence>
+            <xsd:element name="header" type="ndm:rdmHeader"/>
+            <xsd:element name="body" type="ndm:rdmBody"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" use="required" fixed="CCSDS_RDM_VERS"/>
+        <xsd:attribute name="version" use="required" fixed="1.0"/>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- A RDM header                                                       -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="rdmHeader">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="CREATION_DATE" type="ndm:epochType"/>
+            <xsd:element name="ORIGINATOR" type="xsd:string"/>
+            <xsd:element name="MESSAGE_ID" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- The RDM "body" consists of metadata about the spacecraft and how   -->
+    <!-- the data was created                                               -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="rdmBody">
+        <xsd:sequence>
+            <xsd:element name="segment" type="ndm:rdmSegment" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--********************************************************************-->
+    <!-- The RDM "segment" consists of a "metadata" section                 -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="rdmSegment">
+        <xsd:sequence>
+		    <xsd:element name="metadata" type="ndm:rdmMetadata" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="data" type="ndm:rdmData" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- RDM metadata section.                                              -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="rdmMetadata">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="OBJECT_NAME" type="xsd:string"/>
+            <xsd:element name="INTERNATIONAL_DESIGNATOR" type="xsd:string"/>
+            <xsd:element name="CATALOG_NAME" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT_DESIGNATOR" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT_TYPE" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT_OWNER" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CONTROLLED_REENTRY" type="ndm:yesNoType" minOccurs="1"/>
+            <xsd:element name="CENTER_NAME" type="ndm:yesNoType" minOccurs="1"/>
+            <xsd:element name="TIME_SYSTEM" type="xsd:string"/>
+			<xsd:element name="EPOCH_TZERO" type="ndm:epochType"/>
+            <xsd:element name="REF_FRAME" type="ndm:referenceFrameType" minOccurs="0"/>
+            <xsd:element name="REF_FRAME_EPOCH" type="ndm:epochType"/>
+            <xsd:element name="EPHEMERIS_NAME" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="GRAVITY_MODEL" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ATMOSPHERIC_MODEL" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="N_BODY_PERTURBATIONS" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="SOLAR_RAD_PRESSURE" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="EARTH_TIDES" type="ndm:yesNoType" minOccurs="0"/>
+            <xsd:element name="INTRACK_THRUST" type="ndm:yesNoType" minOccurs="0"/>
+            <xsd:element name="PREVIOUS_MESSAGE_ID" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="NEXT_MESSAGE_EPOCH" type="ndm:epochType" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+
+	<!--********************************************************************-->
+    <!-- RDM data section.                                              -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="rdmData">
+        <xsd:sequence>
+			<xsd:element name="ORBIT_LIFETIME" type="xsd:double"/>
+			<xsd:element name="LIFETIME_DISPERSION" type="xsd:double"/>
+			<xsd:element name="NOMINAL_REENTRY_ALTITUDE" type="xsd:double"/>
+            <xsd:element name="NOMINAL_REENTRY_EPOCH" type="ndm:epochType" minOccurs="0"/>
+            <xsd:element name="REENTRY_WINDOW_START" type="ndm:epochType" minOccurs="0"/>
+            <xsd:element name="REENTRY_WINDOW_END" type="ndm:epochType" minOccurs="0"/>
+            <xsd:element name="PROBABILITY_OF_LAND_IMPACT" type="ndm:probabilityType" minOccurs="0"/>
+            <xsd:element name="PROBABILITY_OF_BURN-UP" type="ndm:probabilityType" minOccurs="0"/>
+            <xsd:element name="PROBABILITY_OF_BREAK-UP" type="ndm:probabilityType" minOccurs="0"/>
+            <xsd:element name="NOMINAL_IMPACT_EPOCH" type="ndm:epochType"/>
+            <xsd:element name="IMPACT_WINDOW_START" type="ndm:epochType"/>
+            <xsd:element name="IMPACT_WINDOW_END" type="ndm:epochType"/>
+            <xsd:element name="IMPACT_REF_FRAME" type="ndm:referenceFrameType" minOccurs="0"/>
+            <xsd:element name="NOMINAL_IMPACT_LON" type="ndm:longitudeType" minOccurs="0"/>
+            <xsd:element name="NOMINAL_IMPACT_LAT" type="ndm:latitudeType" minOccurs="0"/>
+            <xsd:element name="NOMINAL_IMPACT_ALT" type="ndm:positionType" minOccurs="0"/>
+            <xsd:element name="NOMINAL_IMPACT_STATE" type="ndm:stateVectorType" minOccurs="0"/>
+            <xsd:element name="IMPACT_LOCATION_UNCERTAINTY" type="ndm:rdmLocationUncertaintyType" minOccurs="0"/>
+            <xsd:element name="OBJECT_SV" type="ndm:stateVectorType" minOccurs="0"/>
+            <xsd:element name="COVARIANCE_MATRIX" type="ndm:covarianceMatrixType" minOccurs="0"/>
+            <xsd:element name="MASS" type="ndm:massType" minOccurs="0"/>
+            <xsd:element name="DRAG_COEFF" type="ndm:nonNegativeDouble" minOccurs="0"/>
+            <xsd:element name="DRAG_AREA" type="ndm:areaType" minOccurs="0"/>
+            <xsd:element name="SOLAR_RAD_COEFF" type="ndm:nonNegativeDouble" minOccurs="0"/>
+            <xsd:element name="SOLAR_RAD_AREA" type="ndm:areaType" minOccurs="0"/>
+            <xsd:element name="RCS" type="ndm:areaType" minOccurs="0"/>
+            <xsd:element name="BALLISTIC_COEFF" type="ndm:ballisticType" minOccurs="0"/>
+            <xsd:element name="TIME_LASTOB_START" type="ndm:epochType"/>
+            <xsd:element name="TIME_LASTOB_END" type="ndm:epochType"/>
+			<xsd:element name="RECOMMENDED_OD_SPAN" type="xsd:double"/>
+			<xsd:element name="ACTUAL_OD_SPAN" type="xsd:double"/>
+            <xsd:element name="OBS_AVAILABLE" type="xsd:nonNegativeInteger" minOccurs="0"/>
+            <xsd:element name="OBS_USED" type="xsd:nonNegativeInteger" minOccurs="0"/>
+            <xsd:element name="TRACKS_AVAILABLE" type="xsd:nonNegativeInteger" minOccurs="0"/>
+            <xsd:element name="TRACKS_USED" type="xsd:nonNegativeInteger" minOccurs="0"/>
+            <xsd:element name="RESIDUALS_ACCEPTED" type="ndm:percentage" minOccurs="0"/>
+            <xsd:element name="WEIGHTED_RMS" type="ndm:nonNegativeDouble" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- Other complex types unique to the RDM.                             -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="rdmLocationUncertaintyType">
+        <xsd:sequence>
+            <xsd:element name="CNORTH_NORTH" type="xsd:double"/>
+            <xsd:element name="CNORTH_EAST" type="xsd:double"/>
+            <xsd:element name="CEAST_EAST" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="longitudeType">
+        <xsd:simpleContent>
+            <xsd:extension base="ndm:longitudeRange">
+                <xsd:attribute name="units" type="ndm:angleUnits" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    
+    <xsd:simpleType name="longitudeRange">
+        <xsd:restriction base="ndm:angleRange">
+            <xsd:minInclusive value="-180.0"/>
+            <xsd:maxInclusive value="180.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+
+    <xsd:complexType name="latitudeType">
+        <xsd:simpleContent>
+            <xsd:extension base="ndm:latitudeRange">
+                <xsd:attribute name="units" type="ndm:angleUnits" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    
+    <xsd:simpleType name="latitudeRange">
+        <xsd:restriction base="ndm:angleRange">
+            <xsd:minInclusive value="-90.0"/>
+            <xsd:maxInclusive value="90.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    
+    <xsd:complexType name="ballisticType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:double">
+                <xsd:attribute name="units" type="ndm:ballisticUnits" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    
+    
+    <xsd:complexType name="energyType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:double">
+                <xsd:attribute name="units" type="ndm:energyUnits" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+      
+    <!--********************************************************************-->
+    <!-- Simple types unique to the RDM.                                    -->
+    <!--********************************************************************-->
+
+    <xsd:simpleType name="ballisticUnits">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="kg/m**2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+    <xsd:simpleType name="energyUnits">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MJ"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+</xsd:schema>

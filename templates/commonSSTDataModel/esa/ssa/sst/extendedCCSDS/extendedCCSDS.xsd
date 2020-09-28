@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa.sst/2.1/CCSDS/"
+	xmlns:com="http://esa.ssa.sst/2.1/common/"
+	xmlns:eCCSDS="http://esa.ssa.sst/2.1/CCSDS/"
+	xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:omc="http://esa.ssa.sst/2.1/omc/">
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/"
+		schemaLocation="../common/common.xsd" />
+	<xsd:import
+		namespace="urn:ccsds:recommendation:navigation:schema:ndmxml"
+		schemaLocation="../../../../CCSDS/ndmxml-1.0-namespace-1.1.xsd" />
+		
+<xsd:simpleType name="nonPositiveDouble">
+   <xsd:restriction base="xsd:double">
+      <xsd:maxInclusive value="0.0"/>
+   </xsd:restriction>
+</xsd:simpleType>
+		
+
+<xsd:complexType name="HeightType">
+		<xsd:simpleContent>
+			<xsd:extension base="ndm:nonNegativeDouble">
+				<xsd:attribute form="qualified" name="units"
+					type="ndm:positionUnits" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	
+	<xsd:simpleType name="LatitudeRange">
+		<xsd:restriction base="xsd:double">
+			<xsd:maxInclusive value="90.0" />
+			<xsd:minInclusive value="-90.0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LongitudeRange">
+		<xsd:restriction base="xsd:double">
+			<xsd:maxInclusive value="180.0" />
+			<xsd:minInclusive value="-180.0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="FovRange">
+		<xsd:restriction base="xsd:double">
+			<xsd:maxInclusive value="360.0" />
+			<xsd:minInclusive value="-180.0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="LatitudeAngleType">
+		<xsd:simpleContent>
+			<xsd:extension base="eCCSDS:LatitudeRange">
+				<xsd:attribute form="qualified" name="units"
+					type="ndm:angleUnits" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="LongitudeAngleType">
+		<xsd:simpleContent>
+			<xsd:extension base="eCCSDS:LongitudeRange">
+				<xsd:attribute form="qualified" name="units"
+					type="ndm:angleUnits" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="FovAngleType">
+		<xsd:simpleContent>
+			<xsd:extension base="eCCSDS:FovRange">
+				<xsd:attribute form="qualified" name="units"
+					type="ndm:angleRateUnits" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="extendedTdmType">
+		<xsd:sequence>
+			<xsd:element form="qualified" name="header"
+				type="ndm:ndmHeader" />
+			<xsd:element form="qualified" name="body"
+				type="eCCSDS:extendedTdmBody" />
+		</xsd:sequence>
+		<xsd:attribute form="qualified" name="id"
+			type="xsd:anySimpleType" use="required" />
+		<xsd:attribute form="qualified" name="version"
+			type="xsd:anySimpleType" use="required" />
+	</xsd:complexType>
+	<xsd:complexType name="extendedTdmBody">
+		<xsd:sequence>
+			<xsd:element form="qualified" maxOccurs="unbounded"
+				name="segment" type="eCCSDS:extendedTdmSegment" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="extendedTdmSegment">
+		<xsd:sequence>
+			<xsd:element form="qualified" name="metadata"
+				type="eCCSDS:extendedTdmMetadata" />
+			<xsd:element form="qualified" name="data"
+				type="eCCSDS:extendedTdmData" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="extendedTdmMetadata">
+		<xsd:sequence>
+			<xsd:element name="COMMENT" type="xsd:string" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xsd:element name="TIME_SYSTEM" type="ndm:timeSystemType" />
+			<xsd:element name="START_TIME" type="ndm:epochType"
+				minOccurs="0" />
+			<xsd:element name="STOP_TIME" type="ndm:epochType"
+				minOccurs="0" />
+			<xsd:element name="PARTICIPANT_1" type="xsd:string" />
+			<xsd:element name="PARTICIPANT_2" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="PARTICIPANT_3" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="PARTICIPANT_4" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="PARTICIPANT_5" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="MODE" type="ndm:modeType" minOccurs="0" />
+			<xsd:choice>
+				<xsd:element name="PATH" type="ndm:pathType"
+					minOccurs="0" />
+				<xsd:sequence>
+					<xsd:element name="PATH_1" type="ndm:pathType"
+						minOccurs="0" />
+					<xsd:element name="PATH_2" type="ndm:pathType"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:choice>
+			<xsd:element name="TRANSMIT_BAND" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="RECEIVE_BAND" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="TURNAROUND_NUMERATOR" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="TURNAROUND_DENOMINATOR" type="xsd:int"
+				minOccurs="0" />
+			<xsd:element name="TIMETAG_REF" type="ndm:timetagRefType"
+				minOccurs="0" />
+			<xsd:element name="INTEGRATION_INTERVAL"
+				type="ndm:positiveDouble" minOccurs="0" />
+			<xsd:element name="INTEGRATION_REF"
+				type="ndm:integrationRefType" minOccurs="0" />
+			<xsd:element name="FREQ_OFFSET" type="xsd:double"
+				default="0.0" minOccurs="0" />
+			<xsd:element name="RANGE_MODE" type="ndm:rangemodeType"
+				minOccurs="0" />
+			<xsd:element name="RANGE_MODULUS"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="RANGE_UNITS" type="ndm:rangeUnitsType"
+				minOccurs="0" />
+			<xsd:element name="ANGLE_TYPE" type="ndm:angleTypeType"
+				minOccurs="0" />
+			<xsd:element name="REFERENCE_FRAME" type="ndm:refFrameType"
+				minOccurs="0" />
+			<xsd:element name="TRANSMIT_DELAY_1"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="TRANSMIT_DELAY_2"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="TRANSMIT_DELAY_3"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="TRANSMIT_DELAY_4"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="TRANSMIT_DELAY_5"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="RECEIVE_DELAY_1"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="RECEIVE_DELAY_2"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="RECEIVE_DELAY_3"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="RECEIVE_DELAY_4"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="RECEIVE_DELAY_5"
+				type="ndm:nonNegativeDouble" default="0.0" minOccurs="0" />
+			<xsd:element name="DATA_QUALITY" type="ndm:dataQualityType"
+				default="RAW" minOccurs="0" />
+			<xsd:element name="CORRECTION_ANGLE_1" type="xsd:double"
+				minOccurs="0" />
+			<xsd:element name="CORRECTION_ANGLE_2" type="xsd:double"
+				minOccurs="0" />
+			<xsd:element name="CORRECTION_DOPPLER" type="xsd:double"
+				minOccurs="0" />
+			<xsd:element name="CORRECTION_RANGE" type="xsd:double"
+				minOccurs="0" />
+			<xsd:element name="CORRECTION_RECEIVE" type="xsd:double"
+				minOccurs="0" />
+			<xsd:element name="CORRECTION_TRANSMIT" type="xsd:double"
+				minOccurs="0" />
+			<xsd:element name="CORRECTIONS_APPLIED" type="ndm:yesNoType"
+				minOccurs="0" />
+			<xsd:element name="MAG_TYPE" type="com:magTypeType"
+				minOccurs="0">
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="extendedTdmData">
+		<xsd:sequence>
+			<xsd:element form="qualified" maxOccurs="unbounded"
+				minOccurs="0" name="COMMENT" type="xsd:string" />
+			<xsd:element form="qualified" maxOccurs="unbounded"
+				name="observation"
+				type="eCCSDS:extendedTrackingDataObservationType" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="extendedTrackingDataObservationType">
+		<xsd:annotation>
+			<xsd:documentation> 	this type is based on the trackingDataObservationType of CCSDS/ndmxml-1.0-tdm-1.0.xml. It has been added to the choice: mag and rcs elements </xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element form="qualified" name="EPOCH"
+				type="ndm:epochType" />
+			<xsd:choice>
+				<xsd:element form="qualified" name="ANGLE_1"
+					type="ndm:angleType" />
+				<xsd:element form="qualified" name="ANGLE_2"
+					type="ndm:angleType" />
+				<xsd:element form="qualified" name="CARRIER_POWER"
+					type="xsd:double" />
+				<xsd:element default="0.0" form="qualified"
+					name="CLOCK_BIAS" type="xsd:double" />
+				<xsd:element default="0.0" form="qualified"
+					name="CLOCK_DRIFT" type="xsd:double" />
+				<xsd:element form="qualified"
+					name="DOPPLER_INSTANTANEOUS" type="xsd:double" />
+				<xsd:element form="qualified" name="DOPPLER_INTEGRATED"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="DOR"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="PC_N0"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="PR_N0"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="PRESSURE"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RANGE"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RECEIVE_FREQ"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RECEIVE_FREQ_1"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RECEIVE_FREQ_2"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RECEIVE_FREQ_3"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RECEIVE_FREQ_4"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RECEIVE_FREQ_5"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RHUMIDITY"
+					type="ndm:percentType" />
+				<xsd:element form="qualified" name="STEC"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="TEMPERATURE"
+					type="ndm:nonNegativeDouble" />
+				<xsd:element form="qualified" name="TRANSMIT_FREQ_1"
+					type="ndm:positiveDouble" />
+				<xsd:element form="qualified" name="TRANSMIT_FREQ_2"
+					type="ndm:positiveDouble" />
+				<xsd:element form="qualified" name="TRANSMIT_FREQ_3"
+					type="ndm:positiveDouble" />
+				<xsd:element form="qualified" name="TRANSMIT_FREQ_4"
+					type="ndm:positiveDouble" />
+				<xsd:element form="qualified" name="TRANSMIT_FREQ_5"
+					type="ndm:positiveDouble" />
+				<xsd:element form="qualified"
+					name="TRANSMIT_FREQ_RATE_1" type="xsd:double" />
+				<xsd:element form="qualified"
+					name="TRANSMIT_FREQ_RATE_2" type="xsd:double" />
+				<xsd:element form="qualified"
+					name="TRANSMIT_FREQ_RATE_3" type="xsd:double" />
+				<xsd:element form="qualified"
+					name="TRANSMIT_FREQ_RATE_4" type="xsd:double" />
+				<xsd:element form="qualified"
+					name="TRANSMIT_FREQ_RATE_5" type="xsd:double" />
+				<xsd:element form="qualified" name="TROPO_DRY"
+					type="ndm:nonNegativeDouble" />
+				<xsd:element form="qualified" name="TROPO_WET"
+					type="xsd:nonNegativeInteger" />
+				<xsd:element form="qualified" name="VLBI_DELAY"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="MAG"
+					type="xsd:double" />
+				<xsd:element form="qualified" name="RCS"
+					type="xsd:double" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="extendedManeuverParametersType">
+		<xsd:complexContent>
+			<xsd:extension base="ndm:maneuverParametersType">
+				<xsd:sequence>
+                    <xsd:element name="stateVectorAfterManeuver"
+						type="ndm:stateVectorType">
+					</xsd:element>
+					<xsd:element name="covarianceMatrixAfterManeuver"
+						type="ndm:covarianceMatrixType">
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	   <xsd:complexType name="CovarianceMatrixParametersType">
+        <xsd:sequence>
+            <xsd:element name="CX_CD" type="xsd:double"/>
+            <xsd:element name="CX_CREFL" type="xsd:double"/>
+            <xsd:element name="CY_CD" type="xsd:double"/>
+            <xsd:element name="CY_CREFL" type="xsd:double"/>
+            <xsd:element name="CZ_CD" type="xsd:double"/>
+            <xsd:element name="CZ_CREFL" type="xsd:double"/>
+            <xsd:element name="CX_DOT_CD" type="xsd:double"/>
+            <xsd:element name="CX_DOT_CREFL" type="xsd:double"/>
+            <xsd:element name="CY_DOT_CD" type="xsd:double"/>
+            <xsd:element name="CY_DOT_CREFL" type="xsd:double"/>
+            <xsd:element name="CZ_DOT_CD" type="xsd:double"/>
+            <xsd:element name="CZ_DOT_CREFL" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

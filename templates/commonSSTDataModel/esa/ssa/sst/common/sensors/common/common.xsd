@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by mjep (dms) -->
+<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
+<xsd:schema targetNamespace="http://esa.ssa.sst/2.1/common/sensors/common/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:comsenrcom="http://esa.ssa.sst/2.1/common/sensors/radar/components" xmlns:comsenoconf="http://esa.ssa.sst/2.1/common/sensors/optic/configuration" xmlns:comsenocom="http://esa.ssa.sst/2.1/common/sensors/optic/components" xmlns:comsenscom="http://esa.ssa.sst/2.1/common/sensors/slr/components" xmlns:comsenc="http://esa.ssa.sst/2.1/common/sensors/common/" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:cateph="http://esa.ssa.sst/2.1/catalogue/ephemeredes/">
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../common.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/radar/components" schemaLocation="../radar/RadarSubComponents/RadarSubComponents.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/ephemeredes/" schemaLocation="../../../catalogue/ephemeredes/ephemeredes.xsd"/>
+	<xsd:import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../../CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/optic/configuration" schemaLocation="../optic/OpticConfigurationParameters/OpticConfigurationParameters.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/optic/components" schemaLocation="../optic/OpticSubComponents/OpticSubComponents.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/slr/components" schemaLocation="../slr/SlrSubComponents/SlrSubComponents.xsd"/>
+	<xsd:complexType name="OpticalGroundSensorType">
+		<xsd:complexContent>
+			<xsd:extension base="comsenc:OpticalSensorType">
+				<xsd:sequence>
+					<xsd:element name="sensorSite" type="comsenc:SensorSite">
+						<xsd:annotation>
+							<xsd:documentation>
+								&lt;p&gt;Classified Geodetic Location
+								updated at a certain epoch from a source
+								user. This Location is given in a
+								geodetic reference frame with latitude
+								and longitude measured in degrees and
+								altitude measured in meters above sea
+								level. This element brings also
+								information on the classification of the
+								site in terms of secret/confidentiality
+								&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="pointingTrackingLimits" type="comsenocom:PointingTrackingLimitsForOptics" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>
+								&lt;p&gt;Pointing tracking limits for
+								optics. Gives the limitations of use of
+								an optic sensor in term of angles of
+								view, velocity and track duration. These
+								characteristics are considered to evolve
+								during time.&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="minSunZenithDist" type="com:AngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>
+								minimumAngularDistanceToEarthLimb
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="weatherSSIMData" type="comsenc:WeatherSSIMDataType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OpticalSensorType">
+		<xsd:complexContent>
+			<xsd:extension base="comsenc:SensorType">
+				<xsd:sequence>
+					<xsd:element name="minGalAlt" type="comsenc:GalacticPlaneType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Galactic plane definition.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="opticalParameters" type="comsenoconf:OpticalParameters">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Parameters the sensor may use for an observation. &lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fieldOfView" type="com:AngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Field of view of the sensor. AngleMagnitude in deg.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="exposureTime" type="comsenc:ExposureTime">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Exposure time.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="referenceSlewTime" type="xsd:double"/>
+					<xsd:element name="minAngDistToMoon" type="com:AngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Minimum angular distance to moon.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="surveyStrategyType" type="comsenc:SurveyStrategyType"/>
+					<xsd:element name="altmin" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>Minimum altitude for detection (km)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="apertureDiameter" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Aperture diameter of the telescope. Unit MilliMeter.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="astrometricMeasurementsAccuracy" type="comsenocom:AstrometricMeasurementsAccuracyType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Astrometic measurements accuracy.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="darkCu" type="ndm:nonNegativeDouble">
+						<xsd:annotation>
+							<xsd:documentation>Dark Current</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="pixelScale" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Pixel scale of the CCD.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="pixelSize" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Pixel size of the CCD. Unit arcsec&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="PSFSize" type="xsd:double"/>
+					<xsd:element name="readou" type="ndm:nonNegativeDouble"/>
+					<xsd:element name="readOutTime" type="xsd:double">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Minimum time to read the CCD picture. Unit Second.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="refdis" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>Reference distance for Reflux</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="reflux" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>Reference flux out of atmosphere</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="refmag" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>Reference magnitude corresponding to the flux</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="seeingSiteConditions" type="comsenc:SeeingSiteConditionsType"/>
+					<xsd:element name="snrtel" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>Minimum SNR ratio for detection</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="opticalSensitivity" type="comsenocom:OpticalSensitivity"/>
+					<xsd:element name="trackingMode" type="comsenoconf:TrackingModeEnum" minOccurs="0"/>
+					<xsd:element name="referenceDiameter" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;ReferenceDiameter (m)&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OpticalSpaceSensorType">
+		<xsd:complexContent>
+			<xsd:extension base="comsenc:OpticalSensorType">
+				<xsd:sequence>
+					<xsd:element name="location" type="cateph:Ephemeredes"/>
+					<xsd:element name="minAngDistToEarthLimb" type="com:HalfAngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>minimumAngularDistanceToEarthLimb</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="minAngDistToSun" type="com:HalfAngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Minimum angular distance to sun.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="opticalSpaceErrors" type="comsenc:OpticalSpaceSensorErrorsType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RadarGroundSensorType">
+		<xsd:complexContent>
+			<xsd:extension base="comsenc:RadarSensorType">
+				<xsd:sequence>
+					<xsd:element name="sensorSite" type="comsenc:SensorSite">
+						<xsd:annotation>
+							<xsd:documentation>
+								&lt;p&gt;&lt;span
+								style="font-family:"Georgia","serif";"&gt;Classified
+								Geodetic Location updated at a certain
+								epoch from a source user. This Location
+								is given in a geodetic reference frame
+								with latitude and longitude measured in
+								degrees and altitude measured in meters
+								above sea level. This element brings
+								also information on the classification
+								of the site in terms of
+								secret/confidentiality
+								&lt;/span&gt;&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fieldOfRegard" type="comsenrcom:FieldOfRegardType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>
+								&lt;p&gt;Pointing tracking limits for
+								radar, gives the limitations of use of
+								radar in term of angles of view,
+								velocity and acceleration the radar move
+								is limited. These characteristics are
+								considered to evolve during time.
+								Pointing and tracking limits refer to
+								regions that mask the radar such as a
+								building, trees, or other
+								elements.&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="minAngDistToMoon" type="xsd:double">
+						<xsd:annotation>
+							<xsd:documentation>
+								&lt;p&gt;Minimum angular distance to
+								Moon.&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="radarGroundErrors" type="comsenc:RadarGroundSensorErrorsType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RadarSensorType">
+		<xsd:complexContent>
+			<xsd:extension base="comsenc:SensorType">
+				<xsd:sequence>
+					<xsd:element name="radarSensitivity" type="comsenrcom:RadarSensitivity">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt; Radar sensitivity, it is defined in terms of capability to see an object of a given size at a particular altitude.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="antennaSize" type="xsd:integer">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Antenna diameter. Unit Meter.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="antennaType" type="comsenrcom:AntennaTypeEnum">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Type of the radar antenna. Values inserted here can be: “Parabolic Reflector”, “Reflector Based”&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="nbMaxOfTargets" type="xsd:integer">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Maximal number of target than the radar is able to track.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="referencedTimeAndAssociatedAccuracy" type="comsenc:ReferencedTimeAndAssociatedAccuracyEnum">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Time scale (Reference Time Synchronization Systems) used by the radar and its accuracy &lt;/p&gt;&lt;p&gt;Values inserted here can be: “GPS”, “N/A”, “Network”&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dopplerAmbiguity" type="comsenrcom:DopplerAmbiguity">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Doppler ambiguity.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dopplerResolution" type="comsenrcom:DopplerResolution">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Doppler resolution.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="signal" type="comsenrcom:Signal">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Characteristics of the signal the radar may use, in terms of band, beam, power and pulse.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="referenceOrientation" type="comsenrcom:ReferenceOrientation">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Orientation of reference.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="radarOrientation" type="comsenrcom:RadarOrientationType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Radar orientation.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="radarDetectability" type="comsenrcom:RadarDetectabilityType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Radar detectability. &lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="radarAccuracy" type="comsenrcom:RadarAccuracyType"/>
+					<xsd:element name="timeTrackObs" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Time step (s) between two plots in the same track.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SLRGroundSensorType">
+		<xsd:complexContent>
+			<xsd:extension base="comsenc:SLRSensorType">
+				<xsd:sequence>
+					<xsd:element name="sensorSite" type="comsenc:SensorSite">
+						<xsd:annotation>
+							<xsd:documentation>
+								&lt;p&gt;Classified Geodetic Location
+								updated at a certain epoch from a source
+								user. This Location is given in a
+								geodetic reference frame with latitude
+								and longitude measured in degrees and
+								altitude measured in meters above sea
+								level. This element brings also
+								information on the classification of the
+								site in terms of secret/confidentiality
+								&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fieldOfRegard" type="comsenscom:FieldOfRegardType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>
+								&lt;p&gt;Pointing tracking limits for
+								SLR, gives the limitations of use of
+								SLR in term of angles of view,
+								velocity and acceleration the SLR move
+								is limited. These characteristics are
+								considered to evolve during time.
+								Pointing and tracking limits refer to
+								regions that mask the SLR such as a
+								building, trees, or other
+								elements.&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="minSunZenithDist" type="com:AngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>							&lt;p&gt;minimumAngularDistanceToEarthLimb&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="minDistToSun" type="com:AngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>								&lt;p&gt;The minimum angular distance to Sun.&lt;/p&gt;
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SLRSensorType">
+		<xsd:complexContent>
+			<xsd:extension base="comsenc:SensorType">
+				<xsd:sequence>
+					<xsd:element name="considerObjIllumConst" type="xsd:boolean">
+						<xsd:annotation>
+							<xsd:documentation>
+&lt;p&gt;If selected, object illumination constraint will be taken into account.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fieldOfView" type="com:AngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;The diameter of the FOV (assumed circular) of the SLR. Angle in deg. from 0 to 180. &lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="referenceSlewTime" type="xsd:double">
+						<xsd:annotation>
+							<xsd:documentation>
+&lt;p&gt;The mean time for the SLR to do the slew and the gap time between consecutive activities.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="minDwellTime" type="xsd:double">
+						<xsd:annotation>
+							<xsd:documentation>
+&lt;p&gt;Minimum time (distance) of a pass to be considered valid.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="minAngDistToMoon" type="com:AngleDegreesType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Minimum angular distance to moon.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="referenceDistance" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>
+&lt;p&gt;Reference distance for the reference SLR cross-section (km)&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="referenceRCS" type="ndm:positiveDouble">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Minimum “SLR-cross section” to detect an object at the reference distance.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="slrDetectability" type="comsenscom:SLRDetectabilityType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;SLR detectability. &lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="slrInfoMeas" type="comsenscom:SLRInfoMeasType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;Indicates which measures are provided by the sensor.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="slrMeasurementsAccuracy" type="comsenscom:SLRMeasurementsAccuracyType">
+						<xsd:annotation>
+							<xsd:documentation>&lt;p&gt;SLR measurements accuracy.&lt;/p&gt;</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SensorType">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="name" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Name of the sensor.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="owner" type="com:Owner">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Owner organization and contact of the sensor.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="accuracyLookupTable" type="comsenc:AccuracyLookupTableType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Accuracy lookup table for the sensor.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="availability" type="comsenc:AvailabilityType"/>
+			<xsd:element name="sucessRate" type="comsenc:RatioType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Success rate of the sensor.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mtbf" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Medium time between failures for the sensor.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mttr" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Medium time to repair for the sensor.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="unplannedTrackingCampaingsMeanLength" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Mean length of unplanned  tracking campaigns.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="unplannedTrackingCampaingsMeanTime" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Mean time of unplanned  tracking campaigns.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="errors" type="comsenc:SensorErrorsType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;&lt;span style="font-family:"Georgia","serif";"&gt;Errors produced by the sensor.&lt;/span&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="filteringParameters" type="comsenc:SensorFilteringType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;&lt;span style="font-family:"Georgia","serif";"&gt;Filtering parameters for the sensor.&lt;/span&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="trackDelay" type="comsenc:PositiveLongType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Track delay&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MeasureBiasType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Define the parameters for applying the bias to one measure or time: 
+				Corrected value = (Incoming value - A) + B*(Incoming timestamp)
+				Where A is a fixed bias, and B is the rate of change of bias per time unit.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="fixedBias" type="xsd:double"/>
+			<xsd:element name="biasPerTimeUnit" type="xsd:double"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SensorBiasType">
+		<xsd:sequence>
+			<xsd:element name="startTime" type="ndm:epochType">
+				<xsd:annotation>
+					<xsd:documentation>Bias init applicability period</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="endTime" type="ndm:epochType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Bias end applicability period</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:sequence>
+				<xsd:element name="EPOCH_BIAS" type="comsenc:MeasureBiasType" minOccurs="0"/>
+				<xsd:element name="ANGLE_1_BIAS" type="comsenc:MeasureBiasType" minOccurs="0"/>
+				<xsd:element name="ANGLE_2_BIAS" type="comsenc:MeasureBiasType" minOccurs="0"/>
+				<xsd:element name="DOPPLER_INSTANTANEOUS_BIAS" type="comsenc:MeasureBiasType" minOccurs="0"/>
+				<xsd:element name="DOPPLER_INTEGRATED_BIAS" type="comsenc:MeasureBiasType" minOccurs="0"/>
+				<xsd:element name="RANGE_BIAS" type="comsenc:MeasureBiasType" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PriorityProfileType">
+		<xsd:sequence>
+			<xsd:element name="initDate" type="ndm:epochType"/>
+			<xsd:element name="endDate" type="ndm:epochType">
+				<xsd:annotation>
+					<xsd:documentation>ending time for the survey profile</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="priorityLevel" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>1-No interruption, 2-Interruption under special circumstances, 3-Interruption under any circumstance</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SurveyPriorityType">
+		<xsd:sequence>
+			<xsd:element name="priorityProfile" type="comsenc:PriorityProfileType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SurveyStrategyType">
+		<xsd:sequence>
+			<xsd:element name="surveyStrategyDefinition" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>For OpticalGroundTelescope:{1-Vertical Strip, 2-Horizontal Strip, 3-Free Misaic, 4-Pointing Fixed in local Frame}
+For OpticalSpaceTelescope:{1-Local Frame Fixed (ACR), 2-Inertial Fixed, 3-Anti-Sun direction, 4-Fixed Point in Space (MEEQ2000), 5-Fixed Point in Space; I = 0, Angle with Sun Direction (suitable for GEO survey), 6-Two symmetric Fixed Point in Space (the farthest); I = 0, Angle with Sun Direction (suitable for GEO survey), 7-Two symmetric Fixed Point in Space (the closest); I = 0, Angle with Sun Direction (suitable for GEO survey)}</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="surveyPriority" type="comsenc:SurveyPriorityType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Survey priority&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="observationType" type="com:SegmentType"/>
+			<xsd:element name="imagesPerTrack" type="xsd:positiveInteger">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Number of images per track&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="timeConsecutiveFields" type="ndm:positiveDouble">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Time between consecutive files &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="timeTrackMatches" type="ndm:positiveDouble">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Time between tracking matches &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="antisunOffset" type="comsenc:SensorStrategyAngleRangeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Offset to the antisun &lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="obsDistance" type="ndm:positiveDouble">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Observation distance &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="minAngle" type="comsenc:SensorStrategyAngleRangeType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Minimum angle &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="maxAngle" type="comsenc:SensorStrategyAngleRangeType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Maximum angle &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="imagesPerStrip" type="comsenc:ImagesPerStripRangeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Images taken per each strip.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sbAzimuthAngle" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Space based telescope azimuth angle&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sbElevationAngle" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Space based elevation angle&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="initialRA" type="comsenc:SensorStrategyAngleRangeType"/>
+			<xsd:element name="initialDEC" type="comsenc:SensorStrategyAngleRangeType"/>
+			<xsd:element name="deltaRAimage" type="xsd:double"/>
+			<xsd:element name="deltaDECimage" type="xsd:double"/>
+			<xsd:element name="deltaRAStrip" type="xsd:double"/>
+			<xsd:element name="deltaDECStrip" type="xsd:double"/>
+			<xsd:element name="exposureTime" type="comsenc:ExposureTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PointingParametersType">
+		<xsd:annotation>
+			<xsd:documentation>Pointing parameters must follow AD-TRAC format. Idea from sst  COVI_schemas, file RequestedTask.xsd (without the epheremis  and ID)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="elevation" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Elevation angle the sensor must target. Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="range" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Relative distance between the sensor and the target at time of observation. Unit km.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rangeRate" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Range velocity between the sensor and the target at time of observation. Unit km/s.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="declination" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Declination angle the sensor must target. Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rightAscension" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Angle between a given object and the vernal equinox point at the date of January 1, 2000 at 12:00. (J2000 epoch). Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="azimuth" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Azimuth angle the sensor must target. Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RadarLocationType">
+		<xsd:sequence>
+			<xsd:element name="receptionRadarlocation" type="com:GeodeticPosition"/>
+			<xsd:element name="transmissionRadarlocation" type="com:GeodeticPosition"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SeeingSiteConditionsType">
+		<xsd:sequence>
+			<xsd:element name="atmtra" type="comsenc:RatioType">
+				<xsd:annotation>
+					<xsd:documentation>Mean atmospheric transmission</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="opttra" type="comsenc:RatioType">
+				<xsd:annotation>
+					<xsd:documentation>Mean optical transmission</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quante" type="comsenc:RatioType">
+				<xsd:annotation>
+					<xsd:documentation>Mean quantum efficiency</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="skyback" type="ndm:positiveDouble">
+				<xsd:annotation>
+					<xsd:documentation>Sky background magnitude</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AccuracyLookupTableType">
+		<xsd:sequence>
+			<xsd:element name="elements" type="comsenc:AccuracyLookupElementType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Elements in the lookup table.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExposureTime">
+		<xsd:sequence>
+			<xsd:element name="orbitalRegion" type="com:SpaceRegionsEnum">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Orbital  region.&lt;/p&gt;&lt;p&gt;Values inserted here can be: “LEO”, “MEO”, “GEO”, “NEO”&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="exposureTime" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Exposure time to realize a picture.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OpticalSpaceSensorErrorsType">
+		<xsd:sequence>
+			<xsd:element name="xShift" type="ndm:nonNegativeDouble"/>
+			<xsd:element name="yShift" type="ndm:nonNegativeDouble"/>
+			<xsd:element name="zShift" type="ndm:nonNegativeDouble"/>
+			<xsd:element name="xVarShift" type="ndm:nonNegativeDouble"/>
+			<xsd:element name="yVarShift" type="ndm:nonNegativeDouble"/>
+			<xsd:element name="zVarShift" type="ndm:nonNegativeDouble"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RadarGroundSensorErrorsType">
+		<xsd:sequence>
+			<xsd:element name="txShiftLong" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>transmission antenna-Systematic location shift in longitude (deg)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="txShiftLat" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>transmission antenna-Systematic location shift in latitude (deg)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="txShiftAlt" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>transmission antenna-Systematic location shift in altitude (m)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rxShiftLong" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>reception antenna-Systematic location shift  in longitude (deg)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rxShiftLat" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>reception antenna-Systematic location shift  in latitude  (deg)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rxShiftAlt" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>reception antenna-Systematic location shift  in altitude  (m)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableTxShiftLong" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>transmission antenna-Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableTxShiftLat" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>transmission antenna-Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableTxShiftAlt" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>transmission antenna-Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableRxShiftLong" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>reception antenna-Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableRxShiftLat" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>reception antenna-Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableRxShiftAlt" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>reception antenna-Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SensorErrorsType">
+		<xsd:sequence>
+			<xsd:element name="timeShift" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Systematic time shift (s)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableTimeShift" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Variable shift in time applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="locationShiftLong" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Systematic location shift (m)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="locationShiftLat" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Systematic location shift (m)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="locationShiftAlt" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Systematic location shift (m)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableLocationShiftLong" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableLocationShiftLat" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="variableLocationShiftAlt" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>Variable shift in location applied across the duration of the tracklet</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SensorFilteringType">
+		<xsd:sequence>
+			<xsd:element name="objectSize" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Object size&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="orbitType" type="com:SpaceRegionsEnum">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Space region.&lt;/p&gt;&lt;p&gt;Values inserted here can be: “LEO”, “MEO”, “GEO”, “NEO”&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AvailabilityType">
+		<xsd:sequence>
+			<xsd:element name="durationOfNoAvailabitity" type="com:TimeRange" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Predicted time interval of unavailability.  Real interval may be different from this value</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="isActive" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Indicates whether the sensor is active.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="isTaskeable" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Indicates whether the sensor is taskeable.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SensorSite">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;Classified Geodetic Location updated at a certain epoch from a source user. This Location is given in a geodetic reference frame with latitude and longitude measured in degrees and altitude measured in meters above sea level. This element brings also information on the classification of the site in terms of secret/confidentiality.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="dateUpdated" type="ndm:epochType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Date the sensor location was last updated. UTC time-frame.Format: yyyy-dddThh:mm:ss.d*-&amp;gt;dZ&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="weatherStatisticalData" type="comsenc:WeatherStatisticalDataType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Sequence of weather conditions expressed as cloud probabilities for consecutive months. &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="receptionLocation" type="com:GeodeticPosition">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;&lt;span style="font-size:9pt;font-family:"Georgia","serif";"&gt;Geodetic position of the reception site (geodetic latitude, geodetic longitude, geodetic altitude), expressed in an ECEF frame&lt;/span&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="transmissionLocation" type="com:GeodeticPosition" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Geodetic position of the transmission site (if different from the reception site) (geodetic latitude, geodetic longitude, geodetic altitude), expressed in an ECEF frame&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="SensorOutputParametersEnum">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;Enumeration of type of parameters which can be obtained from any kind of sensor. Units are fixed for any type and indicated in parenthesis.&lt;/p&gt;&lt;p&gt;Values inserted can be {0,'date of measure'} (UTC Date), {1,'azimuth'} (radian), {2,'declination'} (radian), {3,'elevation'} (radian), {4,'range'} (m), {5,'range-rate'} (m/s), {6,'rcs'} (m2), {7,'right ascension'} (radian), {8,'snr'} (dB), {9,'signal strength'} (Joule), {10,'apparent visual magnitude'} (unit less).&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="date of measure"/>
+			<xsd:enumeration value="azimuth"/>
+			<xsd:enumeration value="declination"/>
+			<xsd:enumeration value="elevation"/>
+			<xsd:enumeration value="range"/>
+			<xsd:enumeration value="range-rate"/>
+			<xsd:enumeration value="rcs"/>
+			<xsd:enumeration value="right ascension"/>
+			<xsd:enumeration value="snr"/>
+			<xsd:enumeration value="signal strength"/>
+			<xsd:enumeration value="apparent visual magnitude"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SensorInputParametersEnum">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;Enumeration of type of parameters that any kind of sensor may need as input to produce tracks. Units are fixed for any type and indicated in parenthesis.&lt;/p&gt;&lt;p &gt;Values inserted can be {0,'date of measure'} (UTC Date), {1,'azimuth'} (radian), {2,'declination'} (radian), {3,'elevation'} (radian), {4,'range'} (m), {5,'range-rate'} (m/s), {6,'rcs'} (m2), {7,'right ascension'} (radian), {8,'snr'} (dB), {9,'signal strength'} (Joule), {10,'apparent visual magnitude'} (unit less).&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="date of measure"/>
+			<xsd:enumeration value="azimuth"/>
+			<xsd:enumeration value="declination"/>
+			<xsd:enumeration value="elevation"/>
+			<xsd:enumeration value="range"/>
+			<xsd:enumeration value="range-rate"/>
+			<xsd:enumeration value="rcs"/>
+			<xsd:enumeration value="right ascension"/>
+			<xsd:enumeration value="snr"/>
+			<xsd:enumeration value="signal strength"/>
+			<xsd:enumeration value="apparent visual magnitude"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="SensorConfiguration">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;Sensor configuration during an observation.&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="idSensorConfiguration" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RegionMask">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;A region Mask allows to define sky regions that cannot be seen by the sensors. These regions are defined as rectangular areas. A set of RegionMask can be added to pointing and tracking limits.&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="lowerLeftAzimuth" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Azimuth of lower left corner of the mask. The mask is rectangle shaped. Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="upperRightAzimuth" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Azimuth of upper right corner of the mask. The mask is rectangle shaped. Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lowerLeftElevation" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Elevation of lower left corner of the mask. The mask is rectangle shaped. Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="upperRightElevation" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Elevation of upper right corner of the mask. The mask is rectangle shaped. Unit is radian.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="ReferencedTimeAndAssociatedAccuracyEnum">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p &gt;Enumeration of Reference Time Synchronization Systems.&lt;/p&gt;&lt;p &gt;Values inserted can be {0,'GPS'}, {1,'N/A'}, {2,'Network'}.&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="GPS"/>
+			<xsd:enumeration value="N/A"/>
+			<xsd:enumeration value="Network"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="OperationalAspects">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;Operational aspects of sensor concerns the usability conditions of sensors.&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="idAspects" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="operationalTimes" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Preferred times for sensor use.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="securityEnvironmentalConstraint" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Security environmental constraints.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="otherRestriction" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Other information and restriction.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="taskingMethods" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Tasking methods and project priority.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dataDisseminationLatencyMax" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Maximum time needed to distribute products of the observation.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sensorCapabilities" type="comsenc:SensorOutputParametersEnum" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Products the sensor can publish as result of an observation : date, angles, poistions of objects ...&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sensorInputs" type="comsenc:SensorInputParametersEnum" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Parameters the sensor needs to make the observation : angles, ...&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AvailabilitForDebrisDetection" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Availability for debris detection and space surveillance. &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="startValidityDate" type="ndm:epochType">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Update date of the information. UTC date.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Device">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;Device allows to define sub parts of sensors like camera for optics.&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="idDevice" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deviceLocation" type="com:GeodeticPosition">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Device position. &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deviceName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Name of the device.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deviceNumber" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Range number of the device.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="deviceType" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Type of the device. &lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WeatherStatisticalDataType">
+		<xsd:annotation>
+			<xsd:documentation>&lt;p&gt;&lt;span style="font-family:"Georgia","serif";"&gt;Sequence of weather conditions expressed as cloud probabilities for consequtive months. &lt;/span&gt;&lt;/p&gt;</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="month" type="xsd:gMonth">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Month number.XML Schema standard data type whose format is the left and right truncated lexical representation for date: --MM&lt;span style="font-size:9pt;color:#000000;font-family:;"&gt;&lt;a href="http://www.w3.org/TR/xmlschema-2/#date"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="cloudProbability" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Probability of clouds from that location during the given month.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WeatherSSIMDataType">
+		<xsd:sequence>
+			<xsd:element name="epoch" type="ndm:epochType"/>
+			<xsd:element name="cloudProbability" type="comsenc:RatioType">
+				<xsd:annotation>
+					<xsd:documentation>Probability of clouds from that location during the given epoch</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="RatioType">
+		<xsd:restriction base="xsd:double">
+			<xsd:maxInclusive value="1.0"/>
+			<xsd:minInclusive value="0.0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ImagesPerStripRangeType">
+		<xsd:restriction base="xsd:double">
+			<xsd:minInclusive value="2.0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PositiveLongType">
+		<xsd:restriction base="xsd:long">
+			<xsd:minExclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AccuracyLevelEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HIGH"/>
+			<xsd:enumeration value="MEDIUM"/>
+			<xsd:enumeration value="LOW"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SensorStrategyAngleRangeType">
+		<xsd:restriction base="xsd:double">
+			<xsd:minInclusive value="-180.0"/>
+			<xsd:maxInclusive value="180.0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="AccuracyLookupElementType">
+		<xsd:sequence>
+			<xsd:element name="accuracyLevel" type="comsenc:AccuracyLevelEnum">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Accuracy level.&lt;/p&gt;&lt;p&gt;Values inserted here can be: “HIGH”, “MEDIUM”, “LOW”&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="spaceRegion" type="com:SpaceRegionsEnum">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Space region.&lt;/p&gt;&lt;p&gt;Values inserted here can be: “LEO”, “MEO”, “GEO”, “NEO”&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="trackingDuration" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;Tracking duration.&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GalacticPlaneType">
+		<xsd:sequence>
+			<xsd:element name="MinGalPlaneSuccessRate" type="comsenc:RatioType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>Minimum value of detection rate below MinGalAlt </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MinGalAlt" type="com:AngleDegreesType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;(degrees) minimum altitude with respect to the galactic plane above which the success rate increases from MinGalPlaneSuccesRate up to Sensor succesRate&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MaxGalAlt" type="com:AngleDegreesType" form="qualified">
+				<xsd:annotation>
+					<xsd:documentation>&lt;p&gt;(degrees) maximum altitude with respect to the galactic plane above which the success rate is not perturbed by the Galactic Plane&lt;/p&gt;</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

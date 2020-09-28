@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml"
+            targetNamespace="urn:ccsds:recommendation:navigation:schema:ndmxml"
+            elementFormDefault="unqualified" attributeFormDefault="unqualified">
+
+    <!--********************************************************************-->
+    <!-- NOTE: This is proposal based on the CSSDS Navigation Data Messages -->
+    <!-- This component of the schema is the "FDM" module, which contains   -->
+    <!-- elements that are used exclusively in the Fragmentation Data       -->
+    <!-- Message (FDM).                                                     -->
+    <!--********************************************************************-->
+
+    <!--********************************************************************-->
+    <!-- Include common schemas                                             -->
+    <!--********************************************************************-->
+
+    <xsd:include schemaLocation="./ndmxml-1.0-navwg-common.xsd"/>
+    <xsd:include schemaLocation="./ndmxml-1.0-ccsds-common.xsd"/>
+
+    <!--********************************************************************-->
+    <!-- An FDM consists of a "header" and a "body".  The header is a       -->
+    <!-- construct that is shared by all NDM's, found in the "common" schema-->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="fdmType">
+        <xsd:sequence>
+            <xsd:element name="header" type="ndm:fdmHeader"/>
+            <xsd:element name="body"   type="ndm:fdmBody"/>       
+        </xsd:sequence>
+        <xsd:attribute name="id"        use="required" fixed="CCSDS_FDM_VERS"/>
+        <xsd:attribute name="version"   use="required" fixed="1.0"/>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- The FDM "body" consists of 1 "segments", described below.          -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="fdmBody">
+        <xsd:sequence>
+            <xsd:element name="segment" type="ndm:fdmSegment" 
+                   minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- The FDM "segment" consists of a "metadata" section and a "data"    -->
+    <!-- section.                                                           -->
+    <!--********************************************************************-->  
+
+    <xsd:complexType name="fdmSegment">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="ndm:fdmMetadata"/>
+            <xsd:element name="data" type="ndm:fdmData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- FDM Metadata Section                                               -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="fdmMetadata">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" 
+                   minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="FRAGMENTATION_ID" type="xsd:long"/>
+            <xsd:element name="FRAGMENTATION_STATUS" type="xsd:string"/>
+            <xsd:element name="TYPE_OF_EVENT" type="xsd:string"/>
+            <xsd:element name="TIME_OF_EVENT" type="ndm:epochType"/>
+            <xsd:element name="CATALOG_NAME" type="xsd:string"/>
+
+            <xsd:element name="OBJECT1_DESIGNATOR" type="xsd:long"/>
+            <xsd:element name="OBJECT1_NAME" type="xsd:string"/>
+            <xsd:element name="OBJECT1_INTERNATIONAL_DESIGNATOR" type="xsd:string"/>
+            <xsd:element name="OBJECT1_OWNER" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT1_TYPE" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT1_ESTIMATED_MASS" type="ndm:massType" minOccurs="0"/>
+            <xsd:element name="OBJECT1_ESTIMATED_AREA" type="ndm:areaType" minOccurs="0"/>
+
+			<xsd:element name="OBJECT2_DESIGNATOR" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="OBJECT2_NAME" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT2_INTERNATIONAL_DESIGNATOR" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT2_OWNER" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT2_TYPE" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="OBJECT2_ESTIMATED_MASS" type="ndm:massType" minOccurs="0"/>
+            <xsd:element name="OBJECT2_ESTIMATED_AREA" type="ndm:areaType" minOccurs="0"/>
+
+            <xsd:element name="REF_FRAME" type="xsd:string"/>
+            <xsd:element name="X" type="ndm:positionType"/>
+            <xsd:element name="Y" type="ndm:positionType"/>
+            <xsd:element name="Z" type="ndm:positionType"/>
+            <xsd:element name="X_DOT" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="Y_DOT" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="Z_DOT" type="ndm:velocityType" minOccurs="0"/>
+
+            <xsd:element name="DETECTED_FRAGMENTS" type="xsd:int"/>
+			<xsd:element name="CATALOGUED_FRAGMENTS" type="xsd:int"/>
+            <xsd:element name="NUMBER_OF_FRAGMENTS_SIMULATED" type="xsd:int" minOccurs="0"/>
+
+            <xsd:element name="EPOCH"  type="ndm:epochType" minOccurs="0"/>
+
+            <xsd:element name="SEMI_MAJOR_AXIS_DIST"  type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ECCENTRICITY_DIST"  type="xsd:string" minOccurs="0"/>
+            <xsd:element name="INCLINATION_DIST"  type="xsd:string" minOccurs="0"/>
+            <xsd:element name="RA_OF_ASC_NODE_DIST"  type="xsd:string" minOccurs="0"/>
+
+            <xsd:element name="SEMI_MAJOR_AXIS_LOCATION" type="ndm:positionType" minOccurs="0"/>
+            <xsd:element name="ECCENTRICITY_LOCATION" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="INCLINATION_LOCATION" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="RA_OF_ASC_NODE_LOCATION" type="ndm:angleType" minOccurs="0"/>
+            
+            <xsd:element name="SEMI_MAJOR_AXIS_SPREAD" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="ECCENTRICITY_SPREAD" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="INCLINATION_SPREAD" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="RA_OF_ASC_NODE_SPREAD" type="xsd:double" minOccurs="0"/>
+
+            <xsd:element name="SEMI_MAJOR_AXIS_LOCATION_SIMULATED" type="ndm:positionType" minOccurs="0"/>
+            <xsd:element name="ECCENTRICITY_LOCATION_SIMULATED" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="INCLINATION_LOCATION_SIMULATED" type="ndm:angleType" minOccurs="0"/>
+            <xsd:element name="RA_OF_ASC_NODE_LOCATION_SIMULATED" type="ndm:angleType" minOccurs="0"/>
+            
+            <xsd:element name="SEMI_MAJOR_AXIS_SPREAD_SIMULATED" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="ECCENTRICITY_SPREAD_SIMULATED" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="INCLINATION_SPREAD_SIMULATED" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="RA_OF_ASC_NODE_SPREAD_SIMULATED" type="xsd:double" minOccurs="0"/>
+            
+            <xsd:element name="COLLISION_ID" type="xsd:long" minOccurs="0"/>
+
+            <xsd:element name="RELATIVE_SPEED" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="RELATIVE_VELOCITY_R" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="RELATIVE_VELOCITY_T" type="ndm:velocityType" minOccurs="0"/>
+            <xsd:element name="RELATIVE_VELOCITY_N" type="ndm:velocityType" minOccurs="0"/>
+
+            <xsd:element name="SPATIAL_DENSITY_MODEL"  type="xsd:string" minOccurs="0"/>
+			<xsd:element name="RELATED_DATA_MESSAGES"  type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+    </xsd:complexType>
+
+
+    <!--********************************************************************-->
+    <!-- FDM Data Section                                                   -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="fdmData">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" 
+                   minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="fragments" 
+                         type="ndm:fdmFragments" 
+                         minOccurs="0" />
+            <xsd:element name="observedSpatialDensityIncrease" 
+                         type="ndm:fdmObservedSpatialDensityIncrease" 
+                         minOccurs="0" />
+            <xsd:element name="simulatedSpatialDensityIncrease" 
+                         type="ndm:fdmSimulatedSpatialDensityIncrease" 
+                         minOccurs="0" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--********************************************************************-->
+    <!-- "Logical Blocks" Unique to the FDM                                 -->
+    <!--********************************************************************-->
+
+    <xsd:complexType name="fragmentsType">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" minOccurs="0" 
+                   maxOccurs="unbounded"/>
+            <xsd:element name="FRAGMENT_NUMBER" type="xsd:int"/>
+            <xsd:element name="OBJECT_CATALOG_DESIGNATOR" type="xsd:long"/>
+            <xsd:element name="TIME_OF_DETECTION" type="ndm:epochType"/>
+            <xsd:element name="OBJECT_INTERNATIONAL_DESIGNATOR" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="observedSpatialDensityIncreaseType">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" minOccurs="0" 
+                   maxOccurs="unbounded"/>
+            <xsd:element name="RADIUS" type="xsd:double"/>
+            <xsd:element name="OBJECT_SPATIAL_DENSITY_INCREASE" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="simulatedSpatialDensityIncreaseType">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" type="xsd:string" minOccurs="0" 
+                   maxOccurs="unbounded"/>
+            <xsd:element name="RADIUS" type="xsd:double"/>
+            <xsd:element name="SIMULATED_OBJECT_SPATIAL_DENSITY_INCREASE" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="fdmFragments">
+        <xsd:sequence>
+            <xsd:element name="fragment" 
+                         type="ndm:fragmentsType" 
+                         minOccurs="1" 
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="fdmObservedSpatialDensityIncrease">
+        <xsd:sequence>
+            <xsd:element name="layer" 
+                         type="ndm:observedSpatialDensityIncreaseType" 
+                         minOccurs="0" 
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="fdmSimulatedSpatialDensityIncrease">
+        <xsd:sequence>
+            <xsd:element name="layer" 
+                         type="ndm:simulatedSpatialDensityIncreaseType" 
+                         minOccurs="0" 
+                         maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="fdmHeader">
+        <xsd:sequence>
+            <xsd:element name="COMMENT" 
+                         type="xsd:string" 
+                         minOccurs="0" 
+                         maxOccurs="unbounded"/>
+            <xsd:element name="CREATION_DATE" 
+                         type="ndm:epochType" 
+                         minOccurs="1" />
+            <xsd:element name="ORIGINATOR" 
+                         type="xsd:string" 
+                         minOccurs="1" />
+            <xsd:element name="CCSDS_FDM_VERS" 
+                         type="xsd:string" 
+                         minOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

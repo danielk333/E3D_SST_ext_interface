@@ -4,7 +4,7 @@ import configparser
 
 config = configparser.ConfigParser()
 
-path = pathlib.Path(__file__).parent /'config.conf'
+path = pathlib.Path(__file__).parent / 'config.conf'
 
 DEFAULT = {
     'General': {
@@ -19,6 +19,13 @@ DEFAULT = {
         'port': 32769,
     },
     'SST Client': {
+        'Deliver interval': 60.0,
+        'Inbox': './data/tracklets',
+        'Archive': './data/archive',
+        'File-extensions': 'tdm,odm',
+        'Deliver Server': 'localhost',
+        'Deliver Port': 32777,
+        'Deliver Path': 'Deliver/Tracklet/Data',
     },
 }
 

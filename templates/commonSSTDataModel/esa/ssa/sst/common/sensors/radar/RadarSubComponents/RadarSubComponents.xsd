@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+	targetNamespace="http://esa.ssa.sst/2.1/common/sensors/radar/components"
+	xmlns:com="http://esa.ssa.sst/2.1/common/"
+	xmlns:comsenc="http://esa.ssa.sst/2.1/common/sensors/common/"
+	xmlns:comsenrcom="http://esa.ssa.sst/2.1/common/sensors/radar/components"
+	xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eCCSDS="http://esa.ssa.sst/2.1/CCSDS/">
+	<xsd:import
+		namespace="urn:ccsds:recommendation:navigation:schema:ndmxml"
+		schemaLocation="../../../../../../../CCSDS/ndmxml-1.0-namespace-1.1.xsd" />
+	<xsd:import
+		namespace="http://esa.ssa.sst/2.1/common/sensors/common/"
+		schemaLocation="../../common/common.xsd" />
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/"
+		schemaLocation="../../../common.xsd" />
+	<xsd:import schemaLocation="../../../../extendedCCSDS/extendedCCSDS.xsd" namespace="http://esa.ssa.sst/2.1/CCSDS/"></xsd:import>
+	<xsd:complexType name="RadarAccuracyType">
+		<xsd:sequence>
+			<xsd:element name="sigele" type="com:AngleDegreesType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Radar 1-sigma error in elevation (degrees)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sigazi" type="com:AngleDegreesType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Radar 1-sigma error in azimuth (degrees)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sigran" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						Radar 1-sigma error in range (m)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sigdop" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						Radar 1-sigma error in doppler (m/s)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RadarDetectabilityType">
+		<xsd:sequence>
+			<xsd:element name="detectionRangeDistance"
+				type="com:NonNegativeRangeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Minimum and Maximum detection range distance
+						(km)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="xl" type="ndm:positiveDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						Transmission wavelength (m)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="snrmin" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						Minimum signal to noise ratio (dB)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RadarOrientationType">
+		<xsd:sequence>
+			<xsd:element name="nfield" type="comsenrcom:FieldRangeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Number of FoR for the configuration of a Split
+						radar
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mulfield" type="comsenrcom:FieldRangeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						Number of images inside each pointed field
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element maxOccurs="unbounded" name="regionAccuracy"
+				type="comsenc:RegionMask">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Accuracy in terms of geometry of the
+						optical sensor.&lt;/p&gt;&lt;p&gt;A region Mask
+						allows defining sky regions that cannot be seen
+						by the sensors. These regions are defined as
+						rectangular areas. A set of RegionMask can be
+						added to pointing and tracking
+						limits.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Signal">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Signal embeds characteristics of a radar signal
+				in terms of band, beam, power and pulse.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="idSignal" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="band" type="comsenrcom:Band">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Band of the signal; Band and Bandwith
+						characteristics for a Radar&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="pulse" type="comsenrcom:Pulse">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Pulse of the signal used by the
+						radar.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="power" type="comsenrcom:Power">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Power of the signal.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="beam" type="comsenrcom:Beam">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Beam characteristics of the
+						signal&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReferenceOrientation">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Defines an orientation of reference.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="idReferenceOrientation"
+				type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="azimuth" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Reference orientation azimuth the radar
+						points. Unit is radian.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="azimuthFromNorth" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Azimuth from North
+						orientation.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="elevation" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Reference orientation elevation the
+						radar points. Unit is radian.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="clockwise" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Boolean indicating if the angles are
+						computed in the clock wise sense or
+						not.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RadarSensitivity">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Radar Sensivity is a usefull specific
+				information for radar. It is defined in terms of
+				capability to see an object of a given size at a
+				particular altitude. &lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="objectSize" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Size of the observed object. Derived
+						from the radar cross section. Unit
+						Meter.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="altitude" type="ndm:distanceType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Altitude of the observed object. Unit
+						km.Altitude of the position.km. Altitude over
+						the surface of the Earth. WGS84 reference
+						ellipsoid, mean radius of equator 6378.137km,
+						flattening coefficient
+						1./298.257223563&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="integrationTime" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Duration used for the coherent
+						integration. Unit Second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rcs" type="eCCSDS:nonPositiveDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Radar Cross Section. Unit
+						Meter2.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="snr_ref" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						SNR reference value (dB)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="snr_offset" type="ndm:nonNegativeDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						SNR offset (dB)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tnr" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>Thermal noise</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="minimumRCS" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimal radar Cross Section. Unit
+						Meter2.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="referenceDistance"
+				type="ndm:positiveDouble">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Reference distance, km.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Pulse">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Pulse of the signal used by the
+				radar.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lengthMin" type="xsd:float">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimal length duration of the pulse
+						achievable. Unit Second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lengthMax" type="xsd:float">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Maximal length duration of the pulse
+						achievable. Unit Second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="pulseMinFrequency" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimum frequency of the pulse usable.
+						Unit Hz.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="pulseMaxFrequency" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Maximum frequency of the pulse usable.
+						Unit Hz.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Power">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Power of the signal of the radar
+				used.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="peakPower" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Maximum power that the radar is able to
+						radiate. Unit is Watts.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="polarisation"
+				type="comsenrcom:PolarisationEnum">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Polarisation of the
+						signal&lt;/p&gt;&lt;p&gt;Values inserted here
+						can be: “H”, “V”&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lowPower" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Low power that the radar is able to
+						radiate. Unit is Watts.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="PolarisationEnum">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Enumeration of Power Polarisation
+				literals.&lt;/p&gt;&lt;p&gt;Values inserted can be
+				{0,'H'}, {1,'V'}.&lt;/p&gt;&lt;p&gt;Values
+				are:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;H is for
+				horizontal;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;V is
+				for
+				vertical.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="H" />
+			<xsd:enumeration value="V" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="FieldOfRegardType">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;PointingTackingLimitsForRadar give the
+				limitations of use of a radar in term of angles of view,
+				velocity and acceleration the radar move is limited.
+				These characteristics are considered to evolve during
+				time. Pointing and tracking limits refer to regions that
+				mask the radar such as a building, trees, or other
+				elements.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="updateDate" type="ndm:epochType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Date at which the given data have been
+						updated. UTC Date.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="azimuthMin"
+				type="com:AngleDegreesType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimal azimuth in the chosen frame
+						that the radar is able to track the object. Unit
+						radian.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="azimuthMax"
+				type="com:AngleDegreesType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Maximal azimuth in the chosen frame
+						that the radar is able to track the object. Unit
+						degrees.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="elevationMin"
+				type="com:ElevationRangeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimal elevation in the chosen frame
+						that the radar is able to track the object. Unit
+						degrees.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="elevationMax"
+				type="com:ElevationRangeType">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Maximal elevation in the chosen frame
+						that the radar is able to track the object. Unit
+						degrees.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="velocity" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Maximal angular velocity that the radar
+						can achieve. Unit is degrees/second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element form="qualified" name="TrackingFov">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Definition of the FOV for the tracking
+						radar&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element form="qualified" name="FOVAZ"
+							type="com:AngleDegreesWithUnitsType">
+							<xsd:annotation>
+								<xsd:documentation>
+									&lt;p&gt;fov azimuth.Angle from
+									-180º to 360º indicating the FOVA
+									azimuth &lt;/p&gt;
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element form="qualified" name="FOVEL"
+							type="com:AngleDegreesWithUnitsType">
+							<xsd:annotation>
+								<xsd:documentation>
+									&lt;p&gt;fov elevation. Angle from
+									-180º to 360º indicating the FOVA
+									elevation &lt;/p&gt;
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DopplerResolution">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Defines the doppler resolution.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="minResolution" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimum doppler resolution. Unit Meter
+						per Second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="maxResolution" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Maximum doppler resolution. Unit Meter
+						per Second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="integrationTime" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Necessary integration time. Unit
+						Second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DopplerAmbiguity">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Defines the doppler ambiguity.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="velocity" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Velocity ambiguity of the doppler. Unit
+						Meter per Second.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="samplingRate" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Sampling rate ambiguity of the doppler.
+						Unit MHz.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="BeamModeEnum">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p &gt;Enumeration of Beam modes.&lt;/p&gt;&lt;p
+				&gt;Values inserted can be {0,'Focalized'}, {1,'Not
+				Focalized'}.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Focalized" />
+			<xsd:enumeration value="Not Focalized" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="Beam">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Beam Characteristics for a Radar.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mode" type="comsenrcom:BeamModeEnum">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Mode of the beam. Values inserted here
+						can be: “Focalized”, “Not Focalized”&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="beamwidth" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Width of the beam used. Unit
+						radian.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="amplificationRate" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Amplification rate of the
+						beam.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="BandLevelsEnum">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p &gt;Enumeration of Band levels.&lt;/p&gt;&lt;p
+				&gt;Values inserted can be {0,'C'}, {1,'L'}, {2,'S'},
+				{3,'UHF'} and so on.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="C" />
+			<xsd:enumeration value="L" />
+			<xsd:enumeration value="S" />
+			<xsd:enumeration value="UHW" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="Band">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p&gt;Band and Bandwith characteristics for a
+				Radar&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bandLabel"
+				type="comsenrcom:BandLevelsEnum">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Name of the Band.Values inserted here
+						can be: “C”, “L”, “S”, “UHW”&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bandMinFrequency" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimum frequency used. Unit
+						MHz.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="bandMaxFrequency" type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Minimum frequency used. Unit
+						MHz.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="comment" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Comment zone.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="adjustableBandWidthReception"
+				type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Numeric value used to adjust the band
+						width in reception mode. Unit MHz.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="adjustableBandWidthTransmission"
+				type="xsd:double">
+				<xsd:annotation>
+					<xsd:documentation>
+						&lt;p&gt;Numeric value used to adjust the band
+						with in transmission mode. Unit MHz.&lt;/p&gt;
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+			<xsd:simpleType name="FieldRangeType">
+		<xsd:restriction base="xsd:integer">
+			<xsd:maxInclusive value="15" />
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AntennaTypeEnum">
+		<xsd:annotation>
+			<xsd:documentation>
+				&lt;p &gt;Enumeration of Antenna Types.&lt;/p&gt;&lt;p
+				&gt;Values inserted can be {0,'Parabolic Reflector'},
+				{1,'Reflector Based'}, and so on.&lt;/p&gt;
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Parabolic Reflector" />
+			<xsd:enumeration value="Reflector Based" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
