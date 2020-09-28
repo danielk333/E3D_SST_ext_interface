@@ -8,28 +8,39 @@ from wsgiref.simple_server import WSGIRequestHandler
 
 from daemon import Daemon
 from log import get_logger
-from sst import SSTApplication, TrackletSender
+from sst import SSTApplication, SSTClient
+from config import config
 
-SST_HOST = 'localhost'
-SST_PORT = 32769
+
+if config.getboolean('General', 'Enable terminal logging'):
+    tlevel = config.get('General', 'Terminal logging level').upper()
+    tlevel = getattr(logging, tlevel)
+else:
+    tlevel = None
+
+if config.getboolean('General', 'Enable file logging'):
+    flevel = config.get('General', 'File logging level').upper()
+    flevel = getattr(logging, flevel)
+else:
+    flevel = None
 
 
 class SSTService(Daemon):
     def run(self):
-        logger = get_logger(file_level = logging.INFO, term_level = logging.INFO)
+        logger = get_logger(file_level = flevel, term_level = tlevel)
 
         class LoggerWSGIRequestHandler(WSGIRequestHandler):
             def log_message(self, format, *args):
                 logger.info("%s - - %s" % (self.address_string(), format%args))
 
         self.server = make_server(
-            SST_HOST, 
-            SST_PORT, 
+            config.get('SST Server', 'host'), 
+            config.getint('SST Server', 'port'), 
             SSTApplication(logger),
             handler_class=LoggerWSGIRequestHandler,
         )
 
-        self.client = TrackletSender(logger)
+        self.client = SSTClient(logger)
 
         self.server_thread = threading.Thread(target=self.server.serve_forever)
         self.client_thread = threading.Thread(target=self.client.run)
@@ -59,7 +70,7 @@ class SSTService(Daemon):
 
 if __name__ == "__main__":
 
-    daemon = SSTService('/tmp/daemon-SSTService.pid')
+    daemon = SSTService(config.get('General', 'Daemon path'))
 
     if len(sys.argv) == 2:
         if 'run' == sys.argv[1]:
