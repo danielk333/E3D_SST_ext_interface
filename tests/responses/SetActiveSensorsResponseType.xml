@@ -1,0 +1,7 @@
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+        <SetActiveSensorsResponseType xmlns="http://esa.ssa/ssensor/1.2/SetActiveSensorsResponseType">
+            <SENSORConfirmationCodeType>SUCCESSFUL SENSOR CONFIGURATION UPDATE</SENSORConfirmationCodeType>
+        </SetActiveSensorsResponseType>
+    </Body>
+</Envelope>

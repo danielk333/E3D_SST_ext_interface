@@ -103,10 +103,6 @@ class SSTApplication:
             request_tag = xml_request.tag.split('}')[-1]
             self.logger.debug(f'SSTApplication:__call__: Incoming request tag "{request_tag}"')
 
-
-
-
-
             if request_tag in SERVICES:
                 self.logger.debug(f'SSTApplication:__call__: Service "{request_tag}" executed')
                 func = SERVICES[request_tag]
