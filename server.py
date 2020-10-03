@@ -8,35 +8,48 @@ from wsgiref.simple_server import WSGIRequestHandler
 
 from daemon import Daemon
 from log import get_logger
-from sst import SSTApplication, SSTClient
-from config import config
-
-
-if config.getboolean('General', 'Enable terminal logging'):
-    tlevel = config.get('General', 'Terminal logging level').upper()
-    tlevel = getattr(logging, tlevel)
-else:
-    tlevel = None
-
-if config.getboolean('General', 'Enable file logging'):
-    flevel = config.get('General', 'File logging level').upper()
-    flevel = getattr(logging, flevel)
-else:
-    flevel = None
+from sst import SSTServer, SSTClient
 
 
 class SSTService(Daemon):
+
+    def __init__(self, config):
+        super().__init__(config.get('General', 'Daemon path'))
+        self.config = config
+
+
+    def abort(self):
+        self.__run = False
+
+
     def run(self):
+        self.__run = True
+
+        if self.config.getboolean('General', 'Enable terminal logging'):
+            tlevel = self.config.get('General', 'Terminal logging level').upper()
+            tlevel = getattr(logging, tlevel)
+        else:
+            tlevel = None
+
+        if self.config.getboolean('General', 'Enable file logging'):
+            flevel = self.config.get('General', 'File logging level').upper()
+            flevel = getattr(logging, flevel)
+        else:
+            flevel = None
+
         logger = get_logger(file_level = flevel, term_level = tlevel)
 
         class LoggerWSGIRequestHandler(WSGIRequestHandler):
             def log_message(self, format, *args):
                 logger.info("%s - - %s" % (self.address_string(), format%args))
 
+
+        self.app = SSTServer(self.config, logger)
+        
         self.server = make_server(
-            config.get('SST Server', 'host'), 
-            config.getint('SST Server', 'port'), 
-            SSTApplication(logger),
+            self.config.get('SST Server', 'host'), 
+            self.config.getint('SST Server', 'port'), 
+            self.app,
             handler_class=LoggerWSGIRequestHandler,
         )
 
@@ -49,10 +62,11 @@ class SSTService(Daemon):
             logger.info('SST Server: STARTED')
             self.server_thread.start()
             self.client_thread.start()
-            while True:
+            while self.__run:
                 pass
+            logger.info('External abort received')
         except KeyboardInterrupt:
-            logger.info('Service exit received\n')
+            logger.info('Service exit received')
         finally:
             self.server.shutdown()
             self.server.server_close()
@@ -69,8 +83,9 @@ class SSTService(Daemon):
 
 
 if __name__ == "__main__":
+    from config import config
 
-    daemon = SSTService(config.get('General', 'Daemon path'))
+    daemon = SSTService(config)
 
     if len(sys.argv) == 2:
         if 'run' == sys.argv[1]:

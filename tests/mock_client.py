@@ -1,14 +1,14 @@
 import http.client
 from lxml import etree
 
-import test_configuration as cfg
+import config_mock as cfg
 
-def send_request(request_tag):
+def send_request(file):
     rest = http.client.HTTPConnection(cfg.SST_HOST, cfg.SST_PORT)
 
-    tree = etree.parse(cfg.ROOT + / 'requests' / f'{cfg.HANDLE_REQUESTS[request_tag]}.xml')
+    tree = etree.parse(open(file, 'r'))
 
-    data = etree.tostring(tree.getroot())
+    data = etree.tostring(tree.getroot()).encode("utf-8")
     header = {
         'Content-Type': 'text/xml',
         'Content-Length': str(len(data)),

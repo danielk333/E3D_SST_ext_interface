@@ -22,23 +22,7 @@ import threading
 from wsgiref.simple_server import make_server
 from lxml import etree
 
-import test_configuration as cfg
-
-
-def get_response(request):
-    envelope = etree.fromstring(request)
-
-    request_tag = envelope.tag.split('}')[-1]
-
-    if request_tag in cfg.SEND_REQUESTS.keys():
-
-        if cfg.SEND_REQUESTS[request_tag]:
-            tree = etree.parse(cfg.ROOT + / 'responses' / f'{cfg.SEND_REQUESTS[request_tag]}.xml')
-            return etree.tostring(tree.getroot())
-        else:
-            return '<empty/>'.encode('utf-8')
-
-    return cfg.HTTP_404.encode('utf-8')
+import config_mock as cfg
 
 
 class Mock:
@@ -49,7 +33,12 @@ class Mock:
         self.called_n += 1
         try:
             request = env['wsgi.input'].read(int(env.get('CONTENT_LENGTH', 0)))
-            response = get_response(request)
+            envelope = etree.fromstring(request)
+
+            if not envelope.tag == 'Envelope':
+                raise Exception('Not a letter!?')
+
+            response = cfg.HTTP_200.encode('utf-8')
 
             start_response(cfg.HTTP_200, [
                 ('Content-Type', 'text/xml'),
@@ -94,13 +83,4 @@ class TestServer:
 def start_mock_server():
     mock_server = TestServer(cfg.MOCK_ESA_HOST, cfg.MOCK_ESA_PORT)
     mock_server.start(app=Mock())
-
-    try:
-        print('SST MOCK SERVER: STARTED\n')
-        while mock_server.app.called_n < 2:
-            pass
-    except KeyboardInterrupt:
-        pass
-    finally:
-        print('SST MOCK SERVER: STOPPED\n')
-        mock_server.stop()
+    return mock_server
