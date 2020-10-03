@@ -6,6 +6,7 @@ import pathlib
 import threading
 import logging
 import shutil
+import configparser
 
 sys.path.append(str(pathlib.Path('.').absolute()))
 
@@ -22,7 +23,7 @@ def test_send_tdm():
     tdm_inbox_path = (pathlib.Path('.')/'tests'/'data'/'tracklets'/'tdm.xml').absolute()
     tdm_archive_path = (pathlib.Path('.')/'tests'/'data'/'archive'/'tdm.xml').absolute()
 
-    config = {
+    cfg_dict = {
         'SST Client': {
             'Archive':  (pathlib.Path('.')/'tests'/'data'/'archive').absolute(),
             'Inbox': (pathlib.Path('.')/'tests'/'data'/'tracklets').absolute(),
@@ -32,6 +33,9 @@ def test_send_tdm():
             'Deliver interval': 1.0,
         },
     }
+    config = configparser.ConfigParser()
+    config.read_dict(cfg_dict)
+
     client = SSTClient(config, logger, delivery_log=True)
     thread = threading.Thread(target=client.run)
 
@@ -48,3 +52,7 @@ def test_send_tdm():
     assert tdm_archive_path.is_file(), 'File was not moved to archive'
 
     shutil.move(tdm_archive_path, tdm_inbox_path)
+
+
+if __name__=='__main__':
+    test_send_tdm()

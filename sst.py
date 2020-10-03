@@ -7,12 +7,24 @@ import time
 import glob
 import pathlib
 import http.client
+from urllib.request import pathname2url
 import shutil
+import os
 
 from lxml import etree
 
 from config import SERVICES, REQUESTS
 from config import HTTP_404, HTTP_200
+
+##Scruffed from https://stackoverflow.com/a/55616129
+##
+# The XML_CATALOG_FILES environment variable is used by libxml2 (which is used by lxml).
+# See http://xmlsoft.org/catalog.html.
+if "XML_CATALOG_FILES" not in os.environ:
+    # Path to catalog must be a url.
+    catalog_path = f"file:{pathname2url(os.path.join(os.getcwd(), 'catalog.xml'))}"
+    # Temporarily set the environment variable.
+    os.environ['XML_CATALOG_FILES'] = catalog_path
 
 
 class SSTClient:
@@ -33,6 +45,7 @@ class SSTClient:
             inbox = pathlib.Path(inbox)
 
         self.inbox = inbox
+        self.logger.debug(f'SST Client: inbox={self.inbox}')
 
         archive = self.config.get('SST Client', 'Archive')
         if archive.startswith('.'):
@@ -44,9 +57,11 @@ class SSTClient:
             archive = pathlib.Path(archive)
 
         self.archive = archive
+        self.logger.debug(f'SST Client: archive={self.archive}')
 
         self.file_ext = self.config.get('SST Client', 'File-extensions').split(',')
         self.file_ext = [x.strip() for x in self.file_ext]
+        self.logger.debug(f'SST Client: file extensions={self.file_ext}')
 
 
 
@@ -54,15 +69,17 @@ class SSTClient:
         self.logger.info('SST Client: STARTED')
         self.__run = True
 
-        schema_root = etree.XML(REQUESTS['TDM']['schema'])
-        schema = etree.XMLSchema(schema_root)
+        #with open(REQUESTS['TDM']['schema'], 'r') as r:
+        #    schema_root = etree.fromstring(r.read().encode('utf-8'))
+
+        #schema = etree.XMLSchema(schema_root)
 
         while self.__run:
             self.logger.debug('SST Client: looking for new tracklets to deliver')
 
             files = []
             for ext in self.file_ext:
-                files += self.inbox.glob('**/*.{ext}')
+                files += self.inbox.glob(f'**/*.{ext}')
 
             files = [pathlib.Path(file) for file in files]
 
@@ -74,13 +91,14 @@ class SSTClient:
             )
 
             for file in files:
-                tdm_xml = etree.parse(open(file, 'r'))
+                with open(file, 'r') as r:
+                    tdm_xml = etree.fromstring(r.read())
 
-                if not schema.validate(tdm_xml):
-                    self.logger.debug(f'SST Client: file "{file}" not valid TDM-XML')
-                    continue
+                #if not schema.validate(tdm_xml):
+                #    self.logger.debug(f'SST Client: file "{file}" not valid TDM-XML')
+                #    continue
 
-                data = tdm_xml.tostring().encode("UTF-8")
+                data = etree.tostring(tdm_xml)
                 header = {
                     'Content-Type': 'text/xml',
                     'Content-Length': str(len(data)),
@@ -125,7 +143,8 @@ class SSTServer:
             if request_tag in SERVICES:
                 self.logger.debug(f'SSTServer:__call__: Service "{request_tag}" executed')
 
-                schema_root = etree.XML(SERVICES[request_tag]['schema'])
+                with open(SERVICES[request_tag]['schema'], 'r') as r:
+                    schema_root = etree.fromstring(r.read())
                 schema = etree.XMLSchema(schema_root)
                 schema.validate(xml_request)
                 
@@ -135,8 +154,8 @@ class SSTServer:
                 else:
                     ret_ = None
 
-                 response = SERVICES[request_tag]['response']
-                 if response is None:
+                response = SERVICES[request_tag]['response']
+                if response is None:
                     response = ret_
                 if response is None:
                     response = HTTP_200.encode('utf-8')

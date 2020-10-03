@@ -9,7 +9,7 @@ config = configparser.ConfigParser()
 
 ROOT = pathlib.Path(__file__).parent
 
-path = ROOT / 'config.conf'
+path = ROOT/'config.conf'
 
 DEFAULT = {
     'General': {
@@ -49,12 +49,12 @@ SERVICES = {
     'a': {
         'action': services.simulate_measurements,
         'response': HTTP_200,
-        'schema': ROOT / 'templates' /' services' / 'a.xsd',
+        'schema': ROOT/'templates'/'services'/'a.xsd',
     },
     'b': {
         'action': services.check_status,
-        'response': open(ROOT / 'templates' /' responses' / 'b.xml', 'r').read(),
-        'schema': ROOT / 'templates' /' services' / 'b.xsd',
+        'response': open(ROOT/'templates'/'responses'/'b.xml', 'r').read(),
+        'schema': ROOT/'templates'/' services'/'b.xsd',
     },
 }
 
@@ -62,6 +62,6 @@ REQUESTS = {
     'TDM': {
         'path': '/',
         'response': HTTP_200,
-        'schema': ROOT / 'templates' /' CCSDS' / 'ndmxml-1.0-tdm-2.0.xsd',
+        'schema': ROOT/'templates'/'CCSDS'/'ndmxml-1.0-tdm-2.0.xsd',
     },
 }
