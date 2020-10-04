@@ -18,7 +18,18 @@ import config_mock as cfg
 
 from sst import SSTServer
 from log import get_logger
+from config import SERVICES
 
+test_requests = {
+    'a': {
+        'response': cfg.HTTP_200,
+        'fail': cfg.HTTP_404,
+    },
+    # 'b': {
+    #     'response': SERVICES['b']['response'],
+    #     'fail': cfg.HTTP_404,
+    # },
+}
 
 def test_request_a():
 
@@ -45,15 +56,16 @@ def test_request_a():
 
     server_thread.start()
 
-    a = (pathlib.Path('.')/'tests'/'data'/'a.xml').absolute()
-    a_err = (pathlib.Path('.')/'tests'/'data'/'a_error.xml').absolute()
-    response = send_request(a)
+    for req in test_requests:
+        rxml = (pathlib.Path('.')/'tests'/'data'/f'{req}.xml').absolute()
+        rxml_err = (pathlib.Path('.')/'tests'/'data'/f'{req}_error.xml').absolute()
+        response = send_request(rxml)
 
-    assert response==cfg.HTTP_200, f'{response} =! {cfg.HTTP_200}'
+        assert response==test_requests[req]['response'], f'{response} =! {test_requests[req]["response"]}'
 
-    response = send_request(a_err)
+        response = send_request(rxml_err)
 
-    assert response==cfg.HTTP_404, f'{response} =! {cfg.HTTP_404}'
+        assert response==test_requests[req]['fail'], f'{response} =! {test_requests[req]["fail"]}'
 
     server.shutdown()
     server.server_close()

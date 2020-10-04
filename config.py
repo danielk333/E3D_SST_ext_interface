@@ -54,7 +54,7 @@ SERVICES = {
     'b': {
         'action': services.check_status,
         'response': open(ROOT/'templates'/'responses'/'b.xml', 'r').read(),
-        'schema': ROOT/'templates'/' services'/'b.xsd',
+        'schema': ROOT/'templates'/'services'/'b.xsd',
     },
 }
 
