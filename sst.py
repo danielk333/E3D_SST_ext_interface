@@ -146,24 +146,31 @@ class SSTServer:
                 with open(SERVICES[request_tag]['schema'], 'r') as r:
                     schema_root = etree.fromstring(r.read())
                 schema = etree.XMLSchema(schema_root)
-                schema.validate(xml_request)
-                
-                func = SERVICES[request_tag]['action']
-                if func is not None:
-                    ret_ = func(xml_request, self.config)
+
+                if not schema.validate(xml_request):
+                    self.logger.debug(f'SSTServer:__call__:{request_tag}: Request does not match schema')
+                    response = HTTP_404.encode('utf-8')
+                    HTTP_RET = HTTP_404
                 else:
-                    ret_ = None
+                    self.logger.debug(f'SSTServer:__call__:{request_tag}: Request validated')
+                    func = SERVICES[request_tag]['action']
+                    if func is not None:
+                        self.logger.debug(f'SSTServer:__call__:{request_tag}: Action executed')
+                        ret_ = func(xml_request, self.config)
+                    else:
+                        ret_ = None
 
-                response = SERVICES[request_tag]['response']
-                if response is None:
-                    response = ret_
-                if response is None:
-                    response = HTTP_200.encode('utf-8')
-
+                    response = SERVICES[request_tag]['response'].encode('utf-8')
+                    if response is None:
+                        response = ret_
+                    if response is None:
+                        response = HTTP_200.encode('utf-8')
+                    HTTP_RET = HTTP_200
             else:
                 response = HTTP_404.encode('utf-8')
+                HTTP_RET = HTTP_404
 
-            start_response(HTTP_404, [
+            start_response(HTTP_RET, [
                 ('Content-Type', 'text/xml'),
                 ('Content-Length', str(len(response)))
             ])
@@ -176,5 +183,5 @@ class SSTServer:
                 ('Content-Type', 'text/plain'),
                 ('Content-Length', str(len(response)))
             ])
-
+        self.logger.debug(f'SSTServer:__call__:Yielding response')
         yield response

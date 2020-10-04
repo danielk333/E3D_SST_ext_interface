@@ -8,7 +8,7 @@ def send_request(file):
 
     tree = etree.parse(open(file, 'r'))
 
-    data = etree.tostring(tree.getroot()).encode("utf-8")
+    data = etree.tostring(tree.getroot())
     header = {
         'Content-Type': 'text/xml',
         'Content-Length': str(len(data)),
