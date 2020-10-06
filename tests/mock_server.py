@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # SPDX-FileCopyrightText: 2018, 2020 European Space Agency
+# Modified: 2020, Daniel Kastinen
 # SPDX-License-Identifier: UNLICENSED
 
 """

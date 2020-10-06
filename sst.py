@@ -89,7 +89,7 @@ class SSTClient:
 
             for file in files:
                 with open(file, 'r') as r:
-                    tdm_xml = etree.fromstring(r.read())
+                    tdm_xml = etree.parse(r)
 
                 if not schema.validate(tdm_xml):
                     pass
