@@ -17,14 +17,6 @@ class SSTService(Daemon):
         super().__init__(config.get('General', 'Daemon path'))
         self.config = config
 
-
-    def abort(self):
-        self.__run = False
-
-
-    def run(self):
-        self.__run = True
-
         if self.config.getboolean('General', 'Enable terminal logging'):
             tlevel = self.config.get('General', 'Terminal logging level').upper()
             tlevel = getattr(logging, tlevel)
@@ -37,14 +29,21 @@ class SSTService(Daemon):
         else:
             flevel = None
 
-        logger = get_logger(file_level = flevel, term_level = tlevel)
+        self.logger = get_logger(file_level = flevel, term_level = tlevel)
+
+
+    def abort(self):
+        self.__run = False
+
+
+    def run(self):
+        self.__run = True
 
         class LoggerWSGIRequestHandler(WSGIRequestHandler):
             def log_message(self, format, *args):
-                logger.info("%s - - %s" % (self.address_string(), format%args))
+                self.logger.info("%s - - %s" % (self.address_string(), format%args))
 
-
-        self.app = SSTServer(self.config, logger)
+        self.app = SSTServer(self.config, self.logger)
         
         self.server = make_server(
             self.config.get('SST Server', 'host'), 
@@ -53,24 +52,24 @@ class SSTService(Daemon):
             handler_class=LoggerWSGIRequestHandler,
         )
 
-        self.client = SSTClient(logger)
+        self.client = SSTClient(self.config, self.logger)
 
         self.server_thread = threading.Thread(target=self.server.serve_forever)
         self.client_thread = threading.Thread(target=self.client.run)
         
         try:
-            logger.info('SSTServer: STARTED')
+            self.logger.info('SSTServer: STARTED')
             self.server_thread.start()
             self.client_thread.start()
             while self.__run:
                 pass
-            logger.info('External abort received')
+            self.logger.info('External abort received')
         except KeyboardInterrupt:
-            logger.info('Service exit received')
+            self.logger.info('Service exit received')
         finally:
             self.server.shutdown()
             self.server.server_close()
-            logger.info('SSTServer: STOPPED')
+            self.logger.info('SSTServer: STOPPED')
             self.server_thread.join()
             del self.server
             self.server = None
