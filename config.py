@@ -22,6 +22,7 @@ DEFAULT = {
     'SST Server': {
         'host': 'localhost',
         'port': 32769,
+        'tdm-output': './data/tracklets',
     },
     'SST Client': {
         'Deliver interval': 60.0,
@@ -52,9 +53,14 @@ SERVICES = {
         'schema': ROOT/'templates'/'services'/'a.xsd',
     },
     'b': {
-        'action': services.check_status,
-        'response': open(ROOT/'templates'/'responses'/'b.xml', 'r').read(),
+        'action': services.sensor_status,
+        'response': None,
         'schema': ROOT/'templates'/'services'/'b.xsd',
+    },
+    'd': {
+        'action': None,
+        'response': open(ROOT/'templates'/'responses'/'d.xml', 'r').read(),
+        'schema': ROOT/'templates'/'services'/'d.xsd',
     },
 }
 

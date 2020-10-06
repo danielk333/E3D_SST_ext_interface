@@ -59,7 +59,7 @@ class SSTService(Daemon):
         self.client_thread = threading.Thread(target=self.client.run)
         
         try:
-            logger.info('SST Server: STARTED')
+            logger.info('SSTServer: STARTED')
             self.server_thread.start()
             self.client_thread.start()
             while self.__run:
@@ -70,7 +70,7 @@ class SSTService(Daemon):
         finally:
             self.server.shutdown()
             self.server.server_close()
-            logger.info('SST Server: STOPPED')
+            logger.info('SSTServer: STOPPED')
             self.server_thread.join()
             del self.server
             self.server = None

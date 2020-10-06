@@ -25,21 +25,29 @@ test_requests = {
         'response': cfg.HTTP_200,
         'fail': cfg.HTTP_404,
     },
-    # 'b': {
-    #     'response': SERVICES['b']['response'],
-    #     'fail': cfg.HTTP_404,
-    # },
+    'b': {
+        'response': '<status>OK</status>',
+        'fail': cfg.HTTP_404,
+    },
+    'd': {
+        'response': open(pathlib.Path('.')/'templates'/'responses'/'d.xml', 'r').read(),
+        'fail': cfg.HTTP_404,
+    },
 }
 
-def test_request_a():
+logger = get_logger(file_level = None, term_level = logging.DEBUG)
 
-    logger = get_logger(file_level = None, term_level = logging.DEBUG)
+def template_test_request(name):
 
     class LoggerWSGIRequestHandler(WSGIRequestHandler):
         def log_message(self, format, *args):
             logger.info("%s - - %s" % (self.address_string(), format%args))
 
-    cfg_dict = {}
+    cfg_dict = {
+        'SST Server': {
+                'tdm-output': (pathlib.Path('.')/'tests'/'data'/'tracklets').absolute(),
+            }
+    }
     config = configparser.ConfigParser()
     config.read_dict(cfg_dict)
 
@@ -56,22 +64,33 @@ def test_request_a():
 
     server_thread.start()
 
-    for req in test_requests:
-        rxml = (pathlib.Path('.')/'tests'/'data'/f'{req}.xml').absolute()
-        rxml_err = (pathlib.Path('.')/'tests'/'data'/f'{req}_error.xml').absolute()
-        response = send_request(rxml)
+    rxml = (pathlib.Path('.')/'tests'/'data'/f'{name}.xml').absolute()
+    rxml_err = (pathlib.Path('.')/'tests'/'data'/f'{name}_error.xml').absolute()
+    response = send_request(rxml)
 
-        assert response==test_requests[req]['response'], f'{response} =! {test_requests[req]["response"]}'
-
-        response = send_request(rxml_err)
-
-        assert response==test_requests[req]['fail'], f'{response} =! {test_requests[req]["fail"]}'
+    response_err = send_request(rxml_err)
 
     server.shutdown()
     server.server_close()
     logger.info('SST Server: STOPPED')
     server_thread.join()
+
+    assert response==test_requests[name]['response'], f'{response} =! {test_requests[name]["response"]}'
+    assert response_err==test_requests[name]['fail'], f'{response_err} =! {test_requests[name]["fail"]}'
+
     del server
 
+
+def test_request_a():
+    template_test_request('a')
+
+def test_request_b():
+    template_test_request('b')
+
+def test_request_d():
+    template_test_request('d')
+
+
 if __name__=='__main__':
-    test_request_a()
+    for key in test_requests:
+        template_test_request(key)

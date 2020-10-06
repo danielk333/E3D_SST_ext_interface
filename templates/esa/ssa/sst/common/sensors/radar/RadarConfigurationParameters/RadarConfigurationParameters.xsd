@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://esa.ssa.sst/2.1/common/sensors/radar/configuration" xmlns:comsenc="http://esa.ssa.sst/2.1/common/sensors/common/" xmlns:comsenrcom="http://esa.ssa.sst/2.1/common/sensors/radar/components" xmlns:comsenrconf="http://esa.ssa.sst/2.1/common/sensors/radar/configuration" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/radar/components" schemaLocation="../RadarSubComponents/RadarSubComponents.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/common/" schemaLocation="../../common/common.xsd"/>
+  <xsd:complexType name="RadarConfiguration">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Radar parameters used during the observation.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="comsenc:SensorConfiguration">
+        <xsd:sequence>
+          <xsd:element name="operatingMode" type="comsenrconf:OperationModeEnum">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;Open loop tracking or closed loop tracking, beampark.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="dopplerResolution" type="comsenrcom:DopplerResolution">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;Doppler resolution.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="radarSensitivity" type="comsenrcom:RadarSensitivity">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;Sensitivity of the radar.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="signal" type="comsenrcom:Signal">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;Signal used during the observation.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="OperationModeEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Fixed"/>
+      <xsd:enumeration value="PointAndWaitTracking"/>
+      <xsd:enumeration value="Tracking"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

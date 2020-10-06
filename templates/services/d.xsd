@@ -1,6 +1,6 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<xsd:element name="b" type="BType"/>
-<xsd:complexType name="BType">
+<xsd:element name="d" type="DType"/>
+<xsd:complexType name="DType">
   <xsd:sequence>
     <xsd:element name="c" type="xsd:string" />
   </xsd:sequence>

@@ -51,6 +51,8 @@ def test_send_tdm():
 
     assert tdm_archive_path.is_file(), 'File was not moved to archive'
 
+    assert client.deliveries[0] == tdm_inbox_path, 'Something else then the intended tdm.xml was delivered'
+
     shutil.move(tdm_archive_path, tdm_inbox_path)
 
 

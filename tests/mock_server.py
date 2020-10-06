@@ -35,11 +35,7 @@ class Mock:
             request = env['wsgi.input'].read(int(env.get('CONTENT_LENGTH', 0)))
             envelope = etree.fromstring(request)
 
-            if not envelope.tag == '{http://schemas.xmlsoap.org/soap/envelope/}Envelope':
-                raise Exception('Not a letter!?')
-
-            print('Received TDM XML')
-            print(envelope)
+            #CHECK INPUT
 
             response = cfg.HTTP_200.encode('utf-8')
 
@@ -48,8 +44,6 @@ class Mock:
                 ('Content-Length', str(len(response)))
             ])
         except Exception as err:
-            print(err)
-
             response = cfg.HTTP_404.encode('utf-8')
 
             start_response(cfg.HTTP_404, [

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://esa.ssa.sst/2.1/common/sensors/optic/components" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:comsenc="http://esa.ssa.sst/2.1/common/sensors/common/" xmlns:comsenocom="http://esa.ssa.sst/2.1/common/sensors/optic/components" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../../common.xsd"/>
+  <xsd:import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../../../CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/common/" schemaLocation="../../common/common.xsd"/>
+  <xsd:complexType name="AstrometricMeasurementsAccuracyType">
+    <xsd:sequence>
+      <xsd:element name="sigPoi" type="ndm:nonNegativeDouble">
+        <xsd:annotation>
+          <xsd:documentation>Telescope 1-sigma error in pointing (arcs)</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PointingTrackingLimitsForOptics">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Gives the limitations of use of an optic sensor in term of angles of view, velocity and track duration. These characteristics are considered to evolve during time.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="elevationMin" type="com:AngleDegreesType">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Minimal elevation in the chosen frame that the optical sensor is able to track the object. Unit is radian.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="elevationMax" type="com:AngleDegreesType">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Maximal elevation in the chosen frame that the optical sensor is able to track the object. Unit is radian.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="azimuthMin" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Minimal azimuth in the chosen frame that the radar is able to track the object. Unit radian.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="azimuthMax" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Maximal azimuth in the chosen frame that the radar is able to track the object. Unit radian.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="velocity" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Maximal angular velocity that the sensor can achieve. Unit is radian/second.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="maskPoint" type="comsenc:RegionMask">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Set of points defining the mask of a non observable region.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="updateDate" type="ndm:epochType">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Update date of the information. UTC Date.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OpticalSensitivity">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Optical Sensivity is a usefull specific information for an optic. It is defined in terms of capability to see an object of a given range size with a particular brightness at a particular altitude for a certain exposure time of photography. This information is considered to evolve during time.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="limitingMagnitude" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Maximal apparent visual magnitude that may be observed by a sensor.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="minSizeObject" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Minimal size that the telescope may observe for a given region. Unit Meter.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="maxSizeObject" type="xsd:double">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Maximal size that the telescope may observe for a given region. Unit Meter.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="region" type="com:SpaceRegionsEnum">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Space region (LEO, MEO, GEO, ...).&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="updateDate" type="ndm:epochType">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Update date. UTC Date.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="DetectorTypeEnum">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p &gt;Enumeration of Detector types for optic sensors.&lt;/p&gt;&lt;p &gt;Values inserted can be {0,'CCD'}, ...&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="CCD"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="Detector">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Detector characteristics of the sensor.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="detectorType" type="comsenocom:DetectorTypeEnum">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Detector type (CCD, CCD mosaic…).&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="hPixel" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Number of pixel for the horizontal dimension of the CCD.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="vPixel" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Number of pixel for the vertical dimension of the CCD.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
