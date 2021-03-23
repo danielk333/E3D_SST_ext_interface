@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://esa.ssa.sst/2.1/performances/" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:fragp="http://esa.ssa.sst/2.1/performances/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../common/common.xsd"/>
+  <xsd:complexType name="FragmentationPerformances">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Groups properties pertaining to the control of performances for the fragmentations service.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="com:AbstractPerformances">
+        <xsd:sequence>
+          <xsd:element name="leoDetectionDelay" type="com:Delay">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The delay before which the service shall detect In-Orbit fragmentation events of LEO resident objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="nonLeoDetectionDelay" type="com:Delay">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The delay before which the service shall detect In-Orbit fragmentation events of LEO, upper-MEO and GEO resident and transient objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="registeredUsersLimit" type="xsd:int">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The maximum number of registered users that the service shall be able to handle.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="retentionPeriod" type="com:Delay">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The period during which the system shall be able to catalogue and publish all fragment orbits according to the requirements on catalogue coverage.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="availability" type="com:Availability">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The availability properties of the service.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

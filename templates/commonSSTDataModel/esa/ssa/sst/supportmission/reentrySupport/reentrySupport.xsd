@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://esa.ssa.sst/2.1/supportmission/reentrySupport/" xmlns:cateph="http://esa.ssa.sst/2.1/catalogue/ephemeredes/" xmlns:catobj="http://esa.ssa.sst/2.1/catalogue/object/" xmlns:catorb="http://esa.ssa.sst/2.1/catalogue/orbit/" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:ree="http://esa.ssa.sst/2.1/reentry/" xmlns:suppmrs="http://esa.ssa.sst/2.1/supportmission/reentrySupport/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/orbit/" schemaLocation="../../catalogue/orbit/orbit.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/object/" schemaLocation="../../catalogue/object/object.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../common/common.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/reentry/" schemaLocation="../../reentry/reentry.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/ephemeredes/" schemaLocation="../../catalogue/ephemeredes/ephemeredes.xsd"/>
+  <xsd:complexType name="ReentrySupportResponse">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Represents a response to a controlled re-entries support request. The response provides the results of the request as OEDS, EGDS ad MEDS messages and a re-entry prediction message.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="sourceRequest" type="suppmrs:ReentrySupportRequest">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The request at the origin of this response.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="id" type="xsd:integer">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="trajectory" type="cateph:Ephemeredes">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The ephemeredes produced for the re-entering object.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="reentryPredictionMessage" type="ree:ReEntryPredictionMessage">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The produced re-entry prediction message.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ReentrySupportRequest">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Represents a user request for controlled re-entries support.The request is essentially composed of the object re-entering.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="com:AbstractRequest">
+        <xsd:sequence>
+          <xsd:element name="object" type="catobj:Object">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The object for which re-entry support is requested.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element minOccurs="0" name="inputOrbit" type="catorb:Orbit">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;Some orbit information possibly including planned maneuver(s) provided by the user.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

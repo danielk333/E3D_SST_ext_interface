@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssim="http://esa.ssa/ssim/2.0/ObservationListenerServiceSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/ssim/2.0/ObservationListenerService" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="ObservationListenerService" targetNamespace="http://esa.ssa/ssim/2.0/ObservationListenerService">
+	<wsdl:import namespace="http://esa.ssa/ssim/2.0/ObservationListenerServiceSchema" location="./ObservationListenerServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../../../../../genserv/wsdl/ssaRuntimeService.wsdl" />
+	<wsdl:binding name="ObservationListenerServiceInterfaceBinding" type="ssim:ObservationListenerServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- ======== OPERATIONS =========  -->
+		<wsdl:operation name="observationPerformed">
+			<soap:operation soapAction="http://esa.ssa/ssim/2.0/ObservationListenerService/observationPerformed"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ObservationListenerService">
+		<wsdl:port name="ObservationListenerServiceInterfacePort" binding="tns:ObservationListenerServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/ssim/2.0/ObservationListenerService/ObservationListenerService/ObservationListenerServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

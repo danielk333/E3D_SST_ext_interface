@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://esa.ssa.sst/2.1/catalogue/performances/accuracy/" xmlns:catperfa="http://esa.ssa.sst/2.1/catalogue/performances/accuracy/" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../../CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../../common/common.xsd"/>
+  <xsd:complexType name="OedsUpperMeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for upper-MEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="OedsTransientAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for LEO, upper-MEO and GEO transient objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="OedsLeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for LEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="OedsGeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for GEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EgdsUpperMeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The EGDS accuracy envelope for upper-MEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EgdsTransientAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The EGDS accuracy envelope for LEO, upper-MEO and GEO transient objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EgdsLeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The EGDS accuracy envelope for LEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EgdsGeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The EGDS accuracy envelope for GEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MedsUpperMeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for upper-MEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MedsTransientAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for LEO, upper-MEO and GEO transient objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MedsLeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for LEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MedsGeoAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for GEO resident objects.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="catperfa:AbstractAccuracyEnvelope"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CatalogueAccuracy">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Groups properties pertaining to the control of performances related to accuracy for the catalogue service.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="com:AbstractPerformances">
+        <xsd:sequence>
+          <xsd:element name="oedsLeoAccuracyEnvelope" type="catperfa:OedsLeoAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for LEO resident objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="oedsTransientAccuracyEnvelope" type="catperfa:OedsTransientAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for LEO, upper-MEO and GEO transient objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="oedsGeoAccuracyEnvelope" type="catperfa:OedsGeoAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for GEO resident objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="medsLeoAccuracyEnvelope" type="catperfa:MedsLeoAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for LEO resident objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="medsTransientAccuracyEnvelope" type="catperfa:MedsTransientAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for LEO, upper-MEO and GEO transient objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="medsUpperMeoAccuracyEnvelope" type="catperfa:MedsUpperMeoAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for upper-MEO resident objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="medsGeoAccuracyEnvelope" type="catperfa:MedsGeoAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The MEDS accuracy envelope for GEO resident objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="oedsUpperMeoAccuracyEnvelope" type="catperfa:OedsUpperMeoAccuracyEnvelope">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The OEDS accuracy envelope for upper-MEO resident objects.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AbstractAccuracyEnvelope">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The base class for all performances describing an accuracy envelope.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="com:AbstractPerformances">
+        <xsd:sequence>
+          <xsd:element name="envelope" type="ndm:stateVectorType">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The accuracy envelope in terms of 1-sigma position accuracy (u, v, w) and 1-sigma velocity accuracy (du, dv, dw).&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

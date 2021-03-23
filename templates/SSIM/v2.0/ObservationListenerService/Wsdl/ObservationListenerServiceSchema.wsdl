@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssa="http://ssa.esa.int/common/" xmlns:tns="http://esa.ssa/ssim/2.0/ObservationListenerServiceSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:opreq="http://esa.ssa/ssim/2.0/ObservationPerformedRequestType" name="ssim" targetNamespace="http://esa.ssa/ssim/2.0/ObservationListenerServiceSchema">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://esa.ssa/ssim/2.0" attributeFormDefault="qualified" version="1.1">
+			<!-- ObservationPerformed -->
+			<xsd:import namespace="http://esa.ssa/ssim/2.0/ObservationPerformedRequestType" schemaLocation="../Schemas/ObservationPerformedRequestType.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="ObservationPerformedRequestMessageType">
+		<wsdl:part name="in" element="opreq:ObservationPerformedRequestType"/>
+	</wsdl:message>
+	<wsdl:portType name="ObservationListenerServiceInterface">
+		<!-- requestObservation -->
+		<wsdl:operation name="observationPerformed">
+			<wsdl:input message="tns:ObservationPerformedRequestMessageType"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>
+
+

@@ -71,7 +71,7 @@ def simulate_measurements(xml_request, config, logger):
 
     datas = []
     for ind in range(len(objs)):
-        data = scheduler.observe_passes(scheduler.passes[ind], space_object = objs[ind], snr_limit=False)
+        data = scheduler.observe_passes(scheduler.passes[ind], space_object = objs[ind], snr_limit=True)
         datas.append(data)
 
     path = pathlib.Path(config.get('SST Server','tdm-output'))
@@ -80,4 +80,4 @@ def simulate_measurements(xml_request, config, logger):
 
 
 def sensor_status(xml_request, config, logger):
-    return '<status>OK</status>'
+    return True

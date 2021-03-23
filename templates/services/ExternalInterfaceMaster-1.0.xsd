@@ -1,0 +1,4 @@
+<xsd:schema targetNamespace="e3d-external-interface" attributeFormDefault="qualified" version="1.0">
+	<xsd:import namespace="http://esa.ssa/ssim/2.0/SensorSimulatorServiceSchema" schemaLocation="SensorSimulatorService.xsd"/>
+	<xsd:import namespace="http://esa.ssa/ssim/2.0" schemaLocation="ObservationListenerService.xsd"/>
+</xsd:schema>

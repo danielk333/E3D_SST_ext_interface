@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssim="http://esa.ssa/ssim/2.0/SensorSimulatorServiceSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/ssim/2.0/SensorSimulatorService" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="SensorSimulatorService" targetNamespace="http://esa.ssa/ssim/2.0/SensorSimulatorService">
+	<wsdl:import namespace="http://esa.ssa/ssim/2.0/SensorSimulatorServiceSchema" location="./SensorSimulatorServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../../../../../genserv/wsdl/ssaRuntimeService.wsdl" />
+	<wsdl:binding name="SensorSimulatorServiceInterfaceBinding" type="ssim:SensorSimulatorServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- ======== OPERATIONS =========  -->
+		<wsdl:operation name="requestObservation">
+			<soap:operation soapAction="http://esa.ssa/ssim/2.0/SensorSimulatorService/requestObservation"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="requestObservationFault">
+				<soap:fault name="requestObservationFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="submitSurveyRadar">
+			<soap:operation soapAction="http://esa.ssa/ssim/2.0/SensorSimulatorService/submitSurveyRadar"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="submitSurveyRadarFault">
+				<soap:fault name="submitSurveyRadarFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SensorSimulatorService">
+		<wsdl:port name="SensorSimulatorServiceInterfacePort" binding="tns:SensorSimulatorServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/ssim/2.0/SensorSimulatorService/SensorSimulatorService/SensorSimulatorServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

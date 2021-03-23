@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://esa.ssa.sst/2.1/supportmission/performances/" xmlns:catperfa="http://esa.ssa.sst/2.1/catalogue/performances/accuracy/" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:omcp="http://esa.ssa.sst/2.1/omc/performances/" xmlns:reep="http://esa.ssa.sst/2.1/reentry/performances/" xmlns:suppmp="http://esa.ssa.sst/2.1/supportmission/performances/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/performances/accuracy/" schemaLocation="../../catalogue/performances/accuracy/accuracy.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/omc/performances/" schemaLocation="../../omc/performances/performances.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/reentry/performances/" schemaLocation="../../reentry/performances/performances.xsd"/>
+  <xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../common/common.xsd"/>
+  <xsd:complexType name="ResponseDelays">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Defines the delays that must be observed to deliver a response to a request.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:long">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;Unique number identifying this object.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="responseDelay" type="com:Delay">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The maximum delay before which a first complete response to a request shall be returned to the user after reception of the request.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="updateDelay" type="com:Delay">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The time interval after which an update response to a request shall be provided to the user.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="updatePeriod" type="com:Delay">
+        <xsd:annotation>
+          <xsd:documentation>&lt;p&gt;The period during which responses to requests shall be returned to the user.&lt;/p&gt;</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ReentrySupportPerformances">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The properties pertaining to the control of performances for the re-entry requests.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="suppmp:AbstractMissionSupportPerformances">
+        <xsd:sequence>
+          <xsd:element name="reentryPerformances" type="reep:ReentryPerformances">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The performance and accuracy of produced re-entry prediction messages.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ObjectSearchPerformances">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The properties pertaining to the control of performances for the object search requests.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="suppmp:AbstractMissionSupportPerformances"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MissionSupportServicePerformances">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;Groups properties pertaining to the control of performances for the mission support service.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="com:AbstractPerformances">
+        <xsd:sequence>
+          <xsd:element name="concurrentRequestsLimit" type="xsd:int">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The maximum number of simultaneous special user requests of any of the specified kinds that the system shall be able to process at any time.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="anomalyAnalysisPerformances" type="suppmp:AnomalyAnalysisPerformances">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The performances for anomaly analysis requests.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="launchSupportPerformances" type="suppmp:LaunchSupportPerformances">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The performances for launch support requests.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="reentrySupportPerformances" type="suppmp:ReentrySupportPerformances">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The performances for re-entry requests.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="objectSearchPerformances" type="suppmp:ObjectSearchPerformances">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The performances for object search requests.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="availability" type="com:Availability">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The availability properties of the mission support service.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="LaunchSupportPerformances">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The properties pertaining to the control of performances for the launch support requests.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="suppmp:AbstractMissionSupportPerformances"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AnomalyAnalysisPerformances">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The properties pertaining to the control of performances for the anomaly analysis requests.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="suppmp:AbstractMissionSupportPerformances">
+        <xsd:sequence>
+          <xsd:element name="omcServicePerformances" type="omcp:OmcServicePerformances">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The performances responses to anomaly analysis requests must observe for accuracy of tumbling periods and maneuver determination accuracy and maneuver detection thresholds.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AbstractMissionSupportPerformances">
+    <xsd:annotation>
+      <xsd:documentation>&lt;p&gt;The base class for all performances of the mission support service.&lt;/p&gt;</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="com:AbstractPerformances">
+        <xsd:sequence>
+          <xsd:element name="orbitAccuracy" type="catperfa:CatalogueAccuracy">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The orbit accuracy that the response must observe.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="requestResponseDelays" type="suppmp:ResponseDelays">
+            <xsd:annotation>
+              <xsd:documentation>&lt;p&gt;The response delays that must be observed.&lt;/p&gt;</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,9 @@
+<xsd:schema targetNamespace="http://esa.ssa/ssim/2.0/SensorSimulatorServiceSchema" attributeFormDefault="qualified" version="1.1">
+	<xsd:import namespace="http://esa.ssa/ssim/2.0/ssim" schemaLocation="../SSIM/v2.0/SSIMCommonTypes/ssim.xsd"/>
+	<!-- RequestObservation -->
+	<xsd:import namespace="http://esa.ssa/ssim/2.0/RequestObservationResponseType" schemaLocation="../SSIM/v2.0/SensorSimulatorService/Schemas/RequestObservationResponseType.xsd"/>
+	<xsd:import namespace="http://esa.ssa/ssim/2.0/RequestObservationRequestType" schemaLocation="../SSIM/v2.0/SensorSimulatorService/Schemas/RequestObservationRequestType.xsd"/>
+	<!-- SubmitSurveyRadar -->
+	<xsd:import namespace="http://esa.ssa/ssim/2.0/SubmitSurveyRadarResponseType" schemaLocation="../SSIM/v2.0/SensorSimulatorService/Schemas/SubmitSurveyRadarResponseType.xsd"/>
+	<xsd:import namespace="http://esa.ssa/ssim/2.0/SubmitSurveyRadarRequestType" schemaLocation="../SSIM/v2.0/SensorSimulatorService/Schemas/SubmitSurveyRadarRequestType.xsd"/>
+</xsd:schema>

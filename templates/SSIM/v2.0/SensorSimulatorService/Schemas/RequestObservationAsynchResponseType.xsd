@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:tns="http://esa.ssa/ssim/2.0/RequestObservationAsynchResponseType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ssim="http://esa.ssa/ssim/2.0/ssim" targetNamespace="http://esa.ssa/ssim/2.0/RequestObservationAsynchResponseType">
+	<xsd:import namespace="http://esa.ssa/ssim/2.0/ssim" schemaLocation="../../SSIMCommonTypes/ssim.xsd"/>
+	<xsd:element name="RequestObservationAsynchResponseType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SubRequestId" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="ConfirmationCode" type="ssim:SSIMAsynchConfirmationCodeType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

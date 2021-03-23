@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
+<xsd:schema xmlns:catobj="http://esa.ssa.sst/2.1/catalogue/object/"
+	xmlns:catorb="http://esa.ssa.sst/2.1/catalogue/orbit/"
+	xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:com="http://esa.ssa.sst/2.1/common/"
+	targetNamespace="http://esa.ssa.sst/2.1/catalogue/orbit/">
+	<xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/object/"
+		schemaLocation="../object/object.xsd" />
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/"
+		schemaLocation="../../common/common.xsd" />
+	<xsd:import schemaLocation="../../../../../CCSDS/ndmxml-1.0-namespace-1.1.xsd" namespace="urn:ccsds:recommendation:navigation:schema:ndmxml"></xsd:import>
+	<xsd:complexType name="Orbit">
+		<xsd:sequence>
+		<xsd:element name="id" type="xsd:long" >
+			<xsd:annotation>
+				<xsd:documentation>unique identifier of the orbit</xsd:documentation>
+			</xsd:annotation></xsd:element>
+			<xsd:element name="type" type="catobj:ObjectTypeEnum" />
+			<xsd:element name="opm" type="ndm:opmType" />
+			<xsd:element name="includesThirdPartyData"
+				type="xsd:boolean" />
+			<xsd:element name="updatedBy" type="com:UpdatedByType" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

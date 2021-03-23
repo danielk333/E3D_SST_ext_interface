@@ -68,6 +68,6 @@ REQUESTS = {
     'TDM': {
         'path': '/',
         'response': HTTP_200,
-        'schema': ROOT/'templates'/'CCSDS'/'ndmxml-1.0-tdm-2.0.xsd',
+        'schema': ROOT/'templates'/'commonSSTDataModel'/'CCSDS'/'ndmxml-1.0-master.xsd',
     },
 }

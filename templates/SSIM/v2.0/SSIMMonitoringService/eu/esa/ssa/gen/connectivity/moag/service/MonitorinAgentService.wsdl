@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="MonitorinAgentService" targetNamespace="http://eu.esa.ssa.gen.connectivity.moag/service/MonitorinAgentService/" xmlns:service="http://eu.esa.ssa.gen.connectivity.moag/service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://eu.esa.ssa.gen.connectivity.moag/service/MonitorinAgentService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:import location="service.wsdl" namespace="http://eu.esa.ssa.gen.connectivity.moag/service/"/>
+  <wsdl:binding name="MonitoringAgentServiceInterfaceBinding" type="service:MonitoringAgentServiceInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getStatus">
+      <soap:operation soapAction="http://eu.esa.ssa.gen.connectivity.moag/service/MonitorinAgentService/getStatus/"/>
+      <wsdl:input>
+        <soap:body parts="in" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="out" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="start">
+      <soap:operation soapAction="http://eu.esa.ssa.gen.connectivity.moag/service/MonitorinAgentService/start/"/>
+      <wsdl:input>
+        <soap:body parts="in" use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="stop">
+      <soap:operation soapAction="http://eu.esa.ssa.gen.connectivity.moag/service/MonitorinAgentService/stop/"/>
+      <wsdl:input>
+        <soap:body parts="in" use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="configure">
+      <soap:operation soapAction="http://eu.esa.ssa.gen.connectivity.moag/service/MonitorinAgentService/configure/"/>
+      <wsdl:input>
+        <soap:body parts="in" use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port binding="tns:MonitoringAgentServiceInterfaceBinding" name="MonitoringAgentServiceInterfacePort">
+      <soap:address location="http://eu.esa.ssa.gen.connectivity.moag/service/MonitorinAgentService/Service/MonitoringAgentServiceInterfacePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

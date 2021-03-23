@@ -43,6 +43,7 @@ class SSTService(Daemon):
             def log_message(self, format, *args):
                 self.logger.info("%s - - %s" % (self.address_string(), format%args))
 
+        #TODO: fix below line [spyne]
         self.app = SSTServer(self.config, self.logger)
         
         self.server = make_server(
