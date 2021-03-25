@@ -7,7 +7,17 @@ import services
 
 config = configparser.ConfigParser()
 
-ROOT = pathlib.Path(__file__).parent
+ROOT = pathlib.Path(__file__).resolve().parent
+DEBUG = True
+
+if DEBUG:
+    level = logging.DEBUG
+else:
+    level = logging.WARNING
+logging.basicConfig(
+    level=level,
+    format='%(asctime)s %(levelname)s %(message)s',
+)
 
 path = ROOT/'config.conf'
 
@@ -21,7 +31,7 @@ DEFAULT = {
     },
     'SST Server': {
         'host': 'localhost',
-        'port': 32769,
+        'port': 8000,
         'tdm-output': './data/tracklets',
     },
     'SST Client': {
@@ -45,29 +55,3 @@ else:
 
 HTTP_200 = '200 OK'
 HTTP_404 = '404 Not Found'
-
-SERVICES = {
-    'a': {
-        'action': services.simulate_measurements,
-        'response': HTTP_200,
-        'schema': ROOT/'templates'/'services'/'a.xsd',
-    },
-    'b': {
-        'action': services.sensor_status,
-        'response': None,
-        'schema': ROOT/'templates'/'services'/'b.xsd',
-    },
-    'd': {
-        'action': None,
-        'response': open(ROOT/'templates'/'responses'/'d.xml', 'r').read(),
-        'schema': ROOT/'templates'/'services'/'d.xsd',
-    },
-}
-
-REQUESTS = {
-    'TDM': {
-        'path': '/',
-        'response': HTTP_200,
-        'schema': ROOT/'templates'/'commonSSTDataModel'/'CCSDS'/'ndmxml-1.0-master.xsd',
-    },
-}

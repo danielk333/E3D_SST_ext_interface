@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/SetAccuracyLimitsRequestType" xmlns:cateph="http://esa.ssa.sst/2.1/catalogue/ephemeredes/" xmlns:catobj="http://esa.ssa.sst/2.1/catalogue/object/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/SetAccuracyLimitsRequestType" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa.sst/2.1/catalogue/ephemeredes/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/catalogue/ephemeredes/ephemeredes.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/catalogue/object/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/catalogue/object/object.xsd"/>
+	<element name="SetAccuracyLimitsRequestType">
+		<complexType>
+			<sequence>
+				<element name="ObjectID" type="catobj:ObjectIdType"/>
+				<element name="AccuracyLimit" type="cateph:AccuracyLimitsType"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

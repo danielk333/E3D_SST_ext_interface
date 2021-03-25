@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa/dpc/2.1/dpc/manual" xmlns:eCCSDS="http://esa.ssa.sst/2.1/CCSDS/" xmlns:omc="http://esa.ssa.sst/2.1/omc/" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:data="http://esa.ssa/dpc/2.1/dpc/data" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/dpc/manual" elementFormDefault="qualified">
+	<xsd:import namespace="http://esa.ssa.sst/2.1/omc/" schemaLocation="../../../../commonSSTDataModel/esa/ssa/sst/omc/omc.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/CCSDS/" schemaLocation="../../../../commonSSTDataModel/esa/ssa/sst/extendedCCSDS/extendedCCSDS.xsd"/>
+	<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="dpc.xsd"/>
+	<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc/data" schemaLocation="data.xsd"/>
+	<xsd:import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../../../commonSSTDataModel/esa/ssa/sst/common/common.xsd"/>
+	<xsd:complexType name="EmptyInputType"/>
+	<xsd:element name="emptyInputType" type="tns:EmptyInputType"/>
+	<xsd:complexType name="GetNumberOfPendingProcessRequestType">
+		<xsd:sequence>
+			<xsd:element ref="tns:emptyInputType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetNumberOfPendingProcessResponseType">
+		<xsd:sequence>
+			<xsd:element name="numberOfPendingProcess" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetAllPendingProcessRequestType">
+		<xsd:sequence>
+			<xsd:element ref="tns:emptyInputType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetAllPendingProcessResponseType">
+		<xsd:sequence>
+			<xsd:element name="pendingProcess" type="dpc:PendingProcessType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetPendingProcessRequestType">
+		<xsd:sequence>
+			<xsd:element name="processId" type="xsd:long"/>
+			<xsd:element name="thirdPartyData" type="xsd:boolean"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetPendingProcessResponseType">
+		<xsd:sequence>
+			<xsd:element name="details" type="xsd:string"/>
+			<xsd:element name="correlationId" type="xsd:long"/>
+			<xsd:element name="ODProcessId" type="xsd:long"/>
+			<xsd:element name="qualityId" type="xsd:long"/>
+			<xsd:element name="objectId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ConfirmProcessRequestType">
+		<xsd:sequence>
+			<xsd:element name="processId" type="xsd:long"/>
+			<xsd:element name="thirdPartyData" type="xsd:boolean"/>
+			<xsd:element name="action" type="xsd:string"/>
+			<xsd:element name="objectId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="measures" type="data:ODMeasuresType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SubmitManeuverDataRequestType">
+		<xsd:sequence>
+			<xsd:element name="ManeuverID" type="xsd:long"/>
+			<xsd:element name="ObjectID" type="xsd:long"/>
+			<xsd:element name="Flag" type="omc:ManeuverFlagType"/>
+			<xsd:element name="maneuverParameters" type="eCCSDS:extendedManeuverParametersType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SubmitManeuverDataResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObservationDataAsXMLRequestType">
+		<xsd:sequence>
+			<xsd:element name="processId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObservationDataAsXMLResponseType">
+		<xsd:sequence>
+			<xsd:element name="request" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetThirdPartyDataAsXMLRequestType">
+		<xsd:sequence>
+			<xsd:element name="processId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetThirdPartyDataAsXMLResponseType">
+		<xsd:sequence>
+			<xsd:element name="request" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

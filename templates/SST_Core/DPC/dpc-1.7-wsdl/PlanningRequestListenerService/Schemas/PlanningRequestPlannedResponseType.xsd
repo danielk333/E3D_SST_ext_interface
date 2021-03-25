@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:tns="http://esa.ssa/dpc/2.1/PlanningRequestPlannedResponseType" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://ssa.esa.int/common/1.0" targetNamespace="http://esa.ssa/dpc/2.1/PlanningRequestPlannedResponseType" elementFormDefault="qualified">
+	<element name="PlanningRequestPlannedResponseType"/>
+</schema>

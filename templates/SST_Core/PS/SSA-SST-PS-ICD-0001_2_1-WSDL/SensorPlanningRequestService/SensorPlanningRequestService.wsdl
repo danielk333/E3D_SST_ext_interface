@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SensorPlanningRequest"
+    targetNamespace="http://esa.ssa.sst.planning/SensorPlanningRequest/service/v1_0/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://esa.ssa.sst.planning/SensorPlanningRequest/service/v1_0/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ssaRuntime="http://esa.ssa.common/ssaRuntimeService/">
+
+	<wsdl:import location="../ssaHeaders/ssaRuntimeService.wsdl"
+                namespace="http://esa.ssa.common/ssaRuntimeService/"/>
+    <wsdl:import location="./SensorPlanningRequest.wsdl"
+        namespace="http://esa.ssa.sst.planning/SensorPlanningRequest/service/v1_0/" />
+
+
+    <wsdl:binding name="SensorPlanningRequestInterfaceBinding"
+        type="tns:SensorPlanningRequestInterface">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+
+        <wsdl:operation name="submit">
+            <soap:operation
+                soapAction="urn:tns:SensorPlanningRequest/submit/" />
+            <wsdl:input>
+                <soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+                <soap:body parts="trackingRequest" use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="submitResponse" use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="deadLineFaultMessage">
+                <soap:fault name="deadLineFaultMessage" use="literal" />
+            </wsdl:fault>
+            <wsdl:fault name="badObjectIdFaultMessage">
+                <soap:fault name="badObjectIdFaultMessage"
+                    use="literal" />
+            </wsdl:fault>
+            <wsdl:fault name="requiredObjectIdFaultMessage">
+                <soap:fault name="requiredObjectIdFaultMessage"
+                    use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="submitHighPriority">
+            <soap:operation
+                soapAction="urn:tns:SensorPlanningRequest/submitHighPriority/" />
+            <wsdl:input>
+                <soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+                <soap:body parts="trackingHighPriorityRequest"
+                    use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="responsePriority" use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="deadLineFaultMessage">
+                <soap:fault name="deadLineFaultMessage" use="literal" />
+            </wsdl:fault>
+            <wsdl:fault name="badObjectIdFaultMessage">
+                <soap:fault name="badObjectIdFaultMessage"
+                    use="literal" />
+            </wsdl:fault>
+            <wsdl:fault name="requiredObjectIdFaultMessage">
+                <soap:fault name="requiredObjectIdFaultMessage"
+                    use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="submitSurveyPlanningRequest">
+            <soap:operation
+                soapAction="urn:tns:SensorPlanningRequest/submitSurveyPlanningRequest/" />
+            <wsdl:input>
+                <soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+                <soap:body parts="surveyRequest" use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="surveyResponse" use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="requiredObservationDurationFaultMessage">
+                <soap:fault name="requiredObservationDurationFaultMessage"
+                    use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="submitHighPrioritySurveyRequest">
+            <soap:operation
+                soapAction="urn:tns:SensorPlanningRequest/submitHighPrioritySurveyRequest/" />
+            <wsdl:input>
+                <soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+                <soap:body parts="surveyRequestPriority" use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="surveyResponsePriority" use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="requiredObservationDurationFaultMessage">
+                <soap:fault name="requiredObservationDurationFaultMessage"
+                    use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SensorPlanningRequestService">
+        <wsdl:port binding="tns:SensorPlanningRequestInterfaceBinding"
+            name="SensorPlanningRequestInterfacePort">
+            <soap:address
+                location="urn:tns:SensorPlanningRequest/SensorPlanningRequestServiceInterface/SensorPlanningRequestInterfacePort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

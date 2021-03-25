@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataRequestType" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:ob="http://esa.ssa.sst/2.1/catalogue/object/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataRequestType" elementFormDefault="qualified">
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-opm-2.0.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/catalogue/object/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/catalogue/object/object.xsd"/>
+	<element name="CorrelateThirdPartyDataRequestType">
+		<complexType>
+			<sequence>
+				<element name="objectReference" type="ob:ObjectInternationalReference">
+					<annotation>
+						<documentation>&lt;p&gt;International references of the object.&lt;/p&gt;</documentation>
+					</annotation>
+				</element>
+				<element name="orbitParameters" type="ndm:opmType"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

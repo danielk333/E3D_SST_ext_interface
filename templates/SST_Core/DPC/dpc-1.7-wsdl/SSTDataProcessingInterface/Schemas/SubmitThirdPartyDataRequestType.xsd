@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/SubmitThirdPartyDataRequestType" xmlns:catobj="http://esa.ssa.sst/2.1/catalogue/object/" xmlns:eCCSDS="http://esa.ssa.sst/2.1/CCSDS/" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:omc="http://esa.ssa.sst/2.1/omc/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/SubmitThirdPartyDataRequestType" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/common/common.xsd"/>
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-opm-2.0.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/CCSDS/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/extendedCCSDS/extendedCCSDS.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/catalogue/object/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/catalogue/object/object.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/omc/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/omc/omc.xsd"/>
+	<element name="SubmitThirdPartyDataRequestType">
+		<complexType>
+			<sequence>
+				<element name="ThirdPartyID" type="long"/>
+				<element name="originator" type="string">
+					<annotation>
+						<documentation>
+							&lt;p&gt;Provider of the orbit
+						</documentation>
+					</annotation>
+				</element>
+				<element name="objectID" type="catobj:ObjectIdType" minOccurs="0"/>
+				<element name="Manouverable" type="boolean"/>
+				<element name="ManeuverFlag" type="omc:ManeuverFlagType" minOccurs="0"/>
+				<element name="Mass" type="ndm:massType" minOccurs="0"/>
+				<element name="Solar_Rad_Area" type="ndm:areaType" minOccurs="0"/>
+				<element name="Solar_Rad_Coeff" type="ndm:nonNegativeDouble" minOccurs="0"/>
+				<element name="Solar_Rad_Coeff_Uncertainty" type="double" minOccurs="0"/>
+				<element name="Drag_Area" type="ndm:areaType" minOccurs="0"/>
+				<element name="Drag_Coeff" type="ndm:nonNegativeDouble" minOccurs="0"/>
+				<element name="Drag_Coeff_Uncertainty" type="double" minOccurs="0"/>
+				<element name="ephemerides" type="ndm:oemType"/>
+				<element name="opmCovarianceMatrixParameters" type="eCCSDS:CovarianceMatrixParametersType" minOccurs="0"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

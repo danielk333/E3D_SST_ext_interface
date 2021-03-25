@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SensorPlanningService"
+	targetNamespace="http://esa.ssa.sst.planning/SensorPlanning/SensorPlanningService/v1_0/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://esa.ssa.sst.planning/SensorPlanning/SensorPlanningService/v1_0/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ssaRuntime="http://esa.ssa.common/ssaRuntimeService/">
+	
+	<wsdl:import location="../ssaHeaders/ssaRuntimeService.wsdl"
+                namespace="http://esa.ssa.common/ssaRuntimeService/"/>
+	<wsdl:import location="./SensorPlanning.wsdl"
+		namespace="http://esa.ssa.sst.planning/SensorPlanning/SensorPlanningService/v1_0/" />
+
+	<wsdl:binding name="SensorPlanningInterfaceBinding"
+		type="tns:SensorPlanningInterface">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="generate">
+			<soap:operation
+				soapAction="urn:tns:generate/" />
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+        		<soap:body parts="generateRequest" use="literal"/>
+      		</wsdl:input>										
+		</wsdl:operation>		
+		<wsdl:operation name="validate">
+			<soap:operation
+				soapAction="urn:tns:validate/" />
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="validateRequest" use="literal" />
+			</wsdl:input>
+		</wsdl:operation>		
+		<wsdl:operation name="cancel">
+			<soap:operation
+				soapAction="urn:tns:cancel/" />
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="cancelRequest" use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	<wsdl:service name="SensorPlanning">
+		<wsdl:port binding="tns:SensorPlanningInterfaceBinding"
+			name="SensorPlanningInterfacePort">
+			<soap:address
+				location="urn:tns:sensorPlanningInterface/SensorPlanningInterfacePort" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

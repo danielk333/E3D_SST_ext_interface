@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="v1_0"
+    targetNamespace="http://esa.ssa.sst.planning/planningNotificationListener/service/v1_0/"
+    xmlns:tns="http://esa.ssa.sst.planning/planningNotificationListener/service/v1_0/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:pnl="http://esa.ssa.sst/1.5/common/planning/">
+
+    <wsdl:types>
+        <xsd:schema
+            targetNamespace="http://esa.ssa.sst.planning/planningNotificationListener/service/v1_0/">
+            <xsd:import
+                namespace="http://esa.ssa.sst/1.5/common/planning/"
+                schemaLocation="../CommonSSTDataModel/XSD/esa/ssa/sst/common/planning/planning.xsd" />            
+
+            <xsd:element name="planningRequestStatusUpdatedRequest"
+                type="pnl:PlanningNotificationType" />
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="planningRequestStatusUpdatedMessage">
+        <wsdl:part element="tns:planningRequestStatusUpdatedRequest"
+            name="planningNotification" />
+    </wsdl:message>
+    <wsdl:portType name="PlanningNotificationListenerInterface">
+        <wsdl:operation name="planningRequestStatusUpdated">
+            <wsdl:input message="tns:planningRequestStatusUpdatedMessage" />
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

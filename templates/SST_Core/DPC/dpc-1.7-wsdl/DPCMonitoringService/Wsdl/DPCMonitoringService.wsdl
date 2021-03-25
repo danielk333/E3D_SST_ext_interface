@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:dpc="http://esa.ssa/dpc/2.1/DPCMonitoringServiceSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/dpc/2.1/DPCMonitoringService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="DPCMonitoringService" targetNamespace="http://esa.ssa/dpc/2.1/DPCMonitoringService">
+	<wsdl:import namespace="http://esa.ssa/dpc/2.1/DPCMonitoringServiceSchema" location="./DPCMonitoringServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../../ssaHeaders/ssaRuntimeService.wsdl"/>
+	<wsdl:binding name="DPCMonitoringServiceInterfaceBinding" type="dpc:DPCMonitoringServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- Monitoring Agent Operations -->
+		<wsdl:operation name="getStatus">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCMonitoringService/getStatus/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="start">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCMonitoringService/start/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="stop">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCMonitoringService/stop/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+		<wsdl:operation name="configure">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCMonitoringService/configure/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="DPCMonitoringService">
+		<wsdl:port name="DPCMonitoringServiceInterfacePort" binding="tns:DPCMonitoringServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/dpc/2.1/DPCMonitoringService/DPCMonitoringService/DPCMonitoringServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

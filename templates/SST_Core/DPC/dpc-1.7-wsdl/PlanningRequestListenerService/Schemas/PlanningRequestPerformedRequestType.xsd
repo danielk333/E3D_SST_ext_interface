@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:tns="http://esa.ssa/dpc/2.1/PlanningRequestPerformedRequestType" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:compl="http://esa.ssa.sst/2.1/common/planning/" targetNamespace="http://esa.ssa/dpc/2.1/PlanningRequestPerformedRequestType" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa.sst/2.1/common/planning/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/common/planning/planning.xsd"/>
+	<element name="PlanningRequestPerformedRequestType">
+		<complexType>
+			<sequence>
+				<element name="planningNotification" type="compl:PlanningNotificationType" minOccurs="1" maxOccurs="1"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

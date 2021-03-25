@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:tns="http://esa.ssa/ssensor/1.2/GetBiasesRequestType"
+	targetNamespace="http://esa.ssa/ssensor/1.2/GetBiasesRequestType">
+	<xsd:element name="GetBiasesRequestType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SensorID" type="xsd:long"/>
+				<xsd:element name="Start" type="xsd:dateTime"/>
+				<xsd:element name="End" type="xsd:dateTime"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa/ssensor/1.2/UnsubscribeRequestType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/ssensor/1.2/UnsubscribeRequestType">
+	<xsd:element name="UnsubscribeRequestType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SubscriberID" type="xsd:long"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

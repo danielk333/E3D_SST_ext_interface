@@ -6,88 +6,216 @@
 import time
 import glob
 import pathlib
-import http.client
-from urllib.request import pathname2url
+import logging
+import secrets
 import shutil
 import os
 
 import xmlschema
+import xmlschema.extras.wsdl
 
-from config import SERVICES, REQUESTS
-from config import HTTP_404, HTTP_200
+import xml.etree
 
- #TODO: fix below lines [spyne]
-class SSTServer:
-    '''Main external interface for handling requests to the EISCAT 3D SST Services, built to function as a :code:`wsgiref.simple_server` application.
+import tornado.ioloop
+import tornado.web
 
-    :param logger logger: A logger instance, all calls to the application from the simple_server will be logged to this instance.
-    :param configparser.ConfigParser config: The server configuration.
-    '''
-    def __init__(self, config, logger):
-        self.logger = logger
-        self.config = config
+from config import ROOT, DEBUG
 
-    def __call__(self, env, start_response):
-        try:
-            try:
-                ip = env['HTTP_X_FORWARDED_FOR'].split(',')[-1].strip()
-            except KeyError:
-                ip = env['REMOTE_ADDR']
 
-            self.logger.info(f'SSTServer: Handling request from {ip}')
+class SoapEnvelope:
+    """ 
+    """
 
-            request = env['wsgi.input'].read(int(env.get('CONTENT_LENGTH', 0)))
+    ENVELOPE_URL = 'http://schemas.xmlsoap.org/soap/envelope/'
+    SCHEMA_URL = 'http://www.w3.org/2001/XMLSchema-instance'
 
-            xml_request = etree.fromstring(request)
+    def add_env_ns(self, name):
+        return '{' + SoapEnvelope.ENVELOPE_URL + '}' + name
 
-            request_tag = xml_request.tag
-            self.logger.debug(f'SSTServer:__call__: Incoming request tag "{request_tag}"')
+    def add_sche_ns(self, name):
+        return '{' + SoapEnvelope.ENVELOPE_URL + '}' + name
 
-            if request_tag in SERVICES:
-                self.logger.debug(f'SSTServer:__call__: Service "{request_tag}" executed')
+    def __init__(self):
+        
+        
+        self.envelope = xml.etree.ElementTree.Element('soapenv:Envelope')
+        self.envelope.set('xmlns:soapenv', SoapEnvelope.ENVELOPE_URL)
+        self.envelope.set('xmlns:xsi', SoapEnvelope.SCHEMA_URL)
+        self.envelope.set('xsi:schemaLocation',f'{SoapEnvelope.ENVELOPE_URL} {SoapEnvelope.ENVELOPE_URL}')
+        self.header = xml.etree.ElementTree.SubElement(self.envelope, 'soapenv:Header')
+        self.body = xml.etree.ElementTree.SubElement(self.envelope, 'soapenv:Body')
 
-                with open(SERVICES[request_tag]['schema'], 'r') as r:
-                    schema_root = etree.fromstring(r.read())
-                schema = etree.XMLSchema(schema_root)
+    def get_xml(self):
+        return xml.etree.ElementTree.tostring(self.envelope)
 
-                if not schema.validate(xml_request):
-                    self.logger.debug(f'SSTServer:__call__:{request_tag}: Request does not match schema')
-                    response = HTTP_404.encode('utf-8')
-                    HTTP_RET = HTTP_404
-                else:
-                    self.logger.debug(f'SSTServer:__call__:{request_tag}: Request validated')
-                    func = SERVICES[request_tag]['action']
-                    if func is not None:
-                        self.logger.debug(f'SSTServer:__call__:{request_tag}: Action executed')
-                        ret_ = func(xml_request, self.config, self.logger)
-                    else:
-                        ret_ = None
+    def add_header(self, xml):
+        self.header.append(xml)
 
-                    response = SERVICES[request_tag]['response']
-                    if response is None:
-                        response = ret_.encode('utf-8')
-                    else:
-                        response = response.encode('utf-8')
+    def add_body(self, xml):
+        self.body.append(xml)
 
-                    if response is None:
-                        response = HTTP_200.encode('utf-8')
-                    HTTP_RET = HTTP_200
+
+class WsdlService:
+
+    def __init__(self, wsdl):
+        self.wsdl = wsdl
+        self.load_operations()
+        self.load_actions()
+
+
+    def load_operations(self):
+        self.operations = {}
+
+        for srv_name, srv in self.wsdl.services.items():
+            logging.debug(f'Service: {srv.name}')
+
+            for port_name, port in srv.ports.items():
+                logging.debug(f' - Port: {port.name}')
+
+                for op_names, op in port.binding.operations.items():
+                    logging.debug(f' -- Operation: {op.name}')
+                    self.operations[op.name] = op
+
+
+    def load_actions(self):
+        self.actions = {}
+        for name, op in self.operations.items():
+            if hasattr(self, op.local_name):
+                self.actions[name] = getattr(self, op.local_name)
             else:
-                response = HTTP_404.encode('utf-8')
-                HTTP_RET = HTTP_404
+                self.actions[name] = None
 
-            start_response(HTTP_RET, [
-                ('Content-Type', 'text/xml'),
-                ('Content-Length', str(len(response)))
-            ])
-        except Exception as err:
-            self.logger.exception(err)
 
-            response = HTTP_404.encode('utf-8')
+    def get_input(self, xml_data):
+        inputs = {}
 
-            start_response(HTTP_404, [
-                ('Content-Type', 'text/plain'),
-                ('Content-Length', str(len(response)))
-            ])
-        self.logger.debug(f'SSTServer:__call__: Yielding response')
-        yield response
+        for name, operation in self.operations.items():
+            datas = None
+
+            for part_name, part in operation.input.message.parts.items():
+
+                logging.debug(f' --- Parsing Input part: {part.name}')
+                ns_prefix = '{' + part.target_namespace + '}'
+
+                results = xml_data.findall(f'.//{ns_prefix}{part_name}')
+
+                if len(results) > 0:
+                    if datas is None:
+                        datas = {}
+                    datas[part.name] = []
+                else:
+                    continue
+
+                for result in results:
+                    datas[part.name] += [part.decode(result)]
+            
+            if datas is not None:
+                inputs[name] = datas
+
+        return inputs
+
+
+    def get_output(self, datas):
+        outputs = {}
+        for name, data in datas.items():
+            operation = self.operations[name]
+            returns = []
+            for part_name, part in operation.output.message.parts.items():
+                logging.debug(f' --- Encoding Output part: {part.name}')
+
+                ns_prefix = '{' + part.target_namespace + '}'
+                returns += [part.encode(data)]
+
+            outputs[name] = returns
+        return outputs
+
+    def __call__(self, xml_data):
+        inputs = self.get_input(xml_data)
+        
+        datas = {}
+        for key in inputs:
+            func = self.actions[key]
+            if func is not None:
+                datas[key] = func(inputs[key])
+        
+        outputs = self.get_output(datas)
+        
+        return outputs
+
+    def say_hello(self, data):
+        _ns = '{spyne.examples.hello.soap}'
+        d = data[f'{_ns}say_hello'][0]
+        ret = {
+            f'{_ns}say_helloResult': {f'{_ns}string': [d[f'{_ns}name']]*d[f'{_ns}times']},
+        }
+
+        return ret
+
+
+
+class IndexHandler(tornado.web.RequestHandler):
+    SUPPORTED_METHODS = ('GET','POST')
+
+    def set_default_headers(self):
+        self.set_header('Content-type', 'text/xml; charset=utf-8')
+
+
+    def get(self, schema_file, *args, **kwargs):
+        if schema_file.endswith('.wsdl') or schema_file.endswith('.xsd'):
+            if (ROOT / 'templates' / schema_file).is_file():
+                self.render(schema_file)
+            else:
+                self.write('<nope></nope>')
+        else:
+            self.write('<nope></nope>')
+
+
+    def post(self, schema_file, *args, **kwargs):
+        try:
+            ip = env['HTTP_X_FORWARDED_FOR'].split(',')[-1].strip()
+        except KeyError:
+            ip = env['REMOTE_ADDR']
+        logging.info(f'Handling request from {ip}')
+
+        service = WsdlService(schema_file)
+
+        xml_str = self.request.body.decode()
+        envelope = SoapEnvelope()
+        xml_root = xml.etree.ElementTree.XML(xml_str)
+
+        outputs = service(xml_root)
+
+        for key in outputs:
+            for out in outputs[key]:
+                envelope.add_body(out)
+
+        soap_response = envelope.get_xml()
+        self.write(soap_response)
+        
+
+def main():
+    cookie_secret = secrets.token_hex()
+
+    handlers = [(r'/(.*)', IndexHandler, {})]
+
+    app = tornado.web.Application(
+        handlers=handlers,
+        template_path=ROOT / 'templates',
+        static_url_prefix=f'/static/',
+        static_path=ROOT / 'static',
+        xsrf_cookies=False,
+        debug=DEBUG,
+        cookie_secret=cookie_secret,
+    )
+
+    app.listen(PORT, HOST)
+    logging.info(f"Listening on {HOST}:{PORT}")
+
+    try:
+        tornado.ioloop.IOLoop.current().start()
+    except KeyboardInterrupt:
+        pass
+
+
+if __name__=='__main__':
+    main()

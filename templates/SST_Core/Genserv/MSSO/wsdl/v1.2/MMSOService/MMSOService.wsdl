@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MMSOService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ssaRuntime="http://esa.ssa.common/ssaRuntimeService/" xmlns:service="http://esa.ssa.gen.catalogue/mmsos/service/1.2/" xmlns:tns="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/" targetNamespace="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/">
+	<wsdl:import location="../ssaRuntimeService.wsdl" namespace="http://esa.ssa.common/ssaRuntimeService/"/>
+	<wsdl:import location="./MMSOServiceInterface.wsdl" namespace="http://esa.ssa.gen.catalogue/mmsos/service/1.2/"/>
+	<wsdl:binding name="MMSOServiceInterfaceBinding" type="service:MMSOServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="createObject">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/createObject"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="createObjectFault">
+				<soap:fault name="createObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveObjectIds">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveObjectIds/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveObjectIdsFault">
+				<soap:fault name="retrieveObjectIdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveDPCObjects">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveDPCObjects/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveDPCObjectsFault">
+				<soap:fault name="retrieveDPCObjectsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveObject">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveObject"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveObjectFault">
+				<soap:fault name="retrieveObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateObject">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/updateObject"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateObjectFault">
+				<soap:fault name="updateObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteObject">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/deleteObject/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="deleteObjectFault">
+				<soap:fault name="deleteObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="invalidateObject">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/invalidateObject/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="invalidateObjectFault">
+				<soap:fault name="invalidateObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="mergeObjects">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/mergeObjects/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="mergeObjectsFault">
+				<soap:fault name="mergeObjectsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="assignCosparID">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/assignCosparID/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="assignCosparIDFault">
+				<soap:fault name="assignCosparIDFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSSAIDForCosparID">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getSSAIDForCosparID/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getSSAIDForCosparIDFault">
+				<soap:fault name="getSSAIDForCosparIDFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="countObject">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/countObject"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="countObjectFault">
+				<soap:fault name="countObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="addTrackingData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/addTrackingData/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="addTrackingDataFault">
+				<soap:fault name="addTrackingDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveTrackingDataIds">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveTrackingDataIds/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveTrackingDataIdsFault">
+				<soap:fault name="retrieveTrackingDataIdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveTrackingData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveTrackingData/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveTrackingDataFault">
+				<soap:fault name="retrieveTrackingDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="countTrackingData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/countTrackingData/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="countTrackingDataFault">
+				<soap:fault name="countTrackingDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateTrackingData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/updateTrackingData/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateTrackingDataFault">
+				<soap:fault name="updateTrackingDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteTrackingData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/deleteTrackingData/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="deleteTrackingDataFault">
+				<soap:fault name="deleteTrackingDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="addOrbit">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/addOrbit/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="addOrbitFault">
+				<soap:fault name="addOrbitFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveCurrentOrbit">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveCurrentOrbit/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveCurrentOrbitFault">
+				<soap:fault name="retrieveCurrentOrbitFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveOrbitIds">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveOrbitIds/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveOrbitIdsFault">
+				<soap:fault name="retrieveOrbitIdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveOrbit">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveOrbit"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body arts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveOrbitFault">
+				<soap:fault name="retrieveOrbitFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getThirdPartyOrbitData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getThirdPartyOrbitData"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body arts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getThirdPartyOrbitDataFault">
+				<soap:fault name="getThirdPartyOrbitDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateOrbit">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/updateOrbit/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateOrbitFault">
+				<soap:fault name="updateOrbitFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteOrbit">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/deleteOrbit/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="deleteOrbitFault">
+				<soap:fault name="deleteOrbitFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setOrbitUpdateDeadline">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/setOrbitUpdateDeadline/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="setOrbitUpdateDeadlineFault">
+				<soap:fault name="setOrbitUpdateDeadlineFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="clearOrbitUpdateDeadline">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/clearOrbitUpdateDeadline/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="clearOrbitUpdateDeadlineFault">
+				<soap:fault name="clearOrbitUpdateDeadlineFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="countOrbit">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/countOrbit"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="countOrbitFault">
+				<soap:fault name="countOrbitFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="addMeanElement">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/addMeanElement"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="addMeanElementFault">
+				<soap:fault name="addMeanElementFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateMeanElement">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/updateMeanElement"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateMeanElementFault">
+				<soap:fault name="updateMeanElementFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteMeanElement">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/deleteMeanElement"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="deleteMeanElementFault">
+				<soap:fault name="deleteMeanElementFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveMeanElement">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveMeanElement"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveMeanElementFault">
+				<soap:fault name="retrieveMeanElementFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="countMeanElement">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/countMeanElement"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="countMeanElementFault">
+				<soap:fault name="countMeanElementFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="addEphemeris">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/addEphemeris/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="addEphemerisFault">
+				<soap:fault name="addEphemerisFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveCurrentEphemeris">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveCurrentEphemeris/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveCurrentEphemerisFault">
+				<soap:fault name="retrieveCurrentEphemerisFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveEphemerisIds">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveEphemerisIds/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveEphemerisIdsFault">
+				<soap:fault name="retrieveEphemerisIdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveEphemeris">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveEphemeris"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveEphemerisFault">
+				<soap:fault name="retrieveEphemerisFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="formatEphemeris">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/formatEphemeris"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="formatEphemerisFault">
+				<soap:fault name="formatEphemerisFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateEphemeris">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/updateEphemeris/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateEphemerisFault">
+				<soap:fault name="updateEphemerisFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteEphemeris">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/deleteEphemeris/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="deleteEphemerisFault">
+				<soap:fault name="deleteEphemerisFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="countEphemeris">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/countEphemeris"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="countEphemerisFault">
+				<soap:fault name="countEphemerisFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="addManoeuvre">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/addManoeuvre/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="addManoeuvreFault">
+				<soap:fault name="addManoeuvreFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveManoeuvreIds">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveManoeuvreIds/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveManoeuvreIdsFault">
+				<soap:fault name="retrieveManoeuvreIdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveManoeuvre">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/retrieveManoeuvre/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="retrieveManoeuvreFault">
+				<soap:fault name="retrieveManoeuvreFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateManoeuvre">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/updateManoeuvre/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateManoeuvreFault">
+				<soap:fault name="updateManoeuvreFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteManoeuvre">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/deleteManaoeuvre/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="deleteManoeuvreFault">
+				<soap:fault name="deleteManoeuvreFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="subscribe">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/subscribe"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="subscribeFault">
+				<soap:fault name="subscribeFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="unsubscribe">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/unsubscribeCatalague"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="unsubscribeFault">
+				<soap:fault name="unsubscribeFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setFragmentationEventToObject">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/setFragmentationEventToObject"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="setFragmentationEventToObjectFault">
+				<soap:fault name="setFragmentationEventToObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- MMSO DPC Extented Catalogue -->
+		<wsdl:operation name="getDPCObjectData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getDPCObjectData"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getDPCObjectDataFault">
+				<soap:fault name="getDPCObjectDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getDPCObjectDataPreviousTo">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getDPCObjectDataPreviousTo"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getDPCObjectDataPreviousToFault">
+				<soap:fault name="getDPCObjectDataPreviousToFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateDPCObjectData">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/updateDPCObjectData"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateDPCObjectDataFault">
+				<soap:fault name="updateDPCObjectDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getDPCCatalog">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getDPCCatalog"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getDPCCatalogFault">
+				<soap:fault name="getDPCCatalogFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getOutOfDateObjects">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getOutOfDateObjects"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getOutOfDateObjectsFault">
+				<soap:fault name="getOutOfDateObjectsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getCatalogueOverview">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getCatalogueOverview/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getCatalogueOverviewFault">
+				<soap:fault name="getCatalogueOverviewFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getCatalogueOverviewReport">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getCatalogueOverviewReport/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getCatalogueOverviewReportFault">
+				<soap:fault name="getCatalogueOverviewReportFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getCatalogMaxEpoch">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getCatalogMaxEpoch/"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getCatalogMaxEpochFault">
+				<soap:fault name="getCatalogMaxEpochFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Get catalog formatted to be used by the SSIM -->
+		<wsdl:operation name="getSSIMCatalog">
+			<soap:operation soapAction="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/getSSIMCatalog"/>
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getSSIMCatalogFault">
+				<soap:fault name="getSSIMCatalogFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MMSOService">
+		<wsdl:port binding="tns:MMSOServiceInterfaceBinding" name="MMSOServiceInterfacePort">
+			<soap:address location="http://esa.ssa.gen.catalogue/mmsos/service/1.2/MMSOService/MMSOServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa/ssensor/1.2/OnSensorActiveRequestType" xmlns:tns="http://esa.ssa/ssensor/1.2/OnSensorActiveRequestType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="OnSensorActiveRequestType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SensorID" type="xsd:long" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssa="http://ssa.esa.int/common/" xmlns:tns="http://esa.ssa/dpc/2.1/HMICommunicationServiceSchema" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+xmlns:data="http://esa.ssa/dpc/2.1/HMICommunicationData" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" 
+name="dpc" targetNamespace="http://esa.ssa/dpc/2.1/HMICommunicationServiceSchema">
+
+	<wsdl:types>
+		<xsd:schema attributeFormDefault="qualified" targetNamespace="http://esa.ssa/dpc/2.1/HMICommunicationServiceSchema" version="1.0">
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/HMICommunicationData" schemaLocation="../Schemas/HMICommunicationData.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="getEphemAsAscii">
+		<wsdl:part name="parameters" element="data:getEphemAsAscii"/>
+	</wsdl:message>
+	<wsdl:message name="getEphemAsAsciiResponse">
+		<wsdl:part name="parameters" element="data:getEphemAsAsciiResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getEphemAsXML">
+		<wsdl:part name="parameters" element="data:getEphemAsXML"/>
+	</wsdl:message>
+	<wsdl:message name="getEphemAsXMLResponse">
+		<wsdl:part name="parameters" element="data:getEphemAsXMLResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getObservationDataAsXML">
+		<wsdl:part name="parameters" element="data:getObservationDataAsXML"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getObservationDataAsXMLResponse">
+		<wsdl:part name="parameters" element="data:getObservationDataAsXMLResponse"/>
+	</wsdl:message>
+
+	<wsdl:message name="updateSensorBiases">
+		<wsdl:part name="parameters" element="data:updateSensorBiases"/>
+	</wsdl:message>
+	
+	<wsdl:message name="updateSensorBiasesResponse">
+		<wsdl:part name="parameters" element="data:updateSensorBiasesResponse"/>
+	</wsdl:message>	
+	
+	<wsdl:message name="getSensorBiasAsXML">
+		<wsdl:part name="parameters" element="data:getSensorBiasAsXML"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getSensorBiasAsXMLResponse">
+		<wsdl:part name="parameters" element="data:getSensorBiasAsXMLResponse"/>
+	</wsdl:message>	
+	
+	<wsdl:message name="getSensorDataAsXML">
+		<wsdl:part name="parameters" element="data:getSensorDataAsXML"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getSensorDataAsXMLResponse">
+		<wsdl:part name="parameters" element="data:getSensorDataAsXMLResponse"/>
+	</wsdl:message>	
+	<wsdl:message name="getThirdPartyDataAsXML">
+		<wsdl:part name="parameters" element="data:getThirdPartyDataAsXML"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getThirdPartyDataAsXMLResponse">
+		<wsdl:part name="parameters" element="data:getThirdPartyDataAsXMLResponse"/>
+	</wsdl:message>
+	
+
+	<wsdl:message name="getObjectsStateVector">
+		<wsdl:part name="parameters" element="data:getObjectsStateVector"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getObjectsStateVectorResponse">
+		<wsdl:part name="parameters" element="data:getObjectsStateVectorResponse"/>
+	</wsdl:message>
+
+	
+	<wsdl:message name="getManualDPCDetails">
+		<wsdl:part name="parameters" element="data:getManualDPCDetails"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getManualDPCDetailsResponse">
+		<wsdl:part name="parameters" element="data:getManualDPCDetailsResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getManualQualityDetails">
+		<wsdl:part name="parameters" element="data:getManualQualityDetails"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getManualQualityDetailsResponse">
+		<wsdl:part name="parameters" element="data:getManualQualityDetailsResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getManualCorrelationDetails">
+		<wsdl:part name="parameters" element="data:getManualCorrelationDetails"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getManualCorrelationDetailsResponse">
+		<wsdl:part name="parameters" element="data:getManualCorrelationDetailsResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getManualODDetails">
+		<wsdl:part name="parameters" element="data:getManualODDetails"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getManualODDetailsResponse">
+		<wsdl:part name="parameters" element="data:getManualODDetailsResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getODMeasures">
+		<wsdl:part name="parameters" element="data:getODMeasures"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getODMeasuresResponse">
+		<wsdl:part name="parameters" element="data:getODMeasuresResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getSensorTypeList">
+		<wsdl:part name="parameters" element="data:getSensorTypeList"/>
+	</wsdl:message>
+	
+	<wsdl:message name="getSensorTypeListResponse">
+		<wsdl:part name="parameters" element="data:getSensorTypeListResponse"/>
+	</wsdl:message>
+	<wsdl:message name="confirmProcess">
+		<wsdl:part name="parameters" element="data:confirmProcess"/>
+	</wsdl:message>
+	<wsdl:message name="confirmProcessResponse">
+		<wsdl:part name="parameters" element="data:confirmProcessResponse"/>
+	</wsdl:message>
+
+	<wsdl:message name="startDPC">
+		<wsdl:part name="parameters" element="data:startDPC"/>
+	</wsdl:message>
+	<wsdl:message name="startDPCResponse">
+		<wsdl:part name="parameters" element="data:startDPCResponse"/>
+	</wsdl:message>
+	<wsdl:message name="FaultMessageType">
+		<wsdl:part xmlns:ns1="http://esa.ssa/dpc/2.1/dpc" name="fault"
+			element="ns1:DPCErrorType"/>
+	</wsdl:message>
+	<wsdl:message name="activeSensor">
+		<wsdl:part name="parameters" element="data:activeSensor"/>
+	</wsdl:message>
+	<wsdl:message name="activeSensorResponse">
+		<wsdl:part name="parameters" element="data:activeSensorResponse"/>
+	</wsdl:message>
+	<wsdl:message name="addNewSensor">
+		<wsdl:part name="parameters" element="data:addNewSensor"/>
+	</wsdl:message>
+	<wsdl:message name="addNewSensorResponse">
+		<wsdl:part name="parameters" element="data:addNewSensorResponse"/>
+	</wsdl:message>
+	<wsdl:message name="removeObject">
+		<wsdl:part name="parameters" element="data:removeObject"/>
+	</wsdl:message>
+	<wsdl:message name="removeObjectResponse">
+		<wsdl:part name="parameters" element="data:removeObjectResponse"/>
+	</wsdl:message>
+	<wsdl:message name="removeSensor">
+		<wsdl:part name="parameters" element="data:removeSensor"/>
+	</wsdl:message>
+	<wsdl:message name="removeSensorResponse">
+		<wsdl:part name="parameters" element="data:removeSensorResponse"/>
+	</wsdl:message>
+		<wsdl:message name="removeConfigTP">
+		<wsdl:part name="parameters" element="data:removeConfigTP"/>
+	</wsdl:message>
+	<wsdl:message name="removeConfigTPResponse">
+		<wsdl:part name="parameters" element="data:removeConfigTPResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigAncillary">
+		<wsdl:part name="parameters" element="data:setConfigAncillary"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigAncillaryResponse">
+		<wsdl:part name="parameters" element="data:setConfigAncillaryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getOrbits">
+		<wsdl:part name="parameters" element="data:getOrbits"/>
+	</wsdl:message>
+	<wsdl:message name="getOrbitsResponse">
+		<wsdl:part name="parameters" element="data:getOrbitsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getSpaceRegions">
+		<wsdl:part name="parameters" element="data:getSpaceRegions"/>
+	</wsdl:message>
+	<wsdl:message name="getSpaceRegionsResponse">
+		<wsdl:part name="parameters" element="data:getSpaceRegionsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getProviders">
+		<wsdl:part name="parameters" element="data:getProviders"/>
+	</wsdl:message>
+	<wsdl:message name="getProvidersResponse">
+		<wsdl:part name="parameters" element="data:getProvidersResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getOrbitDeterminationIDFilterBy">
+		<wsdl:part name="parameters" element="data:getOrbitDeterminationIDFilterBy"/>
+	</wsdl:message>
+	<wsdl:message name="getOrbitDeterminationIDFilterByResponse">
+		<wsdl:part name="parameters" element="data:getOrbitDeterminationIDFilterByResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigThirdPartyData">
+		<wsdl:part name="parameters" element="data:setConfigThirdPartyData"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigThirdPartyDataResponse">
+		<wsdl:part name="parameters" element="data:setConfigThirdPartyDataResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getThirdPartyDataDetails">
+		<wsdl:part name="parameters" element="data:getThirdPartyDataDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getThirdPartyDataDetailsResponse">
+		<wsdl:part name="parameters" element="data:getThirdPartyDataDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setHMIExecutionTimeThreshold">
+		<wsdl:part name="parameters" element="data:setHMIExecutionTimeThreshold"/>
+	</wsdl:message>
+	<wsdl:message name="setHMIExecutionTimeThresholdResponse">
+		<wsdl:part name="parameters" element="data:setHMIExecutionTimeThresholdResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigEphemerides">
+		<wsdl:part name="parameters" element="data:setConfigEphemerides"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigEphemeridesResponse">
+		<wsdl:part name="parameters" element="data:setConfigEphemeridesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfCorrelation">
+		<wsdl:part name="parameters" element="data:getNumberOfCorrelation"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfCorrelationResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfCorrelationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigAccuracy">
+		<wsdl:part name="parameters" element="data:getConfigAccuracy"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigAccuracyResponse">
+		<wsdl:part name="parameters" element="data:getConfigAccuracyResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigLookUpTable">
+		<wsdl:part name="parameters" element="data:setConfigLookUpTable"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigLookUpTableResponse">
+		<wsdl:part name="parameters" element="data:setConfigLookUpTableResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPlanningRequestIDFilterBy">
+		<wsdl:part name="parameters" element="data:getPlanningRequestIDFilterBy"/>
+	</wsdl:message>
+	<wsdl:message name="getPlanningRequestIDFilterByResponse">
+		<wsdl:part name="parameters" element="data:getPlanningRequestIDFilterByResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfThirdPartyData">
+		<wsdl:part name="parameters" element="data:getNumberOfThirdPartyData"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfThirdPartyDataResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfThirdPartyDataResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getCatalogue">
+		<wsdl:part name="parameters" element="data:getCatalogue"/>
+	</wsdl:message>
+	<wsdl:message name="getCatalogueResponse">
+		<wsdl:part name="parameters" element="data:getCatalogueResponse"/>
+	</wsdl:message>
+
+	<wsdl:message name="getOrbitDeterminationDetails">
+		<wsdl:part name="parameters" element="data:getOrbitDeterminationDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getOrbitDeterminationDetailsResponse">
+		<wsdl:part name="parameters" element="data:getOrbitDeterminationDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getElementsManualOperation">
+		<wsdl:part name="parameters" element="data:getElementsManualOperation"/>
+	</wsdl:message>
+	<wsdl:message name="getElementsManualOperationResponse">
+		<wsdl:part name="parameters" element="data:getElementsManualOperationResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getManualOperationDetails">
+		<wsdl:part name="parameters" element="data:getManualOperationDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getManualOperationDetailsResponse">
+		<wsdl:part name="parameters" element="data:getManualOperationDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigLookUpTable">
+		<wsdl:part name="parameters" element="data:getConfigLookUpTable"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigLookUpTableResponse">
+		<wsdl:part name="parameters" element="data:getConfigLookUpTableResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getServiceProcess">
+		<wsdl:part name="parameters" element="data:getServiceProcess"/>
+	</wsdl:message>
+	<wsdl:message name="getServiceProcessResponse">
+		<wsdl:part name="parameters" element="data:getServiceProcessResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getObjectDetails">
+		<wsdl:part name="parameters" element="data:getObjectDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getObjectDetailsResponse">
+		<wsdl:part name="parameters" element="data:getObjectDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigOperationMode">
+		<wsdl:part name="parameters" element="data:setConfigOperationMode"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigOperationModeResponse">
+		<wsdl:part name="parameters" element="data:setConfigOperationModeResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfPlanningRequest">
+		<wsdl:part name="parameters" element="data:getNumberOfPlanningRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfPlanningRequestResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfPlanningRequestResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfQualityMonitoring">
+		<wsdl:part name="parameters" element="data:getNumberOfQualityMonitoring"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfQualityMonitoringResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfQualityMonitoringResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigCandidate">
+		<wsdl:part name="parameters" element="data:setConfigCandidate"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigCandidateResponse">
+		<wsdl:part name="parameters" element="data:setConfigCandidateResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfObservations">
+		<wsdl:part name="parameters" element="data:getNumberOfObservations"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfObservationsResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfObservationsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setHMITimeSpan">
+		<wsdl:part name="parameters" element="data:setHMITimeSpan"/>
+	</wsdl:message>
+	<wsdl:message name="setHMITimeSpanResponse">
+		<wsdl:part name="parameters" element="data:setHMITimeSpanResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigSensors">
+		<wsdl:part name="parameters" element="data:getConfigSensors"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigSensorsResponse">
+		<wsdl:part name="parameters" element="data:getConfigSensorsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigOperationMode">
+		<wsdl:part name="parameters" element="data:getConfigOperationMode"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigOperationModeResponse">
+		<wsdl:part name="parameters" element="data:getConfigOperationModeResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getCorrelationDetails">
+		<wsdl:part name="parameters" element="data:getCorrelationDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getCorrelationDetailsResponse">
+		<wsdl:part name="parameters" element="data:getCorrelationDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getThirdPartyDataIDFilterBy">
+		<wsdl:part name="parameters" element="data:getThirdPartyDataIDFilterBy"/>
+	</wsdl:message>
+	<wsdl:message name="getThirdPartyDataIDFilterByResponse">
+		<wsdl:part name="parameters" element="data:getThirdPartyDataIDFilterByResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigEphemerides">
+		<wsdl:part name="parameters" element="data:getConfigEphemerides"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigEphemeridesResponse">
+		<wsdl:part name="parameters" element="data:getConfigEphemeridesResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigDynamicModel">
+		<wsdl:part name="parameters" element="data:setConfigDynamicModel"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigDynamicModelResponse">
+		<wsdl:part name="parameters" element="data:setConfigDynamicModelResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getObservationsDetails">
+		<wsdl:part name="parameters" element="data:getObservationsDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getObservationsDetailsResponse">
+		<wsdl:part name="parameters" element="data:getObservationsDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfOD">
+		<wsdl:part name="parameters" element="data:getNumberOfOD"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfODResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfODResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigThresholdOD">
+		<wsdl:part name="parameters" element="data:getConfigThresholdOD"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigThresholdODResponse">
+		<wsdl:part name="parameters" element="data:getConfigThresholdODResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigSensors">
+		<wsdl:part name="parameters" element="data:setConfigSensors"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigSensorsResponse">
+		<wsdl:part name="parameters" element="data:setConfigSensorsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getProcess">
+		<wsdl:part name="parameters" element="data:getProcess"/>
+	</wsdl:message>
+	<wsdl:message name="getProcessResponse">
+		<wsdl:part name="parameters" element="data:getProcessResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigThresholdOD">
+		<wsdl:part name="parameters" element="data:setConfigThresholdOD"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigThresholdODResponse">
+		<wsdl:part name="parameters" element="data:setConfigThresholdODResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigThirdPartyData">
+		<wsdl:part name="parameters" element="data:getConfigThirdPartyData"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigThirdPartyDataResponse">
+		<wsdl:part name="parameters" element="data:getConfigThirdPartyDataResponse"/>
+	</wsdl:message>
+	<wsdl:message name="executeAction">
+		<wsdl:part name="parameters" element="data:executeAction"/>
+	</wsdl:message>
+	<wsdl:message name="executeActionResponse">
+		<wsdl:part name="parameters" element="data:executeActionResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getHMITimeSpan">
+		<wsdl:part name="parameters" element="data:getHMITimeSpan"/>
+	</wsdl:message>
+	<wsdl:message name="getHMITimeSpanResponse">
+		<wsdl:part name="parameters" element="data:getHMITimeSpanResponse"/>
+	</wsdl:message>
+
+	<wsdl:message name="getConfigAncillary">
+		<wsdl:part name="parameters" element="data:getConfigAncillary"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigAncillaryResponse">
+		<wsdl:part name="parameters" element="data:getConfigAncillaryResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getQualityMonitoringDetails">
+		<wsdl:part name="parameters" element="data:getQualityMonitoringDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getQualityMonitoringDetailsResponse">
+		<wsdl:part name="parameters" element="data:getQualityMonitoringDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPlanningRequestDetails">
+		<wsdl:part name="parameters" element="data:getPlanningRequestDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getPlanningRequestDetailsResponse">
+		<wsdl:part name="parameters" element="data:getPlanningRequestDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="stopDPC">
+		<wsdl:part name="parameters" element="data:stopDPC"/>
+	</wsdl:message>
+	<wsdl:message name="stopDPCResponse">
+		<wsdl:part name="parameters" element="data:stopDPCResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getSigPosErrorReport">
+		<wsdl:part name="parameters" element="data:getSigPosErrorReport"/>
+	</wsdl:message>
+	<wsdl:message name="getSigPosErrorReportResponse">
+		<wsdl:part name="parameters" element="data:getSigPosErrorReportResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfObservationsInCatalogue">
+		<wsdl:part name="parameters" element="data:getNumberOfObservationsInCatalogue"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfObservationsInCatalogueResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfObservationsInCatalogueResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigCandidate">
+		<wsdl:part name="parameters" element="data:getConfigCandidate"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigCandidateResponse">
+		<wsdl:part name="parameters" element="data:getConfigCandidateResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getObservationsIDFilterBy">
+		<wsdl:part name="parameters" element="data:getObservationsIDFilterBy"/>
+	</wsdl:message>
+	<wsdl:message name="getObservationsIDFilterByResponse">
+		<wsdl:part name="parameters" element="data:getObservationsIDFilterByResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getObjectsIDFilterBy">
+		<wsdl:part name="parameters" element="data:getObjectsIDFilterBy"/>
+	</wsdl:message>
+	<wsdl:message name="getObjectsIDFilterByResponse">
+		<wsdl:part name="parameters" element="data:getObjectsIDFilterByResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigDynamicModel">
+		<wsdl:part name="parameters" element="data:getConfigDynamicModel"/>
+	</wsdl:message>
+	<wsdl:message name="getConfigDynamicModelResponse">
+		<wsdl:part name="parameters" element="data:getConfigDynamicModelResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getQualityMonitoringIDFilterBy">
+		<wsdl:part name="parameters" element="data:getQualityMonitoringIDFilterBy"/>
+	</wsdl:message>
+	<wsdl:message name="getQualityMonitoringIDFilterByResponse">
+		<wsdl:part name="parameters" element="data:getQualityMonitoringIDFilterByResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getCorrelationIDFilterBy">
+		<wsdl:part name="parameters" element="data:getCorrelationIDFilterBy"/>
+	</wsdl:message>
+	<wsdl:message name="getCorrelationIDFilterByResponse">
+		<wsdl:part name="parameters" element="data:getCorrelationIDFilterByResponse"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigAccuracy">
+		<wsdl:part name="parameters" element="data:setConfigAccuracy"/>
+	</wsdl:message>
+	<wsdl:message name="setConfigAccuracyResponse">
+		<wsdl:part name="parameters" element="data:setConfigAccuracyResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getHMIExecutionTimeThreshold">
+		<wsdl:part name="parameters" element="data:getHMIExecutionTimeThreshold"/>
+	</wsdl:message>
+	<wsdl:message name="getHMIExecutionTimeThresholdResponse">
+		<wsdl:part name="parameters" element="data:getHMIExecutionTimeThresholdResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfObjects">
+		<wsdl:part name="parameters" element="data:getNumberOfObjects"/>
+	</wsdl:message>
+	<wsdl:message name="getNumberOfObjectsResponse">
+		<wsdl:part name="parameters" element="data:getNumberOfObjectsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getService">
+		<wsdl:part name="parameters" element="data:getService"/>
+	</wsdl:message>
+	<wsdl:message name="getServiceResponse">
+		<wsdl:part name="parameters" element="data:getServiceResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getStatus">
+		<wsdl:part name="parameters" element="data:getStatus"/>
+	</wsdl:message>
+	<wsdl:message name="getStatusResponse">
+		<wsdl:part name="parameters" element="data:getStatusResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPreMergeID">
+		<wsdl:part name="parameters" element="data:getPreMergeID"/>
+	</wsdl:message>
+	<wsdl:message name="getPreMergeIDResponse">
+		<wsdl:part name="parameters" element="data:getPreMergeIDResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPreMergeDetails">
+		<wsdl:part name="parameters" element="data:getPreMergeDetails"/>
+	</wsdl:message>
+	<wsdl:message name="getPreMergeDetailsResponse">
+		<wsdl:part name="parameters" element="data:getPreMergeDetailsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="calculateODForMerge">
+		<wsdl:part name="parameters" element="data:calculateODForMerge"/>
+	</wsdl:message>
+	<wsdl:message name="calculateODForMergeResponse">
+		<wsdl:part name="parameters" element="data:calculateODForMergeResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="HMICommunicationServiceInterface">
+	<wsdl:operation name="getManualQualityDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualQualityDetailsRequest"
+				message="tns:getManualQualityDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualQualityDetailsResponse"
+				message="tns:getManualQualityDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualQualityDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateSensorBiases">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/uppdateSensorBiasesRequest"
+				message="tns:updateSensorBiases"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/updateSensorBiasesResponse"
+				message="tns:updateSensorBiasesResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/updateSensorBiases/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSensorBiasAsXML">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorBiasAsXMLRequest"
+				message="tns:getSensorBiasAsXML"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorBiasAsXMLResponse"
+				message="tns:getSensorBiasAsXMLResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorBiasAsXML/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSensorDataAsXML">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorDataAsXMLRequest"
+				message="tns:getSensorDataAsXML"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorDataAsXMLResponse"
+				message="tns:getSensorDataAsXMLResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorDataAsXML/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getThirdPartyDataAsXML">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataAsXMLRequest"
+				message="tns:getThirdPartyDataAsXML"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataAsXMLXMLResponse"
+				message="tns:getThirdPartyDataAsXMLResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataAsXML/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getEphemAsAscii">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getEphemAsAsciiRequest"
+				message="tns:getEphemAsAscii"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getEphemAsAsciiResponse"
+				message="tns:getEphemAsAsciiResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getEphemAsAscii/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getEphemAsXML">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getEphemAsXMLRequest"
+				message="tns:getEphemAsXML"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getEphemAsXMLResponse"
+				message="tns:getEphemAsXMLResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getEphemAsXML/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getObservationDataAsXML">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationDataAsXMLRequest"
+				message="tns:getObservationDataAsXML"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationDataAsXMLResponse"
+				message="tns:getObservationDataAsXMLResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationDataAsXML/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getObjectsStateVector">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectsStateVectorRequest"
+				message="tns:getObjectsStateVector"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectsStateVectorResponse"
+				message="tns:getObjectsStateVectorResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectsStateVector/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+
+		
+		<wsdl:operation name="getManualDPCDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualDPCDetailsRequest"
+				message="tns:getManualDPCDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualDPCDetailsResponse"
+				message="tns:getManualDPCDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualDPCDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getManualCorrelationDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualCorrelationDetailsRequest"
+				message="tns:getManualCorrelationDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualCorrelationDetailsResponse"
+				message="tns:getManualCorrelationDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualCorrelationDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getManualODDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualODDetailsRequest"
+				message="tns:getManualODDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualODDetailsResponse"
+				message="tns:getManualODDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualODDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getODMeasures">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getODMeasuresRequest"
+				message="tns:getODMeasures"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getODMeasuresResponse"
+				message="tns:getODMeasuresResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getODMeasures/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSensorTypeList">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorTypeListRequest"
+				message="tns:getSensorTypeList"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorTypeListResponse"
+				message="tns:getSensorTypeListResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSensorTypeList/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>	
+		
+	<wsdl:operation name="confirmProcess">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/confirmProcessRequest"
+				message="tns:confirmProcess"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/confirmProcessResponse"
+				message="tns:confirmProcessResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/confirmProcess/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="startDPC">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/startDPCRequest"
+				message="tns:startDPC"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/startDPCResponse"
+				message="tns:startDPCResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/startDPC/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+			<wsdl:operation name="activeSensor">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/activeSensorRequest"
+				message="tns:activeSensor"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/activeSensorResponse"
+				message="tns:activeSensorResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/activeSensor/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="addNewSensor">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/addNewSensorRequest"
+				message="tns:addNewSensor"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/addNewSensorResponse"
+				message="tns:addNewSensorResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/addNewSensor/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="removeObject">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeObjectRequest"
+				message="tns:removeObject"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeObjectResponse"
+				message="tns:removeObjectResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeObject/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="removeSensor">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeSensorRequest"
+				message="tns:removeSensor"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeSensorResponse"
+				message="tns:removeSensorResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeSensor/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="removeConfigTP">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeConfigTPRequest"
+				message="tns:removeConfigTP"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeConfigTPResponse"
+				message="tns:removeConfigTPResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/removeConfigTP/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigAncillary">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigAncillaryRequest"
+				message="tns:setConfigAncillary"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigAncillaryResponse"
+				message="tns:setConfigAncillaryResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigAncillary/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getProviders">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getProvidersRequest"
+				message="tns:getProviders"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getProvidersResponse"
+				message="tns:getProvidersResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getProviders/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getOrbits">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitsRequest"
+				message="tns:getOrbits"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitsResponse"
+				message="tns:getOrbitsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbits/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSpaceRegions">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSpaceRegionsRequest"
+				message="tns:getSpaceRegions"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSpaceRegionsResponse"
+				message="tns:getSpaceRegionsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSpaceRegions/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getOrbitDeterminationIDFilterBy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitDeterminationIDFilterByRequest"
+				message="tns:getOrbitDeterminationIDFilterBy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitDeterminationIDFilterByResponse"
+				message="tns:getOrbitDeterminationIDFilterByResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitDeterminationIDFilterBy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigThirdPartyData">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigThirdPartyDataRequest"
+				message="tns:setConfigThirdPartyData"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigThirdPartyDataResponse"
+				message="tns:setConfigThirdPartyDataResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigThirdPartyData/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getThirdPartyDataDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataDetailsRequest"
+				message="tns:getThirdPartyDataDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataDetailsResponse"
+				message="tns:getThirdPartyDataDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setHMIExecutionTimeThreshold">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setHMIExecutionTimeThresholdRequest"
+				message="tns:setHMIExecutionTimeThreshold"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setHMIExecutionTimeThresholdResponse"
+				message="tns:setHMIExecutionTimeThresholdResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setHMIExecutionTimeThreshold/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigEphemerides">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigEphemeridesRequest"
+				message="tns:setConfigEphemerides"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigEphemeridesResponse"
+				message="tns:setConfigEphemeridesResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigEphemerides/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfCorrelation">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfCorrelationRequest"
+				message="tns:getNumberOfCorrelation"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfCorrelationResponse"
+				message="tns:getNumberOfCorrelationResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfCorrelation/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigAccuracy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigAccuracyRequest"
+				message="tns:getConfigAccuracy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigAccuracyResponse"
+				message="tns:getConfigAccuracyResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigAccuracy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigLookUpTable">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigLookUpTableRequest"
+				message="tns:setConfigLookUpTable"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigLookUpTableResponse"
+				message="tns:setConfigLookUpTableResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigLookUpTable/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPlanningRequestIDFilterBy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPlanningRequestIDFilterByRequest"
+				message="tns:getPlanningRequestIDFilterBy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPlanningRequestIDFilterByResponse"
+				message="tns:getPlanningRequestIDFilterByResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPlanningRequestIDFilterBy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfThirdPartyData">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfThirdPartyDataRequest"
+				message="tns:getNumberOfThirdPartyData"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfThirdPartyDataResponse"
+				message="tns:getNumberOfThirdPartyDataResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfThirdPartyData/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getCatalogue">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCatalogueRequest"
+				message="tns:getCatalogue"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCatalogueResponse"
+				message="tns:getCatalogueResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCatalogue/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="getOrbitDeterminationDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitDeterminationDetailsRequest"
+				message="tns:getOrbitDeterminationDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitDeterminationDetailsResponse"
+				message="tns:getOrbitDeterminationDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getOrbitDeterminationDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getElementsManualOperation">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getElementsManualOperationRequest"
+				message="tns:getElementsManualOperation"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getElementsManualOperationResponse"
+				message="tns:getElementsManualOperationResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getElementsManualOperation/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getManualOperationDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualOperationDetailsRequest"
+				message="tns:getManualOperationDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualOperationDetailsResponse"
+				message="tns:getManualOperationDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getManualOperationDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigLookUpTable">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigLookUpTableRequest"
+				message="tns:getConfigLookUpTable"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigLookUpTableResponse"
+				message="tns:getConfigLookUpTableResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigLookUpTable/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getServiceProcess">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getServiceProcessRequest"
+				message="tns:getServiceProcess"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getServiceProcessResponse"
+				message="tns:getServiceProcessResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getServiceProcess/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getObjectDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectDetailsRequest"
+				message="tns:getObjectDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectDetailsResponse"
+				message="tns:getObjectDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigOperationMode">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigOperationModeRequest"
+				message="tns:setConfigOperationMode"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigOperationModeResponse"
+				message="tns:setConfigOperationModeResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigOperationMode/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfPlanningRequest">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfPlanningRequestRequest"
+				message="tns:getNumberOfPlanningRequest"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfPlanningRequestResponse"
+				message="tns:getNumberOfPlanningRequestResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfPlanningRequest/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfQualityMonitoring">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfQualityMonitoringRequest"
+				message="tns:getNumberOfQualityMonitoring"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfQualityMonitoringResponse"
+				message="tns:getNumberOfQualityMonitoringResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfQualityMonitoring/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigCandidate">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigCandidateRequest"
+				message="tns:setConfigCandidate"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigCandidateResponse"
+				message="tns:setConfigCandidateResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigCandidate/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfObservations">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObservationsRequest"
+				message="tns:getNumberOfObservations"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObservationsResponse"
+				message="tns:getNumberOfObservationsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObservations/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setHMITimeSpan">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setHMITimeSpanRequest"
+				message="tns:setHMITimeSpan"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setHMITimeSpanResponse"
+				message="tns:setHMITimeSpanResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setHMITimeSpan/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigSensors">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigAensorsRequest"
+				message="tns:getConfigSensors"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigSensorsResponse"
+				message="tns:getConfigSensorsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigSensors/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigOperationMode">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigOperationModeRequest"
+				message="tns:getConfigOperationMode"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigOperationModeResponse"
+				message="tns:getConfigOperationModeResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigOperationMode/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getCorrelationDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCorrelationDetailsRequest"
+				message="tns:getCorrelationDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCorrelationDetailsResponse"
+				message="tns:getCorrelationDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCorrelationDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getThirdPartyDataIDFilterBy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataIDFilterByRequest"
+				message="tns:getThirdPartyDataIDFilterBy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataIDFilterByResponse"
+				message="tns:getThirdPartyDataIDFilterByResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getThirdPartyDataIDFilterBy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigEphemerides">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigEphemeridesRequest"
+				message="tns:getConfigEphemerides"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigEphemeridesResponse"
+				message="tns:getConfigEphemeridesResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigEphemerides/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigDynamicModel">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigDynamicModelRequest"
+				message="tns:setConfigDynamicModel"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigDynamicModelResponse"
+				message="tns:setConfigDynamicModelResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigDynamicModel/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getObservationsDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationsDetailsRequest"
+				message="tns:getObservationsDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationsDetailsResponse"
+				message="tns:getObservationsDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationsDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfOD">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfODRequest"
+				message="tns:getNumberOfOD"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfODResponse"
+				message="tns:getNumberOfODResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfOD/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigThresholdOD">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigThresholdODRequest"
+				message="tns:getConfigThresholdOD"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigThresholdODResponse"
+				message="tns:getConfigThresholdODResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigThresholdOD/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigSensors">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigSensorsRequest"
+				message="tns:setConfigSensors"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigSensorsResponse"
+				message="tns:setConfigSensorsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigSensors/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getProcess">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getProcessRequest"
+				message="tns:getProcess"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getProcessResponse"
+				message="tns:getProcessResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getProcess/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigThresholdOD">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigThresholdODRequest"
+				message="tns:setConfigThresholdOD"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigThresholdODResponse"
+				message="tns:setConfigThresholdODResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigThresholdOD/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigThirdPartyData">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigThirdPartyDataRequest"
+				message="tns:getConfigThirdPartyData"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigThirdPartyDataResponse"
+				message="tns:getConfigThirdPartyDataResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigThirdPartyData/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="executeAction">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/executeActionRequest"
+				message="tns:executeAction"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/executeActionResponse"
+				message="tns:executeActionResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/executeAction/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getHMITimeSpan">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getHMITimeSpanRequest"
+				message="tns:getHMITimeSpan"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getHMITimeSpanResponse"
+				message="tns:getHMITimeSpanResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getHMITimeSpan/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="getConfigAncillary">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigAncillaryRequest"
+				message="tns:getConfigAncillary"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigAncillaryResponse"
+				message="tns:getConfigAncillaryResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigAncillary/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getQualityMonitoringDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getQualityMonitoringDetailsRequest"
+				message="tns:getQualityMonitoringDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getQualityMonitoringDetailsResponse"
+				message="tns:getQualityMonitoringDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getQualityMonitoringDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPlanningRequestDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPlanningRequestDetailsRequest"
+				message="tns:getPlanningRequestDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPlanningRequestDetailsResponse"
+				message="tns:getPlanningRequestDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPlanningRequestDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="stopDPC">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/stopDPCRequest"
+				message="tns:stopDPC"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/stopDPCResponse"
+				message="tns:stopDPCResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/stopDPC/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="getSigPosErrorReport">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSigPosErrorReport"
+				message="tns:getSigPosErrorReport"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSigPosErrorReportResponse"
+				message="tns:getSigPosErrorReportResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getSigPosErrorReport/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfObservationsInCatalogue">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObservationsInCatalogueRequest"
+				message="tns:getNumberOfObservationsInCatalogue"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObservationsInCatalogueResponse"
+				message="tns:getNumberOfObservationsInCatalogueResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObservationsInCatalogue/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigCandidate">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigCandidateRequest"
+				message="tns:getConfigCandidate"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigCandidateResponse"
+				message="tns:getConfigCandidateResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigCandidate/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getObservationsIDFilterBy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationsIDFilterByRequest"
+				message="tns:getObservationsIDFilterBy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationsIDFilterByResponse"
+				message="tns:getObservationsIDFilterByResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObservationsIDFilterBy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getObjectsIDFilterBy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectsIDFilterByRequest"
+				message="tns:getObjectsIDFilterBy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectsIDFilterByResponse"
+				message="tns:getObjectsIDFilterByResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getObjectsIDFilterBy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getConfigDynamicModel">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigDynamicModelRequest"
+				message="tns:getConfigDynamicModel"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigDynamicModelResponse"
+				message="tns:getConfigDynamicModelResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getConfigDynamicModel/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getQualityMonitoringIDFilterBy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getQualityMonitoringIDFilterByRequest"
+				message="tns:getQualityMonitoringIDFilterBy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getQualityMonitoringIDFilterByResponse"
+				message="tns:getQualityMonitoringIDFilterByResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getQualityMonitoringIDFilterBy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getCorrelationIDFilterBy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCorrelationIDFilterByRequest"
+				message="tns:getCorrelationIDFilterBy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCorrelationIDFilterByResponse"
+				message="tns:getCorrelationIDFilterByResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getCorrelationIDFilterBy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setConfigAccuracy">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigAccuracyRequest"
+				message="tns:setConfigAccuracy"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigAccuracyResponse"
+				message="tns:setConfigAccuracyResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/setConfigAccuracy/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getHMIExecutionTimeThreshold">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getHMIExecutionTimeThresholdRequest"
+				message="tns:getHMIExecutionTimeThreshold"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getHMIExecutionTimeThresholdResponse"
+				message="tns:getHMIExecutionTimeThresholdResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getHMIExecutionTimeThreshold/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getNumberOfObjects">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObjectsRequest"
+				message="tns:getNumberOfObjects"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObjectsResponse"
+				message="tns:getNumberOfObjectsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getNumberOfObjects/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getService">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getServiceRequest"
+				message="tns:getService"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getServiceResponse"
+				message="tns:getServiceResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getService/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getStatus">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getStatusRequest"
+				message="tns:getStatus"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getStatusResponse"
+				message="tns:getStatusResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getStatus/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPreMergeDetails">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPreMergeDetailsRequest"
+				message="tns:getPreMergeDetails"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPreMergeDetailsResponse"
+				message="tns:getPreMergeDetailsResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPreMergeDetails/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+			<wsdl:operation name="getPreMergeID">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPreMergeIDRequest"
+				message="tns:getPreMergeID"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPreMergeIDResponse"
+				message="tns:getPreMergeIDResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/getPreMergeID/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+				<wsdl:operation name="calculateODForMerge">
+			<wsdl:input
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/calculateODForMergeRequest"
+				message="tns:calculateODForMerge"></wsdl:input>
+			<wsdl:output
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/calculateODForMergeResponse"
+				message="tns:calculateODForMergeResponse"></wsdl:output>
+			<wsdl:fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://esa.ssa/dpc/2.1/HMICommunicationService/calculateODForMerge/Fault/FaultMessageType"></wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

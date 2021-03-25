@@ -8,7 +8,7 @@ from wsgiref.simple_server import WSGIRequestHandler
 
 from daemon import Daemon
 from log import get_logger
-from sst import SSTServer, SSTClient
+from sst_service import main as service_main
 
 
 class SSTService(Daemon):
@@ -38,24 +38,10 @@ class SSTService(Daemon):
 
     def run(self):
         self.__run = True
-
-        class LoggerWSGIRequestHandler(WSGIRequestHandler):
-            def log_message(self, format, *args):
-                self.logger.info("%s - - %s" % (self.address_string(), format%args))
-
-        #TODO: fix below line [spyne]
-        self.app = SSTServer(self.config, self.logger)
         
-        self.server = make_server(
-            self.config.get('SST Server', 'host'), 
-            self.config.getint('SST Server', 'port'), 
-            self.app,
-            handler_class=LoggerWSGIRequestHandler,
-        )
-
         self.client = SSTClient(self.config, self.logger)
 
-        self.server_thread = threading.Thread(target=self.server.serve_forever)
+        self.server_thread = threading.Thread(target=service_main)
         self.client_thread = threading.Thread(target=self.client.run)
         
         try:

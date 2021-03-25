@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/dpc/mon" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:moag="http://eu.esa.ssa.gen.connectivity.moag/data/" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" xmlns:data="http://esa.ssa/dpc/2.1/dpc/data" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/dpc/mon" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="dpc.xsd"/>
+	<import namespace="http://esa.ssa/dpc/2.1/dpc/data" schemaLocation="data.xsd"/>
+	<import namespace="http://eu.esa.ssa.gen.connectivity.moag/data/" schemaLocation="../DPCMonitoringService/eu/esa/ssa/gen/connectivity/moag/data/data.xsd"/>
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../../../commonSSTDataModel/esa/ssa/sst/common/common.xsd"/>
+	<complexType name="EmptyInputType"/>
+	<element name="emptyInputType" type="tns:EmptyInputType"/>
+	<element name="ClearPendingProcessRequestType">
+		<complexType>
+			<sequence>
+				<element ref="tns:emptyInputType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ClearPendingProcessResponseType">
+		<complexType>
+			<sequence>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UpdateProcessInfoRequestType">
+		<complexType>
+			<sequence>
+				<element name="SensorObservationData" type="data:ObservationProcessInfo" minOccurs="0"/>
+				<element name="ThirdPartyData" type="data:ThirdPartyProcessInfo" minOccurs="0"/>
+				<element name="CatalogUpdateData" type="data:CatalogUpdateProcessInfo" minOccurs="0"/>
+				<element name="Correlation" type="data:CorrelationProcessInfo" minOccurs="0"/>
+				<element name="OrbitDetermination" type="data:ODProcessInfo" minOccurs="0"/>
+				<element name="PlanningRequest" type="data:PlanningRequestInfo" minOccurs="0"/>
+				<element name="QualityMonitoring" type="data:QualityProcessInfo" minOccurs="0"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UpdateProcessInfoResponseType">
+		<complexType>
+			<sequence>
+				<element name="ProcessId" type="long"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetObservationByIdRequestType">
+		<complexType>
+			<sequence>
+				<element name="ProcessId" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetObservationByIdResponseType">
+		<complexType>
+			<sequence>
+				<element name="Observation" type="data:ObservationProcessInfo" minOccurs="0"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetObservationIdsRequestType">
+		<complexType>
+			<sequence>
+				<element name="ObjectId" type="long"/>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="SensorId" type="long"/>
+				<element name="SensorTypeId" type="int"/>
+				<element name="MinTime" type="ndm:epochType"/>
+				<element name="MaxTime" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetObservationIdsResponseType">
+		<complexType>
+			<sequence>
+				<element name="ListOfProcess" type="dpc:ObservationIdItem" maxOccurs="unbounded"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetObservationReportRequestType">
+		<complexType>
+			<sequence>
+				<element name="ObjectId" type="long"/>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="SensorId" type="long"/>
+				<element name="SensorTypeId" type="int"/>
+				<element name="MinTime" type="ndm:epochType"/>
+				<element name="MaxTime" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetObservationReportResponseType">
+		<complexType>
+			<sequence>
+				<element name="Report" type="dpc:ObservationReportType"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetThirdPartyByIdRequestType">
+		<complexType>
+			<sequence>
+				<element name="ProcessId" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetThirdPartyByIdResponseType">
+		<complexType>
+			<sequence>
+				<element name="ThirdParty" type="data:ThirdPartyProcessInfo" minOccurs="0"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetThirdPartyIdsRequestType">
+		<complexType>
+			<sequence>
+				<element name="Provider" type="string"/>
+				<element name="ObjectId" type="long"/>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="MinTime" type="ndm:epochType"/>
+				<element name="MaxTime" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetThirdPartyIdsResponseType">
+		<complexType>
+			<sequence>
+				<element name="ListOfProcess" type="dpc:ThirdPartyIdItem" maxOccurs="unbounded"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetThirdPartyReportRequestType">
+		<complexType>
+			<sequence>
+				<element name="Provider" type="string"/>
+				<element name="ObjectId" type="long"/>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="MinTime" type="ndm:epochType"/>
+				<element name="MaxTime" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetThirdPartyReportResponseType">
+		<complexType>
+			<sequence>
+				<element name="Report" type="dpc:ThirdPartyReportType"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSigPosErrorReportRequestType">
+		<complexType>
+			<sequence>
+				<element name="ObjectId" type="long"/>
+				<element name="MinTime" type="ndm:epochType"/>
+				<element name="MaxTime" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetSigPosErrorReportResponseType">
+		<complexType>
+			<sequence>
+				<element name="Report" type="dpc:SigPosErrorReportType"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetCorrelationIdsRequestType">
+		<complexType>
+			<sequence>
+				<element name="SensorTypeId" type="int"/>
+				<element name="SensorId" type="long"/>
+				<element name="ObjectId" type="long"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+				<element name="RetrieveOnlyNew" type="boolean"/>
+				<element name="RetrieveSuccess" type="boolean"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetCorrelationIdsResponseType">
+		<complexType>
+			<sequence>
+				<element name="ListOfProcess" type="long" maxOccurs="unbounded"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetCorrelationReportRequestType">
+		<complexType>
+			<sequence>
+				<element name="SensorTypeId" type="int"/>
+				<element name="SensorId" type="long"/>
+				<element name="ObjectId" type="long"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+				<element name="RetrieveOnlyNew" type="boolean"/>
+				<element name="RetrieveSuccess" type="boolean"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetCorrelationReportResponseType">
+		<complexType>
+			<sequence>
+				<element name="Report" type="dpc:CorrelationReportType"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetCorrelationByIdRequestType">
+		<complexType>
+			<sequence>
+				<element name="ProcessId" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetCorrelationByIdResponseType">
+		<complexType>
+			<sequence>
+				<element name="Correlation" type="data:CorrelationProcessInfo" minOccurs="0"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetODProcessByIdRequestType">
+		<complexType>
+			<sequence>
+				<element name="ProcessId" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetODProcessByIdResponseType">
+		<complexType>
+			<sequence>
+				<element name="OrbitDetermination" type="data:ODProcessInfo" minOccurs="0"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetODProcessIdsRequestType">
+		<complexType>
+			<sequence>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="ObservationType" type="string"/>
+				<element name="ObjectId" type="long"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+				<element name="OnlyNewObjects" type="boolean"/>
+			</sequence>
+		</complexType>
+	</element>
+	<complexType name="ODProcessIdItem">
+		<sequence>
+			<element name="ODProcessId" type="long"/>
+			<element name="isIOD" type="boolean"/>
+		</sequence>
+	</complexType>
+	<element name="GetODProcessIdsResponseType">
+		<complexType>
+			<sequence>
+				<element name="ODProcessId" type="tns:ODProcessIdItem" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetODProcessReportRequestType">
+		<complexType>
+			<sequence>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="ObservationType" type="string"/>
+				<element name="ObjectId" type="long"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+				<element name="OnlyNewObjects" type="boolean"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetODProcessReportResponseType">
+		<complexType>
+			<sequence>
+				<element name="Report" type="dpc:ODProcessReportType"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetQualityByIdRequestType">
+		<complexType>
+			<sequence>
+				<element name="ProcessId" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetQualityByIdResponseType">
+		<complexType>
+			<sequence>
+				<element name="QualityMonitoring" type="data:QualityProcessInfo" minOccurs="0"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetQualityIdsRequestType">
+		<complexType>
+			<sequence>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="ObjectId" type="long"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetQualityIdsResponseType">
+		<complexType>
+			<sequence>
+				<element name="ListOfProcess" type="long" maxOccurs="unbounded"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetQualityReportRequestType">
+		<complexType>
+			<sequence>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="ObjectId" type="long"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetQualityReportResponseType">
+		<complexType>
+			<sequence>
+				<element name="Report" type="dpc:QualityReportType"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetPlanningByIdRequestType">
+		<complexType>
+			<sequence>
+				<element name="PlanningId" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetPlanningByIdResponseType">
+		<complexType>
+			<sequence>
+				<element name="PlanningRequest" type="data:PlanningRequestInfo" minOccurs="0"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetPlanningIdsRequestType">
+		<complexType>
+			<sequence>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="ObjectId" type="long"/>
+				<element name="Status" type="data:OutputRequestStatusType"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetPlanningIdsResponseType">
+		<complexType>
+			<sequence>
+				<element name="ListOfRequest" type="long" maxOccurs="unbounded"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetPlanningReportRequestType">
+		<complexType>
+			<sequence>
+				<element name="OrbitTypeId" type="int"/>
+				<element name="ObjectId" type="long"/>
+				<element name="Status" type="data:OutputRequestStatusType"/>
+				<element name="TimeMin" type="ndm:epochType"/>
+				<element name="TimeMax" type="ndm:epochType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetPlanningReportResponseType">
+		<complexType>
+			<sequence>
+				<element name="Report" type="dpc:PlaningReportType"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UpdatePlanningRequestStatusRequestType">
+		<complexType>
+			<sequence>
+				<element name="ConversationId" type="string"/>
+				<element name="PlanningRequestStatus" type="string"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="UpdatePlanningRequestStatusResponseType">
+		<complexType>
+			<sequence>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetInputDPCOverviewRequestType">
+		<complexType/>
+	</element>
+	<element name="GetInputDPCOverviewResponseType">
+		<complexType>
+			<sequence>
+				<element name="Process" type="dpc:InputRequestOverview" maxOccurs="unbounded"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="GetOutputDPCOverviewRequestType">
+		<complexType/>
+	</element>
+	<element name="GetOutputDPCOverviewResponseType">
+		<complexType>
+			<sequence>
+				<element name="Process" type="dpc:OutputRequestOverview" maxOccurs="unbounded"/>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="SetDPCStatusRequestType">
+		<complexType>
+			<sequence>
+				<element name="NewStatus" type="moag:MonitoringStatusType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="SetDPCStatusResponseType">
+		<complexType>
+			<sequence>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ConfirmProposedObjectRequestType">
+		<complexType>
+			<sequence>
+				<element name="ProposedObjectId" type="long"/>
+				<element name="NewObjectId" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ConfirmProposedObjectResponseType">
+		<complexType>
+			<sequence>
+				<element name="Response" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

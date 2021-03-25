@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/CheckOrbitValidityPeriodResponseType" xmlns:ns1="http://esa.ssa.sst/2.1/common/" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:xsd_1="http://esa.ssa.sst/2.1/catalogue/ephemeredes/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/CheckOrbitValidityPeriodResponseType" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-navwg-common.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/common/common.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/catalogue/ephemeredes/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/catalogue/ephemeredes/ephemeredes.xsd"/>
+	<complexType name="AccuracyEnvelope">
+		<annotation>
+			<documentation>
+				&lt;p&gt;&lt;/p&gt;&lt;p&gt;The orbit information
+				provided by the system comes with limited but define
+				accuracy, which is derived from the orbit determination
+				process in the form of a covariance. As a matter of
+				fact, the covariance is time dependent and degrades as
+				time progresses away from the orbit determination epoch.
+				The covariance can thus be perceived as a time-dependent
+				statistical error of Gaussian nature. A suitable measure
+				of the covariance is thus the 1-sigma error in the three
+				OCRF positional and the three OCRF velocity
+				components.&lt;/p&gt;&lt;p&gt;The concept of an accuracy
+				envelope foresees a limit for the 1-sigma error for all
+				six dimensions. For any provided data set, the
+				covariance information delivered with it will violate
+				that envelope at a certain epoch in the future of the
+				orbit determination epoch at the 1-sigma level. The
+				principal idea is that the user shall be notified once
+				the 1-sigma uncertainty estimate (covariance) violate
+				the envelope in at least one dimension, and, that the
+				segment is expected to provide a new data set at least
+				48h before the envelope is violated for the first
+				time.&lt;/p&gt;&lt;p&gt;The accuracy envelope process is
+				therefore driving the frequency in which orbital data
+				sets are to be updated by the system and connected with
+				it, the initial accuracy that the orbital data sets must
+				have (also in compliance to the accuracy requirements),
+				as the covariance evolution is a function of the initial
+				covariance.&lt;/p&gt;
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="idEnveloppe" type="long">
+				<annotation>
+					<documentation>
+						&lt;p&gt;Unique number identifying this
+						object.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="sigmaUAccuracy" type="double">
+				<annotation>
+					<documentation>
+						&lt;p&gt;1-sigma error for the position
+						component along axis U in the OCRF. Unit
+						Meter.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="sigmaVAccuracy" type="double">
+				<annotation>
+					<documentation>
+						&lt;p&gt;1-sigma error for the position
+						component along axis V in the OCRF. Unit
+						Meter.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="sigmaWAccuracy" type="double">
+				<annotation>
+					<documentation>
+						&lt;p&gt;1-sigma error for the position
+						component along axis W in the OCRF. Unit
+						Meter.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="sigmaDuAccuracy" type="double">
+				<annotation>
+					<documentation>
+						&lt;p&gt;1-sigma error for the velocity
+						component along axis U in the OCRF. Unit Meter
+						per Second.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="sigmaDvAccuracy" type="double">
+				<annotation>
+					<documentation>
+						&lt;p&gt;1-sigma error for the velocity
+						component along axis V in the OCRF. Unit Meter
+						per Second.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="sigmaDwAccuracy" type="double">
+				<annotation>
+					<documentation>
+						&lt;p&gt;1-sigma error for the velocity
+						component along axis W in the OCRF. Unit Meter
+						per Second.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="orbitRegion" type="ns1:SpaceRegion">
+				<annotation>
+					<documentation>
+						&lt;p&gt;Region (LEO, MEO, ...) this
+						AccuracyEnveloppe is computed for.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="orbitFormat" type="dpc:EphemeredesFormatEnum">
+				<annotation>
+					<documentation>
+						&lt;p&gt;Enveloppe format (OEDS, EGDS, ...) this
+						AccuracyEnveloppe is applicable.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="computingDate" type="ndm:epochType">
+				<annotation>
+					<documentation>
+						&lt;p&gt;ComputingDate of this
+						AccuracyEnveloppe. UTC time-frame.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+			<element name="frame" type="ns1:FrameEnum">
+				<annotation>
+					<documentation>
+						&lt;p&gt;Time Frame this AccuracyEnveloppe is
+						determined for.&lt;/p&gt;
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<element name="CheckOrbitValidityPeriodResponseType">
+		<complexType>
+			<sequence>
+				<element name="OrbitData" type="xsd_1:Ephemeredes"/>
+				<element name="AccuracyEnvelopeData" type="tns:AccuracyEnvelope"/>
+				<element name="epochViolation" type="ndm:epochType">
+					<annotation>
+						<documentation>
+							&lt;p&gt;The foreseen date when this orbit
+							will violate the envelope. With respect to
+							the propagation and computing of the
+							envelope violation, this is the time when
+							this orbit must be re-observed. UTC
+							time-frame.&lt;/p&gt;
+						</documentation>
+					</annotation>
+				</element>
+				<element name="ObjectResponse" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

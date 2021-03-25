@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:dpc="http://esa.ssa/dpc/2.1/DPCProcessServiceSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/dpc/2.1/DPCProcessService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="DPCProcessService" targetNamespace="http://esa.ssa/dpc/2.1/DPCProcessService">
+	<wsdl:import namespace="http://esa.ssa/dpc/2.1/DPCProcessServiceSchema" location="./DPCProcessServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../../ssaHeaders/ssaRuntimeService.wsdl"/>
+	<wsdl:binding name="DPCProcessServiceInterfaceBinding" type="dpc:DPCProcessServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- ======== OPERATIONS =========  -->
+		<wsdl:operation name="checkOrbitValidityPeriod">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/checkOrbitValidityPeriod/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="checkOrbitValidityPeriodFault">
+				<soap:fault name="checkOrbitValidityPeriodFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="generateObservationRequest">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/generateObservationRequest/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="generateObservationRequestFault">
+				<soap:fault name="generateObservationRequestFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="propagate">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/propagate/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="propagateFault">
+				<soap:fault name="propagateFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setupDynamicModel">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/setupDynamicModel/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="setupDynamicModelFault">
+				<soap:fault name="setupDynamicModelFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="propagateStateVector">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/propagateStateVector/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="propagateStateVectorFault">
+				<soap:fault name="propagateStateVectorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="computeTransitionMatrix">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/computeTransitionMatrix/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="computeTransitionMatrixFault">
+				<soap:fault name="computeTransitionMatrixFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="propagateCovarianceMatrix">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/propagateCovarianceMatrix/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="propagateCovarianceMatrixFault">
+				<soap:fault name="propagateCovarianceMatrixFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="interpolateStateVector">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/interpolateStateVector/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="interpolateStateVectorFault">
+				<soap:fault name="interpolateStateVectorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- ======== OD OPERATIONS =========  -->
+		<wsdl:operation name="performInitial">
+			<soap:operation soapAction="http://esa.ssa.dpc/1.2/DPCProcessService/performInitial/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="performInitialFault">
+				<soap:fault name="performInitialFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="performRoutine">
+			<soap:operation soapAction="http://esa.ssa.dpc/1.2/DPCProcessService/performRoutine/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="performRoutineFault">
+				<soap:fault name="performRoutineFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="initialOD">
+			<soap:operation soapAction="http://esa.ssa.dpc/1.2/DPCProcessService/initialOD/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="initialODFault">
+				<soap:fault name="initialODFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="routineOD">
+			<soap:operation soapAction="http://esa.ssa.dpc/1.2/DPCProcessService/routineOD/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="routineODFault">
+				<soap:fault name="routineODFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- ======== Correlation OPERATIONS =========  -->
+		<wsdl:operation name="correlateObservations">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/correlateObservations/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="correlateObservationsFault">
+				<soap:fault name="correlateObservationsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="correlateNewObject">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/correlateNewObject/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="correlateNewObjectFault">
+				<soap:fault name="correlateNewObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="correlateThirdPartyData">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/correlateThirdPartyData/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="correlateThirdPartyDataFault">
+				<soap:fault name="correlateThirdPartyDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Generic Operations -->
+		<wsdl:operation name="calculateOrbitType">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/calculateOrbitType/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="calculateOrbitTypeFault">
+				<soap:fault name="calculateOrbitTypeFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateAgenda">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/updateAdenda/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateAgendaFault">
+				<soap:fault name="updateAgendaFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="saveAgenda">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/saveAgenda/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="saveAgendaFault">
+				<soap:fault name="saveAgendaFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="loadAgenda">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/loadAgenda/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="loadAgendaFault">
+				<soap:fault name="loadAgendaFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="unloadAgenda">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/unloadAgenda/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="unloadAgendaFault">
+				<soap:fault name="unloadAgendaFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="removeAgendaObject">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/loadAgenda/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="removeAgendaObjectFault">
+				<soap:fault name="removeAgendaObjectFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="logCleanup">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/logCleanup/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="logCleanupFault">
+				<soap:fault name="logCleanupFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="convertSVOeds2Egds">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/convertSVOeds2Egds/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="convertSVOeds2EgdsFault">
+				<soap:fault name="convertSVOeds2EgdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="convertSVEgds2Oeds">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/convertSVEgds2Oeds/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="convertSVEgds2OedsFault">
+				<soap:fault name="convertSVEgds2OedsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="convertCOVOeds2Egds">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/convertCOVOeds2Egds/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="convertCOVOeds2EgdsFault">
+				<soap:fault name="convertCOVOeds2EgdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="convertCOVEgds2Oeds">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/DPCProcessService/convertCOVEgds2Oeds/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="convertCOVEgds2OedsFault">
+				<soap:fault name="convertCOVEgds2OedsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="DPCProcessService">
+		<wsdl:port name="DPCProcessServiceInterfacePort" binding="tns:DPCProcessServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/dpc/2.1/DPCProcessService/DPCProcessService/DPCProcessServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

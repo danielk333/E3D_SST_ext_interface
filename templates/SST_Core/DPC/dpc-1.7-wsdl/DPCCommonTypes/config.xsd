@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/dpc/config" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:data="http://esa.ssa/dpc/2.1/dpc/data" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/dpc/config" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa/dpc/2.1/dpc/data" schemaLocation="data.xsd"/>
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/common/" schemaLocation="../../../../commonSSTDataModel/esa/ssa/sst/common/common.xsd"/>
+	<complexType name="EmptyInputType"/>
+	<element name="emptyInputType" type="tns:EmptyInputType"/>
+	<complexType name="ConfigErrorType">
+		<sequence>
+			<element name="Error" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetSensorTypesRequestType">
+		<sequence>
+			<element ref="tns:emptyInputType"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetSensorTypesResponseType">
+		<sequence>
+			<element name="SensorType" type="data:ConfigSensorType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetOrbitTypesRequestType">
+		<sequence>
+			<element ref="tns:emptyInputType"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetOrbitTypesResponseType">
+		<sequence>
+			<element name="OrbitType" type="data:ConfigOrbitType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetDynamicModelRequestType">
+		<sequence>
+			<element name="tfirst" type="ndm:epochType"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetDynamicModelResponseType">
+		<sequence>
+			<element name="DynamicModel" type="com:DynamicModelType"/>
+			<element name="Response" type="boolean"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetHMIConfigurationRequestType">
+		<sequence>
+			<element name="ConfigClass" type="data:ConfigHMIClassType"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetHMIConfigurationResponseType">
+		<sequence>
+			<element name="ConfigAccuracy" type="data:ConfigAccuracy" minOccurs="0"/>
+			<element name="ConfigAncillary" type="data:ConfigAncillaryList" minOccurs="0"/>
+			<element name="ConfigCandidate" type="data:ConfigCandidateList" minOccurs="0"/>
+			<element name="ConfigDynamicModel" type="data:ConfigDynamicModelList" minOccurs="0"/>
+			<element name="ConfigEphGeneration" type="data:ConfigEphGenerationList" minOccurs="0"/>
+			<element name="ConfigHMIExecutionTime" type="data:ConfigHMIExecutionTimeList" minOccurs="0"/>
+			<element name="ConfigHMITimeSpan" type="data:ConfigHMITimeSpan" minOccurs="0"/>
+			<element name="ConfigLookUpTable" type="data:ConfigLookUpTableList" minOccurs="0"/>
+			<element name="ConfigOperationMode" type="data:ConfigOperationModeList" minOccurs="0"/>
+			<element name="ConfigThirdPartyData" type="data:ConfigThirdPartyDataList" minOccurs="0"/>
+			<element name="ConfigODThreshold" type="data:ConfigODThresholdList" minOccurs="0"/>
+			<element name="Response" type="boolean"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetHMIDefaultRequestType">
+		<sequence>
+			<element name="DefaultClass" type="data:ConfigHMIClassType"/>
+		</sequence>
+	</complexType>
+	<complexType name="GetHMIDefaultResponseType">
+		<sequence>
+			<element name="ConfigAccuracy" type="data:ConfigAccuracy" minOccurs="0"/>
+			<element name="ConfigAncillary" type="data:ConfigAncillaryList" minOccurs="0"/>
+			<element name="ConfigCandidate" type="data:ConfigCandidateList" minOccurs="0"/>
+			<element name="ConfigDynamicModel" type="data:ConfigDynamicModelList" minOccurs="0"/>
+			<element name="ConfigEphGeneration" type="data:ConfigEphGenerationList" minOccurs="0"/>
+			<element name="ConfigHMIExecutionTime" type="data:ConfigHMIExecutionTimeList" minOccurs="0"/>
+			<element name="ConfigHMITimeSpan" type="data:ConfigHMITimeSpan" minOccurs="0"/>
+			<element name="ConfigLookUpTable" type="data:ConfigLookUpTableList" minOccurs="0"/>
+			<element name="ConfigOperationMode" type="data:ConfigOperationModeList" minOccurs="0"/>
+			<element name="ConfigThirdPartyData" type="data:ConfigThirdPartyDataList" minOccurs="0"/>
+			<element name="ConfigODThreshold" type="data:ConfigODThresholdList" minOccurs="0"/>
+			<element name="Response" type="boolean"/>
+		</sequence>
+	</complexType>
+	<complexType name="SetHMIConfigurationRequestType">
+		<sequence>
+			<element name="ConfigAccuracy" type="data:ConfigAccuracy" minOccurs="0"/>
+			<element name="ConfigAncillary" type="data:ConfigAncillaryList" minOccurs="0"/>
+			<element name="ConfigCandidate" type="data:ConfigCandidateList" minOccurs="0"/>
+			<element name="ConfigDynamicModel" type="data:ConfigDynamicModelList" minOccurs="0"/>
+			<element name="ConfigEphGeneration" type="data:ConfigEphGenerationList" minOccurs="0"/>
+			<element name="ConfigHMIExecutionTime" type="data:ConfigHMIExecutionTimeList" minOccurs="0"/>
+			<element name="ConfigHMITimeSpan" type="data:ConfigHMITimeSpan" minOccurs="0"/>
+			<element name="ConfigLookUpTable" type="data:ConfigLookUpTableList" minOccurs="0"/>
+			<element name="ConfigOperationMode" type="data:ConfigOperationModeList" minOccurs="0"/>
+			<element name="ConfigThirdPartyData" type="data:ConfigThirdPartyDataList" minOccurs="0"/>
+			<element name="ConfigODThreshold" type="data:ConfigODThresholdList" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="SetHMIConfigurationResponseType">
+		<sequence>
+			<element name="Response" type="boolean"/>
+		</sequence>
+	</complexType>
+	<complexType name="RemoveThirdPartyRequestType">
+		<sequence>
+			<element name="entity" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="RemoveThirdPartyResponseType">
+		<sequence>
+			<element name="Response" type="boolean"/>
+		</sequence>
+	</complexType>
+</schema>

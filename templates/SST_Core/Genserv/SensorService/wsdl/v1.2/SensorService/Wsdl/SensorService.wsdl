@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssensor="http://esa.ssa/ssensor/1.2/SensorServiceSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/ssensor/1.2/SensorService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://esa.ssa/ssensor/1.2/SensorService" xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="SensorService" targetNamespace="http://esa.ssa/ssensor/1.2/SensorService">
+	<wsdl:import namespace="http://esa.ssa/ssensor/1.2/SensorServiceSchema" location="./SensorServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../../../../../wsdl/ssaRuntimeService.wsdl"/>
+	<wsdl:binding name="SensorServiceInterfaceBinding" type="ssensor:SensorServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getSensorIds">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/getSensorIds/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getSensorIdsFault">
+				<soap:fault name="getSensorIdsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSensor">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/getSensor/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getSensorFault">
+				<soap:fault name="getSensorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getActiveSensors">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/getActiveSensors/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getActiveSensorsFault">
+				<soap:fault name="getActiveSensorsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setActiveSensors">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/setActiveSensors/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="setActiveSensorsFault">
+				<soap:fault name="setActiveSensorsFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="createSensor">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/createSensor/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="createSensorFault">
+				<soap:fault name="createSensorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="deleteSensor">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/deleteSensor/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="deleteSensorFault">
+				<soap:fault name="deleteSensorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="updateSensor">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/updateSensor/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="updateSensorFault">
+				<soap:fault name="updateSensorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getBiases">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/getBiases/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getBiasesFault">
+				<soap:fault name="getBiasesFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setBiases">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/setBiases/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="setBiasesFault">
+				<soap:fault name="setBiasesFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="subscribe">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/subscribe/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="subscribeFault">
+				<soap:fault name="subscribeFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="unsubscribe">
+			<soap:operation soapAction="http://esa.ssa/ssensor/1.2/SensorService/unsubscribe/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="unsubscribeFault">
+				<soap:fault name="unsubscribeFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SensorService">
+		<wsdl:port name="SensorServiceInterfacePort" binding="tns:SensorServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/ssensor/1.2/SensorService/SensorService/SensorServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

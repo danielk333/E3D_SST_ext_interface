@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://esa.ssa.common/ssaRuntimeService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ssaRuntimeService"
+	targetNamespace="http://esa.ssa.common/ssaRuntimeService/">
+
+	<wsdl:types xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+		<xsd:schema targetNamespace="http://esa.ssa.common/ssaRuntimeService/">
+			<xsd:import namespace="http://ssa.esa.int/common/1.0"
+				schemaLocation="./ssaHeader.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="SSARuntimeMessage" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+		<wsdl:part name="header" element="ns1:ssaHeader"
+			xmlns:ns1="http://ssa.esa.int/common/1.0" />
+	</wsdl:message>
+</wsdl:definitions>

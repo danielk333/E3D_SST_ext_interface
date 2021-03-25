@@ -1,0 +1,1378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://com.dms.ssa/HMIServerCommunicationService/" xmlns:tns="http://com.dms.ssa/HMIServerCommunicationService/" xmlns:config="http://esa.ssa/dpc/2.1/dpc/config" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0">
+	<xs:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+	<xs:import namespace="http://esa.ssa/dpc/2.1/dpc/config" schemaLocation="../../DPCCommonTypes/config.xsd"/>
+	<xs:element name="executeAction" type="tns:executeAction"/>
+	<xs:element name="executeActionResponse" type="tns:executeActionResponse"/>
+	<xs:element name="getCatalogue" type="tns:getCatalogue"/>
+	<xs:element name="getCatalogueResponse" type="tns:getCatalogueResponse"/>
+	<xs:element name="getConfigAccuracy" type="tns:getConfigAccuracy"/>
+	<xs:element name="getConfigAccuracyResponse" type="tns:getConfigAccuracyResponse"/>
+	<xs:element name="getConfigAncillary" type="tns:getConfigAncillary"/>
+	<xs:element name="getConfigAncillaryResponse" type="tns:getConfigAncillaryResponse"/>
+	<xs:element name="getConfigSensors" type="tns:getConfigSensors"/>
+	<xs:element name="getConfigSensorsResponse" type="tns:getConfigSensorsResponse"/>
+	<xs:element name="getConfigCandidate" type="tns:getConfigCandidate"/>
+	<xs:element name="getConfigCandidateResponse" type="tns:getConfigCandidateResponse"/>
+	<xs:element name="getConfigDynamicModel" type="tns:getConfigDynamicModel"/>
+	<xs:element name="getConfigDynamicModelResponse" type="tns:getConfigDynamicModelResponse"/>
+	<xs:element name="getConfigEphemerides" type="tns:getConfigEphemerides"/>
+	<xs:element name="getConfigEphemeridesResponse" type="tns:getConfigEphemeridesResponse"/>
+	<xs:element name="getConfigLookUpTable" type="tns:getConfigLookUpTable"/>
+	<xs:element name="getConfigLookUpTableResponse" type="tns:getConfigLookUpTableResponse"/>
+	<xs:element name="getConfigOperationMode" type="tns:getConfigOperationMode"/>
+	<xs:element name="getConfigOperationModeResponse" type="tns:getConfigOperationModeResponse"/>
+	<xs:element name="getConfigThirdPartyData" type="tns:getConfigThirdPartyData"/>
+	<xs:element name="getConfigThirdPartyDataResponse" type="tns:getConfigThirdPartyDataResponse"/>
+	<xs:element name="getConfigThresholdOD" type="tns:getConfigThresholdOD"/>
+	<xs:element name="getConfigThresholdODResponse" type="tns:getConfigThresholdODResponse"/>
+	<xs:element name="getCorrelationDetails" type="tns:getCorrelationDetails"/>
+	<xs:element name="getCorrelationDetailsResponse" type="tns:getCorrelationDetailsResponse"/>
+	<xs:element name="getCorrelationFilterByResponse" type="tns:getCorrelationFilterByResponse"/>
+	<xs:element name="getCorrelationIDFilterBy" type="tns:getCorrelationIDFilterBy"/>
+	<xs:element name="getCorrelationIDFilterByResponse" type="tns:getCorrelationIDFilterByResponse"/>
+	<xs:element name="getCorrelationId" type="tns:getCorrelationId"/>
+	<xs:element name="getCorrelationIdResponse" type="tns:getCorrelationIdResponse"/>
+	<xs:element name="getElementsManualOperation" type="tns:getElementsManualOperation"/>
+	<xs:element name="getElementsManualOperationResponse" type="tns:getElementsManualOperationResponse"/>
+	<xs:element name="getHMIExecutionTimeThreshold" type="tns:getHMIExecutionTimeThreshold"/>
+	<xs:element name="getHMIExecutionTimeThresholdResponse" type="tns:getHMIExecutionTimeThresholdResponse"/>
+	<xs:element name="getHMITimeSpan" type="tns:getHMITimeSpan"/>
+	<xs:element name="getHMITimeSpanResponse" type="tns:getHMITimeSpanResponse"/>
+	<xs:element name="getManualOperationDetails" type="tns:getManualOperationDetails"/>
+	<xs:element name="getManualOperationDetailsResponse" type="tns:getManualOperationDetailsResponse"/>
+	<xs:element name="getNumberOfCorrelation" type="tns:getNumberOfCorrelation"/>
+	<xs:element name="getNumberOfCorrelationResponse" type="tns:getNumberOfCorrelationResponse"/>
+	<xs:element name="getNumberOfOD" type="tns:getNumberOfOD"/>
+	<xs:element name="getNumberOfODResponse" type="tns:getNumberOfODResponse"/>
+	<xs:element name="getNumberOfObjects" type="tns:getNumberOfObjects"/>
+	<xs:element name="getNumberOfObjectsResponse" type="tns:getNumberOfObjectsResponse"/>
+	<xs:element name="getNumberOfObservations" type="tns:getNumberOfObservations"/>
+	<xs:element name="getNumberOfObservationsInCatalogue" type="tns:getNumberOfObservationsInCatalogue"/>
+	<xs:element name="getNumberOfObservationsInCatalogueResponse" type="tns:getNumberOfObservationsInCatalogueResponse"/>
+	<xs:element name="getNumberOfObservationsResponse" type="tns:getNumberOfObservationsResponse"/>
+	<xs:element name="getNumberOfPlanningRequest" type="tns:getNumberOfPlanningRequest"/>
+	<xs:element name="getNumberOfPlanningRequestResponse" type="tns:getNumberOfPlanningRequestResponse"/>
+	<xs:element name="getNumberOfQualityMonitoring" type="tns:getNumberOfQualityMonitoring"/>
+	<xs:element name="getNumberOfQualityMonitoringResponse" type="tns:getNumberOfQualityMonitoringResponse"/>
+	<xs:element name="getNumberOfThirdPartyData" type="tns:getNumberOfThirdPartyData"/>
+	<xs:element name="getNumberOfThirdPartyDataResponse" type="tns:getNumberOfThirdPartyDataResponse"/>
+	<xs:element name="getODProcessID" type="tns:getODProcessID"/>
+	<xs:element name="getODProcessIDResponse" type="tns:getODProcessIDResponse"/>
+	<xs:element name="getObjectDetails" type="tns:getObjectDetails"/>
+	<xs:element name="getObjectDetailsResponse" type="tns:getObjectDetailsResponse"/>
+	<xs:element name="getObjectsFilterBy" type="tns:getObjectsFilterBy"/>
+	<xs:element name="getObjectsFilterByResponse" type="tns:getObjectsFilterByResponse"/>
+	<xs:element name="getObjectsID" type="tns:getObjectsID"/>
+	<xs:element name="getProviders" type="tns:getProviders"/>
+	<xs:element name="getProvidersResponse" type="tns:getProvidersResponse"/>
+	<xs:element name="getObjectsIDFilterBy" type="tns:getObjectsIDFilterBy"/>
+	<xs:element name="getObjectsIDFilterByResponse" type="tns:getObjectsIDFilterByResponse"/>
+	<xs:element name="getObjectsIDResponse" type="tns:getObjectsIDResponse"/>
+	<xs:element name="getObservationsDetails" type="tns:getObservationsDetails"/>
+	<xs:element name="getObservationsDetailsResponse" type="tns:getObservationsDetailsResponse"/>
+	<xs:element name="getObservationsIDFilterBy" type="tns:getObservationsIDFilterBy"/>
+	<xs:element name="getObservationsIDFilterByResponse" type="tns:getObservationsIDFilterByResponse"/>
+	<xs:element name="getOrbitDeterminationDetails" type="tns:getOrbitDeterminationDetails"/>
+	<xs:element name="getOrbitDeterminationDetailsResponse" type="tns:getOrbitDeterminationDetailsResponse"/>
+	<xs:element name="getOrbitDeterminationIDFilterBy" type="tns:getOrbitDeterminationIDFilterBy"/>
+	<xs:element name="getOrbitDeterminationIDFilterByResponse" type="tns:getOrbitDeterminationIDFilterByResponse"/>
+	<xs:element name="getOrbits" type="tns:getOrbits"/>
+	<xs:element name="getOrbitsResponse" type="tns:getOrbitsResponse"/>
+	<xs:element name="getPlanningRequestDetails" type="tns:getPlanningRequestDetails"/>
+	<xs:element name="getPlanningRequestDetailsResponse" type="tns:getPlanningRequestDetailsResponse"/>
+	<xs:element name="getPlanningRequestIDFilterBy" type="tns:getPlanningRequestIDFilterBy"/>
+	<xs:element name="getPlanningRequestIDFilterByResponse" type="tns:getPlanningRequestIDFilterByResponse"/>
+	<xs:element name="getPlanningRequestId" type="tns:getPlanningRequestId"/>
+	<xs:element name="getPlanningRequestIdResponse" type="tns:getPlanningRequestIdResponse"/>
+	<xs:element name="getProcess" type="tns:getProcess"/>
+	<xs:element name="getProcessResponse" type="tns:getProcessResponse"/>
+	<xs:element name="getQualityMonitoringDetails" type="tns:getQualityMonitoringDetails"/>
+	<xs:element name="getQualityMonitoringDetailsResponse" type="tns:getQualityMonitoringDetailsResponse"/>
+	<xs:element name="getQualityMonitoringIDFilterBy" type="tns:getQualityMonitoringIDFilterBy"/>
+	<xs:element name="getQualityMonitoringIDFilterByResponse" type="tns:getQualityMonitoringIDFilterByResponse"/>
+	<xs:element name="getQualityMonitoringId" type="tns:getQualityMonitoringId"/>
+	<xs:element name="getQualityMonitoringIdResponse" type="tns:getQualityMonitoringIdResponse"/>
+	<xs:element name="getService" type="tns:getService"/>
+	<xs:element name="getServiceProcess" type="tns:getServiceProcess"/>
+	<xs:element name="getServiceProcessResponse" type="tns:getServiceProcessResponse"/>
+	<xs:element name="getServiceResponse" type="tns:getServiceResponse"/>
+	<xs:element name="getStatus" type="tns:getStatus"/>
+	<xs:element name="getStatusResponse" type="tns:getStatusResponse"/>
+	<xs:element name="getThirdPartyData" type="tns:getThirdPartyData"/>
+	<xs:element name="getThirdPartyDataDetails" type="tns:getThirdPartyDataDetails"/>
+	<xs:element name="getThirdPartyDataDetailsResponse" type="tns:getThirdPartyDataDetailsResponse"/>
+	<xs:element name="getThirdPartyDataFilterBy" type="tns:getThirdPartyDataFilterBy"/>
+	<xs:element name="getThirdPartyDataFilterByResponse" type="tns:getThirdPartyDataFilterByResponse"/>
+	<xs:element name="getThirdPartyDataIDFilterBy" type="tns:getThirdPartyDataIDFilterBy"/>
+	<xs:element name="getThirdPartyDataIDFilterByResponse" type="tns:getThirdPartyDataIDFilterByResponse"/>
+	<xs:element name="getThirdPartyDataId" type="tns:getThirdPartyDataId"/>
+	<xs:element name="getThirdPartyDataIdResponse" type="tns:getThirdPartyDataIdResponse"/>
+	<xs:element name="getThirdPartyDataResponse" type="tns:getThirdPartyDataResponse"/>
+	<xs:element name="setConfigAccuracy" type="tns:setConfigAccuracy"/>
+	<xs:element name="setConfigAccuracyResponse" type="tns:setConfigAccuracyResponse"/>
+	<xs:element name="activeSensor" type="tns:activeSensor"/>
+	<xs:element name="activeSensorResponse" type="tns:activeSensorResponse"/>
+	<xs:element name="addNewSensor" type="tns:addNewSensor"/>
+	<xs:element name="addNewSensorResponse" type="tns:addNewSensorResponse"/>
+	<xs:element name="removeObject" type="tns:removeObject"/>
+	<xs:element name="removeObjectResponse" type="tns:removeObjectResponse"/>
+	<xs:element name="removeSensor" type="tns:removeSensor"/>
+	<xs:element name="removeSensorResponse" type="tns:removeSensorResponse"/>
+	<xs:element name="removeConfigTP" type="tns:removeConfigTP"/>
+	<xs:element name="removeConfigTPResponse" type="tns:removeConfigTPResponse"/>
+	<xs:element name="setConfigAncillary" type="tns:setConfigAncillary"/>
+	<xs:element name="setConfigAncillaryResponse" type="tns:setConfigAncillaryResponse"/>
+	<xs:element name="setConfigSensors" type="tns:setConfigSensors"/>
+	<xs:element name="setConfigSensorsResponse" type="tns:setConfigSensorsResponse"/>
+	<xs:element name="setConfigCandidate" type="tns:setConfigCandidate"/>
+	<xs:element name="setConfigCandidateResponse" type="tns:setConfigCandidateResponse"/>
+	<xs:element name="setConfigDynamicModel" type="tns:setConfigDynamicModel"/>
+	<xs:element name="setConfigDynamicModelResponse" type="tns:setConfigDynamicModelResponse"/>
+	<xs:element name="setConfigEphemerides" type="tns:setConfigEphemerides"/>
+	<xs:element name="setConfigEphemeridesResponse" type="tns:setConfigEphemeridesResponse"/>
+	<xs:element name="setConfigLookUpTable" type="tns:setConfigLookUpTable"/>
+	<xs:element name="setConfigLookUpTableResponse" type="tns:setConfigLookUpTableResponse"/>
+	<xs:element name="setConfigOperationMode" type="tns:setConfigOperationMode"/>
+	<xs:element name="setConfigOperationModeResponse" type="tns:setConfigOperationModeResponse"/>
+	<xs:element name="setConfigThirdPartyData" type="tns:setConfigThirdPartyData"/>
+	<xs:element name="setConfigThirdPartyDataResponse" type="tns:setConfigThirdPartyDataResponse"/>
+	<xs:element name="setConfigThresholdOD" type="tns:setConfigThresholdOD"/>
+	<xs:element name="setConfigThresholdODResponse" type="tns:setConfigThresholdODResponse"/>
+	<xs:element name="setHMIExecutionTimeThreshold" type="tns:setHMIExecutionTimeThreshold"/>
+	<xs:element name="setHMIExecutionTimeThresholdResponse" type="tns:setHMIExecutionTimeThresholdResponse"/>
+	<xs:element name="setHMITimeSpan" type="tns:setHMITimeSpan"/>
+	<xs:element name="setHMITimeSpanResponse" type="tns:setHMITimeSpanResponse"/>
+	<xs:element name="startDPC" type="tns:startDPC"/>
+	<xs:element name="startDPCResponse" type="tns:startDPCResponse"/>
+	<xs:element name="stopDPC" type="tns:stopDPC"/>
+	<xs:element name="stopDPCResponse" type="tns:stopDPCResponse"/>
+	<xs:complexType name="startDPC">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="startDPCResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:StatusType" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatusType">
+		<xs:sequence>
+			<xs:element name="DPCStatus" type="xs:string"/>
+			<xs:element name="newManualOperations" type="tns:ManualOperations"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ManualOperations">
+		<xs:sequence>
+			<xs:element name="newManualOperations" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CorrelationFilter">
+		<xs:sequence>
+			<xs:element name="sensorType" type="tns:sensorTypeFilter"/>
+			<xs:element name="sensorId" type="tns:sensorIdFilter"/>
+			<xs:element name="objectId" type="tns:objectIdFilter"/>
+			<xs:element name="time" type="tns:timeFilter"/>
+			<xs:element name="sucessfull" type="xs:boolean"/>
+			<xs:element name="newObject" type="xs:boolean"/>
+			<xs:element name="processStatus" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sensorTypeFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sensorIdFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="objectIdFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="timeFilter">
+		<xs:sequence>
+			<xs:element name="minTime" type="xs:string"/>
+			<xs:element name="maxTime" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCorrelationFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigDynamicModel">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigDynamicModelResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigDynamicModel" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getServiceProcess">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getServiceProcessResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ArrayOfServiceProcess" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfServiceProcess">
+		<xs:sequence>
+			<xs:element name="serviceProcess" type="tns:ServiceProcess" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceProcess">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long"/>
+			<xs:element name="serviceID" type="xs:long"/>
+			<xs:element name="time" type="xs:long"/>
+			<xs:element name="info" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigCandidate">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigCandidateResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigCandidate" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigCandidate">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigCandidate" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigCandidateResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfOD">
+		<xs:sequence>
+			<xs:element name="in" type="tns:OrbitDeterminationFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrbitDeterminationFilter">
+		<xs:sequence>
+			<xs:element name="orbitType" type="tns:orbitTypeFilter" minOccurs="0"/>
+			<xs:element name="observationType" type="tns:observationTypeFilter" minOccurs="0"/>
+			<xs:element name="objectId" type="tns:objectIdFilter" minOccurs="0"/>
+			<xs:element name="time" type="tns:timeFilter" minOccurs="0"/>
+			<xs:element name="newObjects" type="xs:boolean"/>
+			<xs:element name="type" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orbitTypeFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="observationTypeFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfODResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ODReport" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ODReport">
+		<xs:sequence>
+			<xs:element name="iod" type="tns:ReportType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="od" type="tns:ReportType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="unsuccesful" type="tns:ReportType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReportType">
+		<xs:sequence>
+			<xs:element name="time" type="xs:double"/>
+			<xs:element name="value" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfObjects">
+		<xs:sequence>
+			<xs:element name="in" type="xs:string" form="unqualified" minOccurs="0"/>
+			<xs:element name="status" type="xs:string" form="unqualified" minOccurs="0"/>
+			<xs:element name="filter" type="xs:string" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfObjectsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigSensors">
+		<xs:sequence>
+			<xs:element name="sensorID" type="xs:string"/>
+			<xs:element name="sensorXMLDescription" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigSensorsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyData">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ArrayOfThirdPartyData" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfThirdPartyData">
+		<xs:sequence>
+			<xs:element name="thirdPartyDataList" type="tns:ThirdPartyData" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ThirdPartyData">
+		<xs:sequence>
+			<xs:element name="thirdPartyDataID" type="xs:long"/>
+			<xs:element name="orbitType" type="xs:int"/>
+			<xs:element name="provider" type="xs:int"/>
+			<xs:element name="objectId" type="xs:long"/>
+			<xs:element name="associatedCorrelationProcess" type="xs:int"/>
+			<xs:element name="objectReference" type="xs:long"/>
+			<xs:element name="time" type="xs:long"/>
+			<xs:element name="stateVectorList" type="tns:ArrayOfStateVectors"/>
+			<xs:element name="usedInDPC" type="xs:boolean"/>
+			<xs:element name="getXML" type="xs:boolean"/>
+			<xs:element name="status" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfStateVectors">
+		<xs:sequence>
+			<xs:element name="stateVector" type="tns:stateVectorType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="stateVectorType">
+		<xs:sequence>
+			<xs:element name="position" type="tns:positionType"/>
+			<xs:element name="velocity" type="tns:VelocityType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="positionType">
+		<xs:sequence>
+			<xs:element name="x" type="xs:double"/>
+			<xs:element name="y" type="xs:double"/>
+			<xs:element name="z" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VelocityType">
+		<xs:sequence>
+			<xs:element name="vx" type="xs:double"/>
+			<xs:element name="vy" type="xs:double"/>
+			<xs:element name="vz" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigEphemerides">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigEphemeridesResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigEphGeneration" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getPlanningRequestIDFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:PlanningRequestFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PlanningRequestFilter">
+		<xs:sequence>
+			<xs:element name="orbitType" type="tns:orbitTypeFilter" minOccurs="0"/>
+			<xs:element name="objectID" type="tns:objectIdFilter" minOccurs="0"/>
+			<xs:element name="planningRequestStatus" type="tns:planningRequestStatusFilter" minOccurs="0"/>
+			<xs:element name="time" type="tns:timeFilter" minOccurs="0"/>
+			<xs:element name="status" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="planningRequestStatusFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getPlanningRequestIDFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="stopDPC">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="stopDPCResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:StatusType" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigAccuracy">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigAccuracyResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigAccuracy" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setHMITimeSpan">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigHMITimeSpan" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setHMITimeSpanResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigDynamicModel">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigDynamicModel" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigDynamicModelResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigThirdPartyData">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigThirdPartyData" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigThirdPartyDataResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigAncillary">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigAncillaryResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigAncillary" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrbitDetermination">
+		<xs:sequence>
+			<xs:element name="orbitDeterminationProcessID" type="xs:long"/>
+			<xs:element name="type" type="xs:int"/>
+			<xs:element name="executionTime" type="xs:long"/>
+			<xs:element name="objectID" type="xs:long"/>
+			<xs:element name="trackletList" type="tns:TrackletType" maxOccurs="unbounded"/>
+			<xs:element name="stateVector" type="tns:stateVectorType"/>
+			<xs:element name="orbitalElement" type="tns:orbitalElementType"/>
+			<xs:element name="uncertainty" type="tns:uncertaintyType"/>
+			<xs:element name="associatedQualityMonitoringProcess" type="xs:int"/>
+			<xs:element name="orbitType" type="xs:int"/>
+			<xs:element name="observationType" type="xs:int"/>
+			<xs:element name="newObjects" type="xs:boolean"/>
+			<xs:element name="qualityMonitoring" type="xs:int"/>
+			<xs:element name="time" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TrackletType">
+		<xs:sequence>
+			<xs:element name="observationID" type="xs:long"/>
+			<xs:element name="epoch" type="xs:double"/>
+			<xs:element name="date" type="xs:string"/>
+			<xs:element name="range" type="xs:double"/>
+			<xs:element name="rangeRate" type="xs:double"/>
+			<xs:element name="azimuth" type="xs:double"/>
+			<xs:element name="elevation" type="xs:double"/>
+			<xs:element name="rightAscension" type="xs:double"/>
+			<xs:element name="declination" type="xs:double"/>
+			<xs:element name="residualInAzimtuh" type="xs:double"/>
+			<xs:element name="residualInElevation" type="xs:double"/>
+			<xs:element name="residualInRigthAscension" type="xs:double"/>
+			<xs:element name="residualInDeclination" type="xs:double"/>
+			<xs:element name="usedInODProcess" type="xs:boolean"/>
+			<xs:element name="path" type="xs:string"/>
+			<xs:element name="residualInRange" type="xs:double"/>
+			<xs:element name="residualInRangeRate" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orbitalElementType">
+		<xs:sequence>
+			<xs:element name="semimajorAxis" type="xs:double"/>
+			<xs:element name="eccentricity" type="xs:double"/>
+			<xs:element name="inclination" type="xs:double"/>
+			<xs:element name="RAAN" type="xs:double"/>
+			<xs:element name="argOfPericenter" type="xs:double"/>
+			<xs:element name="trueAnomaly" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="uncertaintyType">
+		<xs:sequence>
+			<xs:element name="alongTrack" type="xs:double"/>
+			<xs:element name="crossTrack" type="xs:double"/>
+			<xs:element name="radial" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigThresholdOD">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigThresholdODResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigODThreshold" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfPlanningRequest">
+		<xs:sequence>
+			<xs:element name="in" type="tns:PlanningRequestFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfPlanningRequestResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:PlanningReport" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PlanningReport">
+		<xs:sequence>
+			<xs:element name="processed" type="tns:ReportType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="raised" type="tns:ReportType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getPlanningRequestDetails">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getPlanningRequestDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:PlanningRequest" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PlanningRequest">
+		<xs:sequence>
+			<xs:element name="planningRequestID" type="xs:long"/>
+			<xs:element name="objectId" type="xs:long"/>
+			<xs:element name="requestTime" type="xs:long"/>
+			<xs:element name="expirationTime" type="xs:long"/>
+			<xs:element name="requiredImprovementInAccuracy" type="xs:string"/>
+			<xs:element name="StatusInDPC" type="xs:string"/>
+			<xs:element name="statusRequest" type="xs:string"/>
+			<xs:element name="OrbitType" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfQualityMonitoring">
+		<xs:sequence>
+			<xs:element name="qualityMonitoringList" type="tns:QualityMonitoring" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QualityMonitoring">
+		<xs:sequence>
+			<xs:element name="numberOfQualityMonitoringProcess" type="xs:int"/>
+			<xs:element name="numberOfProcessViolatingTheAccuracyEnvelope" type="xs:int"/>
+			<xs:element name="numberOfProcessAskingForPlanningRequest" type="xs:int"/>
+			<xs:element name="qualityMonitoringProcessID" type="xs:long"/>
+			<xs:element name="objectID" type="xs:long"/>
+			<xs:element name="computationTime" type="xs:long"/>
+			<xs:element name="AccuracyViolatingFlag" type="xs:boolean"/>
+			<xs:element name="ViolationTime" type="xs:long"/>
+			<xs:element name="PlanningRequestFlag" type="xs:boolean"/>
+			<xs:element name="PlanningRequestId" type="xs:long"/>
+			<xs:element name="orbitType" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getOrbits">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getOrbitsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:OrbitTypeDefinition" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrbitTypeDefinition">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigSensors">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigSensorsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigSensor" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="observationFilter">
+		<xs:sequence>
+			<xs:element name="orbitType" type="tns:orbitTypeFilter"/>
+			<xs:element name="sensorType" type="tns:sensorTypeFilter"/>
+			<xs:element name="sensorId" type="tns:sensorIdFilter"/>
+			<xs:element name="objectId" type="tns:objectIdFilter"/>
+			<xs:element name="time" type="tns:timeFilter"/>
+			<xs:element name="objectType" type="tns:objectTypeFilter"/>
+			<xs:element name="orbitalRegion" type="tns:orbitalRegionTypeFilter"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="objectTypeFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orbitalRegionTypeFilter">
+		<xs:sequence>
+			<xs:element name="orbitalRegion" type="tns:orbitalAreaType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orbitalAreaType">
+		<xs:sequence>
+			<xs:element name="aMin" type="xs:int"/>
+			<xs:element name="aMax" type="xs:int"/>
+			<xs:element name="pMin" type="xs:int"/>
+			<xs:element name="pMax" type="xs:int"/>
+			<xs:element name="gMin" type="xs:int"/>
+			<xs:element name="gMax" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObservationsFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ArrayOfObservations" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfObservations">
+		<xs:sequence>
+			<xs:element name="observationsList" type="tns:Observation" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Observation">
+		<xs:sequence>
+			<xs:element name="observationID" type="xs:long"/>
+			<xs:element name="OrbitType" type="xs:int"/>
+			<xs:element name="sensorType" type="xs:int"/>
+			<xs:element name="sensorId" type="xs:long"/>
+			<xs:element name="objectID" type="xs:long"/>
+			<xs:element name="objectType" type="xs:int"/>
+			<xs:element name="objectReference" type="xs:int"/>
+			<xs:element name="associatedCorrelationProcess" type="xs:int"/>
+			<xs:element name="trackletList" type="tns:TrackletType" maxOccurs="unbounded"/>
+			<xs:element name="trackletStatus" type="xs:boolean"/>
+			<xs:element name="time" type="xs:long"/>
+			<xs:element name="orbitalArea" type="tns:orbitalAreaType"/>
+			<xs:element name="status" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObjectsFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:ObjectFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ObjectFilter">
+		<xs:sequence>
+			<xs:element name="orbit" type="tns:orbitTypeFilter" minOccurs="0"/>
+			<xs:element name="object" type="tns:objectTypeFilter" minOccurs="0"/>
+			<xs:element name="orbitalRegion" type="tns:orbitalRegionTypeFilter" minOccurs="0"/>
+			<xs:element name="newObject" type="xs:boolean"/>
+			<xs:element name="updatedObject" type="xs:boolean"/>
+			<xs:element name="accuracyEnvelope" type="xs:boolean"/>
+			<xs:element name="expiredTracking" type="xs:boolean"/>
+			<xs:element name="ThirdPartyData" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObjectsFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ArrayOfObjects" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfObjects">
+		<xs:sequence>
+			<xs:element name="objectsList" type="tns:objectType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="objectType">
+		<xs:sequence>
+			<xs:element name="objectId" type="xs:long"/>
+			<xs:element name="orbitalArea" type="tns:orbitalAreaType"/>
+			<xs:element name="transientObject" type="xs:boolean"/>
+			<xs:element name="newObject" type="xs:boolean"/>
+			<xs:element name="updatedObject" type="xs:boolean"/>
+			<xs:element name="violatingAccuracyEnvelopeObject" type="xs:boolean"/>
+			<xs:element name="expiredTrackingRequest" type="xs:boolean"/>
+			<xs:element name="objectReference" type="xs:string"/>
+			<xs:element name="observations" type="xs:string"/>
+			<xs:element name="orbit" type="xs:integer"/>
+			<xs:element name="objectName" type="xs:string"/>
+			<xs:element name="time" type="xs:string"/>
+			<xs:element name="stateVector" type="tns:stateVectorType"/>
+			<xs:element name="orbitalElement" type="tns:orbitalElementType"/>
+			<xs:element name="uncertainty" type="tns:uncertaintyType"/>
+			<xs:element name="RCS" type="xs:double"/>
+			<xs:element name="meanAbsoluteMagnitude" type="xs:double"/>
+			<xs:element name="MASS" type="xs:double"/>
+			<xs:element name="covariance" type="xs:double"/>
+			<xs:element name="thirdPartyData" type="xs:boolean"/>
+			<xs:element name="OEDS" type="xs:string"/>
+			<xs:element name="EGDS" type="xs:string"/>
+			<xs:element name="type" type="xs:string"/>
+			<xs:element name="orbitFilter" type="xs:integer"/>
+			<xs:element name="ProcessedObservations" type="xs:integer"/>
+			<xs:element name="ThirdPartyDataProvider" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:ThirdPartyDataFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ThirdPartyDataFilter">
+		<xs:sequence>
+			<xs:element name="orbitType" type="tns:orbitTypeFilter"/>
+			<xs:element name="tpProvider" type="tns:tpProviderFilter"/>
+			<xs:element name="objectId" type="tns:objectIdFilter"/>
+			<xs:element name="time" type="tns:timeFilter"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tpProviderFilter">
+		<xs:sequence>
+			<xs:element name="param" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ThirdPartyData" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfQualityMonitoring">
+		<xs:sequence>
+			<xs:element name="in" type="tns:QualityMonitoringFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QualityMonitoringFilter">
+		<xs:sequence>
+			<xs:element name="orbitType" type="tns:orbitTypeFilter"/>
+			<xs:element name="objectId" type="tns:objectIdFilter"/>
+			<xs:element name="time" type="tns:timeFilter"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfQualityMonitoringResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:QualityMonitoringType" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QualityMonitoringType">
+		<xs:sequence>
+			<xs:element name="numProcess" type="xs:long"/>
+			<xs:element name="processViolatingAcc" type="xs:long"/>
+			<xs:element name="numPlanning" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObservationsDetails">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObservationsDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:Observation" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObservationsIDFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:observationFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObservationsIDFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCorrelationIDFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:CorrelationFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCorrelationIDFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObjectsIDFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:ObjectFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObjectsIDFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfCorrelations">
+		<xs:sequence>
+			<xs:element name="correlationList" type="tns:Correlation" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Correlation">
+		<xs:sequence>
+			<xs:element name="correlationProcessID" type="xs:long"/>
+			<xs:element name="sensorID" type="xs:long"/>
+			<xs:element name="sensorType" type="xs:int"/>
+			<xs:element name="type" type="xs:int"/>
+			<xs:element name="status" type="xs:int"/>
+			<xs:element name="executionTime" type="xs:long"/>
+			<xs:element name="time" type="xs:long"/>
+			<xs:element name="correlationObjectId" type="xs:long"/>
+			<xs:element name="candidates" type="tns:Candidate" maxOccurs="unbounded"/>
+			<xs:element name="associatedODProcess" type="xs:long"/>
+			<xs:element name="requestStatus" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Candidate">
+		<xs:sequence>
+			<xs:element name="objectId" type="xs:long"/>
+			<xs:element name="correlationMarks" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfThirdPartyData">
+		<xs:sequence>
+			<xs:element name="in" type="tns:ThirdPartyDataFilter" form="unqualified" minOccurs="0"/>
+			<xs:element name="status" type="xs:string" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfThirdPartyDataResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getQualityMonitoringId">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getQualityMonitoringIdResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataId">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataIdResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigLookUpTable">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigLookUpTableResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigLookUpTable" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataDetails">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ThirdPartyData" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getQualityMonitoringIDFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:QualityMonitoringFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getQualityMonitoringIDFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getService">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getServiceResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:ServiceType" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceType">
+		<xs:sequence>
+			<xs:element name="serviceID" type="xs:long"/>
+			<xs:element name="action" type="tns:ActionService" maxOccurs="unbounded"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="dateStarted" type="xs:long"/>
+			<xs:element name="moreInfo" type="xs:string"/>
+			<xs:element name="running" type="xs:boolean"/>
+			<xs:element name="processes" type="xs:int"/>
+			<xs:element name="finishedProcesses" type="xs:int"/>
+			<xs:element name="config" type="tns:ServiceConfiguration"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ActionService">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int"/>
+			<xs:element name="name" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceConfiguration">
+		<xs:sequence>
+			<xs:element name="timeThreshold" type="xs:int"/>
+			<xs:element name="automatic" type="xs:boolean"/>
+			<xs:element name="changeable" type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfPlanningRequests">
+		<xs:sequence>
+			<xs:element name="PlanningRequestList" type="tns:PlanningRequest" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getPlanningRequestId">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getPlanningRequestIdResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigAccuracy">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigAccuracy" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigAccuracyResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getQualityMonitoringDetails">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getQualityMonitoringDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:QualityMonitoring" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigThirdPartyData">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigThirdPartyDataResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigThirdPartyData" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CatalogueFilter">
+		<xs:sequence>
+			<xs:element name="orbit" type="tns:orbitTypeFilter"/>
+			<xs:element name="object" type="tns:objectTypeFilter"/>
+			<xs:element name="orbitalArea" type="tns:orbitalRegionTypeFilter"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCatalogueFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:Catalogue" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Catalogue">
+		<xs:sequence>
+			<xs:element name="sensorObservationData" type="xs:string"/>
+			<xs:element name="LeoResident" type="xs:long"/>
+			<xs:element name="MeoResident" type="xs:long"/>
+			<xs:element name="GeoResident" type="xs:long"/>
+			<xs:element name="transientInLEOMEO" type="xs:long"/>
+			<xs:element name="transientInMEOGEO" type="xs:long"/>
+			<xs:element name="transientInLEOMEOGEO" type="xs:long"/>
+			<xs:element name="transientAboveGEO" type="xs:long"/>
+			<xs:element name="date" type="xs:string"/>
+			<xs:element name="a" type="xs:long"/>
+			<xs:element name="p" type="xs:long"/>
+			<xs:element name="g" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfObservationsInCatalogue">
+		<xs:sequence>
+			<xs:element name="in" type="tns:observationFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfObservationsInCatalogueResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfInteger">
+		<xs:sequence>
+			<xs:element name="value" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getProcess">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getProcessResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:DPCOverview" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DPCOverview">
+		<xs:sequence>
+			<xs:element name="inputProcess" type="tns:ProcessType" maxOccurs="unbounded"/>
+			<xs:element name="outputProcess" type="tns:OutputProcess" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcessType">
+		<xs:sequence>
+			<xs:element name="processName" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="ReceivedRequests" type="xs:long"/>
+			<xs:element name="AcceptedRequest" type="xs:long"/>
+			<xs:element name="RejectedRequest" type="xs:long"/>
+			<xs:element name="OngoingExcedingTimeRequest" type="xs:long"/>
+			<xs:element name="OngoingOKRequest" type="xs:long"/>
+			<xs:element name="FinishedOKRequest" type="xs:long"/>
+			<xs:element name="FinishedExcedingTimeRequest" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OutputProcess">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element name="processName" type="xs:string"/>
+			<xs:element name="raised" type="xs:long"/>
+			<xs:element name="processed" type="xs:long"/>
+			<xs:element name="pending" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getStatus">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getStatusResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:StatusType" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getElementsManualOperation">
+		<xs:sequence>
+			<xs:element name="processID" type="xs:long" form="unqualified"/>
+			<xs:element name="serviceName" type="xs:string" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getElementsManualOperationResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:string" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigOperationMode">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getConfigOperationModeResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigOperationMode" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObjectDetails">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObjectDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:objectType" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigEphemerides">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigEphGeneration" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigEphemeridesResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getObjectsID">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getObjectsIDResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getProviders">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getProvidersResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:string" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getManualOperationDetails">
+		<xs:sequence>
+			<xs:element name="processID" type="xs:long" form="unqualified"/>
+			<xs:element name="elementID" type="xs:string" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getManualOperationDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:string" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigLookUpTable">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigLookUpTable" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigLookUpTableResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataIDFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:ThirdPartyDataFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getThirdPartyDataIDFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="executeAction">
+		<xs:sequence>
+			<xs:element name="serviceID" type="xs:long" form="unqualified"/>
+			<xs:element name="operation" type="xs:string" form="unqualified" minOccurs="0"/>
+			<xs:element name="parameters" type="xs:string" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="executeActionResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setHMIExecutionTimeThreshold">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigHMIExecutionTime" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setHMIExecutionTimeThresholdResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="activeSensor">
+		<xs:sequence>
+			<xs:element name="sensorID" type="xs:long"/>
+			<xs:element name="status" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="activeSensorResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addNewSensor">
+		<xs:sequence>
+			<xs:element name="sensorName" type="xs:string"/>
+			<xs:element name="sensorXML" type="xs:string"/>
+			<xs:element name="sensorType" type="xs:string"/>
+			<xs:element name="availabilityDate" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addNewSensorResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="removeObject">
+		<xs:sequence>
+			<xs:element name="objectID" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="removeObjectResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="removeSensor">
+		<xs:sequence>
+			<xs:element name="sensorID" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="removeSensorResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="removeConfigTP">
+		<xs:sequence>
+			<xs:element name="entity" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="removeConfigTPResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigAncillary">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigAncillary" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigAncillaryResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigOperationMode">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigOperationMode" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigOperationModeResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfObservations">
+		<xs:sequence>
+			<xs:element name="in" type="tns:observationFilter" form="unqualified" minOccurs="0"/>
+			<xs:element name="status" type="xs:string" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfObservationsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCorrelationDetails">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCorrelationDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:Correlation" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getODProcessID">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getODProcessIDResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCatalogue">
+		<xs:sequence>
+			<xs:element name="in" type="xs:string" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCatalogueResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:Catalogue" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getHMIExecutionTimeThreshold">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getHMIExecutionTimeThresholdResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigHMIExecutionTime" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getOrbitDeterminationDetails">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getOrbitDeterminationDetailsResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:OrbitDetermination" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfCorrelation">
+		<xs:sequence>
+			<xs:element name="in" type="tns:CorrelationFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNumberOfCorrelationResponse">
+		<xs:sequence>
+			<xs:element name="out" type="tns:CorrelationReport" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CorrelationReport">
+		<xs:sequence>
+			<xs:element name="new" type="tns:ReportType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="updated" type="tns:ReportType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="total" type="tns:ReportType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getHMITimeSpan">
+		<xs:sequence>
+			<xs:element name="in" type="xs:long" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getHMITimeSpanResponse">
+		<xs:sequence>
+			<xs:element name="out" type="config:ConfigHMITimeSpan" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getOrbitDeterminationIDFilterBy">
+		<xs:sequence>
+			<xs:element name="in" type="tns:OrbitDeterminationFilter" form="unqualified" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getOrbitDeterminationIDFilterByResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCorrelationId">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getCorrelationIdResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:long" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigThresholdOD">
+		<xs:sequence>
+			<xs:element name="in" type="config:ConfigODThreshold" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setConfigThresholdODResponse">
+		<xs:sequence>
+			<xs:element name="out" type="xs:boolean" form="unqualified"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfOrbitDeterminations">
+		<xs:sequence>
+			<xs:element name="orbitDeterminationsList" type="tns:OrbitDetermination" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfCandidates">
+		<xs:sequence>
+			<xs:element name="candidatesList" type="tns:Candidate" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfTracklets">
+		<xs:sequence>
+			<xs:element name="tracklet" type="tns:TrackletType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

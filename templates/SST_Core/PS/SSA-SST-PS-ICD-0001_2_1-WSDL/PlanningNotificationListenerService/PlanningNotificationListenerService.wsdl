@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PlanningNotificationListener"
+	targetNamespace="http://esa.ssa.sst.planning/planningNotificationListener/service/v1_0/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://esa.ssa.sst.planning/planningNotificationListener/service/v1_0/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ssaRuntime="http://esa.ssa.common/ssaRuntimeService/">
+	
+	<wsdl:import location="../ssaHeaders/ssaRuntimeService.wsdl"
+                namespace="http://esa.ssa.common/ssaRuntimeService/"/>
+	<wsdl:import location="./PlanningNotificationListener.wsdl"
+		namespace="http://esa.ssa.sst.planning/planningNotificationListener/service/v1_0/" />
+		
+	<wsdl:binding name="PlanningNotificationListenerInterfaceBinding"
+		type="tns:PlanningNotificationListenerInterface">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+			
+		<wsdl:operation name="planningRequestStatusUpdated">
+			<soap:operation
+				soapAction="urn:tns:PlanningNotificationListener/planningRequestStatusUpdated/" />
+			<wsdl:input>
+				<soap:header message="ssaRuntime:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="planningNotification" use="literal" />
+			</wsdl:input>
+		</wsdl:operation>		
+	</wsdl:binding>
+	<wsdl:service name="PlanningNotificationListenerService">
+		<wsdl:port binding="tns:PlanningNotificationListenerInterfaceBinding"
+			name="PlanningNotificationListenerInterfacePort">
+			<soap:address
+				location="urn:tns:PlanningNotificationListener/PlanningNotificationListenerInterface/PlanningNotificationListenerInterfacePort" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

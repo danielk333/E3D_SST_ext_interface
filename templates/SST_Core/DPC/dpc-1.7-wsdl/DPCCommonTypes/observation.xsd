@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa/dpc/2.1/dpc/obs" xmlns:tns="http://esa.ssa/dpc/2.1/dpc/obs" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" xmlns:comsenc="http://esa.ssa.sst/2.1/common/sensors/common/" xmlns:cattr="http://esa.ssa.sst/2.1/catalogue/track/" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:data="http://esa.ssa/dpc/2.1/dpc/data" elementFormDefault="qualified">
+	<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="dpc.xsd"/>
+	<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc/data" schemaLocation="data.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/catalogue/track/" schemaLocation="../../../../commonSSTDataModel/esa/ssa/sst/catalogue/track/track.xsd"/>
+	<xsd:import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/common/" schemaLocation="../../../../commonSSTDataModel/esa/ssa/sst/common/sensors/common/common.xsd"/>
+	<xsd:complexType name="EmptyInputType"/>
+	<xsd:element name="emptyInputType" type="tns:EmptyInputType"/>
+	<xsd:complexType name="FilterObjectsRequestType">
+		<xsd:sequence>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+			<xsd:element name="AccuracyViolatedFlagActive" type="xsd:boolean"/>
+			<xsd:element name="AccuracyViolatedFlag" type="xsd:boolean"/>
+			<xsd:element name="NewObjectFlagActive" type="xsd:boolean"/>
+			<xsd:element name="NewObjectFlag" type="xsd:boolean"/>
+			<xsd:element name="UpdatedObjectFlagActive" type="xsd:boolean"/>
+			<xsd:element name="UpdatedObjectFlag" type="xsd:boolean"/>
+			<xsd:element name="ThirdPartyFlagActive" type="xsd:boolean"/>
+			<xsd:element name="ThirdPartyFlag" type="xsd:boolean"/>
+			<xsd:element name="SemimajorAxis" type="dpc:FilterMinMaxValueType" minOccurs="0"/>
+			<xsd:element name="Eccentricity" type="dpc:FilterMinMaxValueType" minOccurs="0"/>
+			<xsd:element name="Inclination" type="dpc:FilterMinMaxValueType" minOccurs="0"/>
+			<xsd:element name="MinTime" type="ndm:epochType"/>
+			<xsd:element name="MaxTime" type="ndm:epochType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="FilterObjectsResponseType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObjectDataRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObjectDataResponseType">
+		<xsd:sequence>
+			<xsd:element name="Object" type="data:DPCCatalogDataType"/>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateObjectDataRequestType">
+		<xsd:sequence>
+			<xsd:element name="Object" type="data:DPCCatalogDataType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateObjectDataResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetCatalogRequestType">
+		<xsd:sequence>
+			<xsd:element ref="tns:emptyInputType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetCatalogResponseType">
+		<xsd:sequence>
+			<xsd:element name="Catalog" type="dpc:DPCCatalogType"/>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetOutOfDateObjectsRequestType">
+		<xsd:sequence>
+			<xsd:element name="AgendaDuration" type="xsd:double"/>
+			<xsd:element name="CurrentEpoch" type="ndm:epochType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetOutOfDateObjectsResponseType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetCatalogueOverviewRequestType">
+		<xsd:sequence>
+			<xsd:element name="LoggedTime" type="ndm:epochType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetCatalogueOverviewResponseType">
+		<xsd:sequence>
+			<xsd:element name="CatalogueData" type="dpc:DPCCatalogueOverview" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetCatalogueOverviewReportRequestType">
+		<xsd:sequence>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetCatalogueOverviewReportResponseType">
+		<xsd:sequence>
+			<xsd:element name="CatalogueData" type="dpc:CatalogReportItem" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateObservationRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObservationId" type="xsd:long"/>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="SensorId" type="xsd:long"/>
+			<xsd:element name="SensorTypeId" type="xsd:int"/>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+			<xsd:element name="TrackingData" type="cattr:SSTTrackingDataObservationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateObservationResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateObservationObjectRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObservationId" type="xsd:long"/>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateObservationObjectResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DPCObservationDataType">
+		<xsd:sequence>
+			<xsd:element name="ObservationId" type="xsd:long"/>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+			<xsd:element name="InitTime" type="ndm:epochType"/>
+			<xsd:element name="EndTime" type="ndm:epochType"/>
+			<xsd:element name="SensorId" type="xsd:long"/>
+			<xsd:element name="SensorTypeId" type="xsd:int"/>
+			<xsd:element name="TrackingData" type="cattr:SSTTrackingDataObservationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObservationRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObservationId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObservationResponseType">
+		<xsd:sequence>
+			<xsd:element name="Observation" type="tns:DPCObservationDataType"/>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObjectObservationsRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="InitTime" type="ndm:epochType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetObjectObservationsResponseType">
+		<xsd:sequence>
+			<xsd:element name="Observation" type="tns:DPCObservationDataType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetSensorObservationsRequestType">
+		<xsd:sequence>
+			<xsd:element name="SensorId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetSensorObservationsResponseType">
+		<xsd:sequence>
+			<xsd:element name="Observation" type="dpc:DPCObservationDetails" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateThirdPartyRequestType">
+		<xsd:sequence>
+			<xsd:element name="RequestId" type="xsd:long"/>
+			<xsd:element name="ThirdPartyId" type="xsd:long"/>
+			<xsd:element name="Provider" type="xsd:string"/>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+			<xsd:element name="Ephemerides" type="ndm:oemType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateThirdPartyResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateThirdPartyObjectRequestType">
+		<xsd:sequence>
+			<xsd:element name="RequestId" type="xsd:long"/>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateThirdPartyObjectResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DPCThirdPartyDataType">
+		<xsd:sequence>
+			<xsd:element name="RequestId" type="xsd:long"/>
+			<xsd:element name="ThirdPartyId" type="xsd:long"/>
+			<xsd:element name="Provider" type="xsd:string"/>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="OrbitTypeId" type="xsd:int"/>
+			<xsd:element name="InitTime" type="ndm:epochType"/>
+			<xsd:element name="EndTime" type="ndm:epochType"/>
+			<xsd:element name="Ephemerides" type="ndm:oemType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetThirdPartyRequestType">
+		<xsd:sequence>
+			<xsd:element name="RequestId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetThirdPartyResponseType">
+		<xsd:sequence>
+			<xsd:element name="ThirdParty" type="tns:DPCThirdPartyDataType"/>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateSensorRequestType">
+		<xsd:sequence>
+			<xsd:element name="SensorId" type="xsd:long"/>
+			<xsd:element name="SensorName" type="xsd:string"/>
+			<xsd:element name="Radar" type="comsenc:RadarGroundSensorType" minOccurs="0"/>
+			<xsd:element name="GBTEL" type="comsenc:OpticalGroundSensorType" minOccurs="0"/>
+			<xsd:element name="SBTEL" type="comsenc:OpticalSpaceSensorType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateSensorResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetSensorRequestType">
+		<xsd:sequence>
+			<xsd:element name="SensorId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetSensorResponseType">
+		<xsd:sequence>
+			<xsd:element name="Sensor" type="dpc:DPCSensorDataType"/>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemoveSensorRequestType">
+		<xsd:sequence>
+			<xsd:element name="SensorId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemoveSensorResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetSensorIdsRequestType">
+		<xsd:sequence>
+			<xsd:element ref="tns:emptyInputType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetSensorIdsResponseType">
+		<xsd:sequence>
+			<xsd:element name="SensorId" type="xsd:long" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateODMeasuresRequestType">
+		<xsd:sequence>
+			<xsd:element name="Measure" type="data:ODMeasuresType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UpdateODMeasuresResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetODMeasuresRequestType">
+		<xsd:sequence>
+			<xsd:element name="ODProcessId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetODMeasuresResponseType">
+		<xsd:sequence>
+			<xsd:element name="Measure" type="data:ODMeasuresType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemoveVirtualObjectsRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+			<xsd:element name="ManEpochIgnition" type="ndm:epochType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemoveVirtualObjectsResponseType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemoveVirtualObjectByIdRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RemoveVirtualObjectByIdResponseType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SetInvalidObjectRequestType">
+		<xsd:sequence>
+			<xsd:element name="ObjectId" type="xsd:long"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SetInvalidObjectResponseType">
+		<xsd:sequence>
+			<xsd:element name="Response" type="dpc:DPCConfirmationType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

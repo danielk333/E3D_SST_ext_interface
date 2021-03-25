@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SensorPlanning"
+	targetNamespace="http://esa.ssa.sst.planning/SensorPlanning/SensorPlanningService/v1_0/"
+	xmlns:tns="http://esa.ssa.sst.planning/SensorPlanning/SensorPlanningService/v1_0/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"	
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:sop="http://esa.ssa.sst.planning/SensorObservationsPlan/types/v1_0/"
+	xmlns:spt="http://esa.ssa.sst.planning/SensorPlanning/types/v1_0/">
+	
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://esa.ssa.sst.planning/SensorPlanning/SensorPlanningService/v1_0/">						
+			<xsd:import
+				namespace="http://esa.ssa.sst.planning/SensorPlanning/types/v1_0/"
+				schemaLocation="./SensorPlanningTypes.xsd" />
+				
+			<xsd:complexType name="GenerateRequestType">
+    			<xsd:sequence>
+    				<xsd:element name="scenario" type="spt:RequestScenario" default="SCHEDULED" />    				
+    			</xsd:sequence>
+  			</xsd:complexType>	
+			<xsd:complexType name="PlanIdRequestType">
+    			<xsd:sequence>
+    				<xsd:element name="planId" type="xsd:long" />    				
+    			</xsd:sequence>
+  			</xsd:complexType>	
+				
+			<xsd:element name="ValidateRequest" type="tns:PlanIdRequestType" />				
+			<xsd:element name="CancelRequest" type="tns:PlanIdRequestType" />
+			<xsd:element name="GenerateRequest" type="tns:GenerateRequestType" />						  			
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="GenerateRequestMessage">
+		<wsdl:part element="tns:GenerateRequest" name="generateRequest" />
+	</wsdl:message>				
+	<wsdl:message name="ValidateRequestMessage">
+		<wsdl:part element="tns:ValidateRequest" name="validateRequest" />
+	</wsdl:message>	
+	<wsdl:message name="CancelRequestMessage">
+		<wsdl:part element="tns:CancelRequest" name="cancelRequest" />
+	</wsdl:message>		
+	
+	<wsdl:portType name="SensorPlanningInterface">
+		<wsdl:operation name="generate">			
+			<wsdl:input message="tns:GenerateRequestMessage" />
+		</wsdl:operation>		
+		<wsdl:operation name="validate">
+			<wsdl:input message="tns:ValidateRequestMessage" />
+		</wsdl:operation>		
+		<wsdl:operation name="cancel">
+			<wsdl:input message="tns:CancelRequestMessage" />
+		</wsdl:operation>		
+	</wsdl:portType>
+</wsdl:definitions>

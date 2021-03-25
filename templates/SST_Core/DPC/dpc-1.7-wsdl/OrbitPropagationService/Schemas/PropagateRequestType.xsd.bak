@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/PropagateRequestType" xmlns:tns="http://esa.ssa/dpc/2.1/PropagateRequestType" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns:com="http://esa.ssa.sst/2.1/common/" xmlns:eCCSDS="http://esa.ssa.sst/2.1/CCSDS/" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa.sst/1.5/common/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/common/common.xsd"/>
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-navwg-common.xsd"/>
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-opm-2.0.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/CCSDS/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/extendedCCSDS/extendedCCSDS.xsd"/>
+	<import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+	<element name="PropagateRequestType">
+		<complexType>
+			<sequence>
+				<element name="DynamicModel" type="com:DynamicModelType"/>
+				<element name="Time" type="ndm:epochType"/>
+				<element name="ephemeris" type="ndm:opmType"/>
+				<element name="opmCovarianceMatrixParameters" type="eCCSDS:CovarianceMatrixParametersType"/>
+				<element name="opmCovarianceMatrixAddData" type="dpc:CovarianceMatrixAddDataType" minOccurs="0"/>
+				<element name="EndPropagationTime" type="ndm:epochType"/>
+				<element name="TimeStep" type="double">
+					<annotation>
+						<documentation>
+							Step in trajectory propagation
+						</documentation>
+					</annotation>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

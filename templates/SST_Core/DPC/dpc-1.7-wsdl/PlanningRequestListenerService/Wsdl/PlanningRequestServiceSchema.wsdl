@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssa="http://ssa.esa.int/common/" xmlns:tns="http://esa.ssa/dpc/2.1/PlanningRequestServiceSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:prplreq="http://esa.ssa/dpc/2.1/PlanningRequestPlannedRequestType" xmlns:prplres="http://esa.ssa/dpc/2.1/PlanningRequestPlannedResponseType" xmlns:prpereq="http://esa.ssa/dpc/2.1/PlanningRequestPerformedRequestType" xmlns:prperes="http://esa.ssa/dpc/2.1/PlanningRequestPerformedResponseType" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" name="dpc" targetNamespace="http://esa.ssa/dpc/2.1/PlanningRequestServiceSchema">
+	<wsdl:types>
+		<xsd:schema attributeFormDefault="qualified" targetNamespace="http://esa.ssa/dpc/2.1/PlanningRequestServiceSchema" version="1.0">
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+			<!--PlanningRequestPlanned-->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PlanningRequestPlannedRequestType" schemaLocation="../Schemas/PlanningRequestPlannedRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PlanningRequestPlannedResponseType" schemaLocation="../Schemas/PlanningRequestPlannedResponseType.xsd"/>
+			<!--PlanningRequestPerformed-->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PlanningRequestPerformedRequestType" schemaLocation="../Schemas/PlanningRequestPerformedRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PlanningRequestPerformedResponseType" schemaLocation="../Schemas/PlanningRequestPerformedResponseType.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="PlanningRequestServiceFaultMessageType">
+		<wsdl:part name="fault" element="dpc:DPCErrorType"/>
+	</wsdl:message>
+	<wsdl:message name="PlanningRequestPlannedRequestMessageType">
+		<wsdl:part name="in" element="prplreq:PlanningRequestPlannedRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="PlanningRequestPlannedResponseMessageType">
+		<wsdl:part name="out" element="prplres:PlanningRequestPlannedResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="PlanningRequestPerformedRequestMessageType">
+		<wsdl:part name="in" element="prpereq:PlanningRequestPerformedRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="PlanningRequestPerformedResponseMessageType">
+		<wsdl:part name="out" element="prperes:PlanningRequestPerformedResponseType"/>
+	</wsdl:message>
+	<wsdl:portType name="PlanningRequestServiceInterface">
+		<!--planningRequestPlanned-->
+		<wsdl:operation name="planningRequestPlanned">
+			<wsdl:input message="tns:PlanningRequestPlannedRequestMessageType"/>
+			<wsdl:output message="tns:PlanningRequestPlannedResponseMessageType"/>
+			<wsdl:fault name="planningRequestPlannedFault" message="tns:PlanningRequestServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--planningRequestPerformed-->
+		<wsdl:operation name="planningRequestPerformed">
+			<wsdl:input message="tns:PlanningRequestPerformedRequestMessageType"/>
+			<wsdl:output message="tns:PlanningRequestPerformedResponseMessageType"/>
+			<wsdl:fault name="planningRequestPerformedFault" message="tns:PlanningRequestServiceFaultMessageType"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

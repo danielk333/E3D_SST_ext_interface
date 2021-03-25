@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MMSOServiceListenerInterface" targetNamespace="http://esa.ssa.gen.catalogue/mmsos/listener/1.2/" xmlns:mmsos="http://esa.ssa.gen.catalogue/mmsos/data/1.2/" xmlns:tns="http://esa.ssa.gen.catalogue/mmsos/listener/1.2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://esa.ssa.gen.catalogue/mmsos/data/1.2/" schemaLocation="MMSOSDataModel.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="onCreateObjectRequestMessage">
+		<wsdl:part name="in" element="mmsos:createObjectRequest"/>
+	</wsdl:message>
+	<wsdl:message name="onUpdateObjectRequestMessage">
+		<wsdl:part name="in" element="mmsos:updateObjectRequest"/>
+	</wsdl:message>
+	<wsdl:message name="onDeleteObjectRequestMessage">
+		<wsdl:part name="in" element="mmsos:deleteObjectRequest"/>
+	</wsdl:message>
+	<wsdl:message name="onMergeObjectRequestMessage">
+		<wsdl:part name="in" element="mmsos:mergeObjectsRequest"/>
+	</wsdl:message>
+	<wsdl:message name="onUpdatOrbitalInfoRequestMessage">
+		<wsdl:part name="in" element="mmsos:onUpdateOrbitalInfoRequest"/>
+	</wsdl:message>
+	<wsdl:message name="onOrbitUpdateDeadlineRequestMessage">
+		<wsdl:part name="in" element="mmsos:onOrbitUpdateDeadlineRequest"/>
+	</wsdl:message>
+	<wsdl:message name="onUpdateManoeuvreInfoRequestMessage">
+		<wsdl:part name="in" element="mmsos:onUpdateManoeuvreInfoRequest"/>
+	</wsdl:message>
+	<wsdl:portType name="MMSOServiceListenerInterface">
+		<wsdl:operation name="onCreateObject">
+			<wsdl:documentation>The operation is invoked if a new object is created.
+            </wsdl:documentation>
+			<wsdl:input message="tns:onCreateObjectRequestMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="onUpdateObject">
+			<wsdl:documentation>The operation is invoked if an object is updated.
+            </wsdl:documentation>
+			<wsdl:input message="tns:onUpdateObjectRequestMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="onDeleteObject">
+			<wsdl:documentation>The operation is invoked if an object is deleted.
+            </wsdl:documentation>
+			<wsdl:input message="tns:onDeleteObjectRequestMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="onMergeObject">
+			<wsdl:documentation>The operation is invoked if a list of objects are merged.
+            </wsdl:documentation>
+			<wsdl:input message="tns:onMergeObjectRequestMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="onUpdateCatalogueOrbitalInfo">
+			<wsdl:documentation>The operation is called if the orbital information of an object is updated.
+            </wsdl:documentation>
+			<wsdl:input message="tns:onUpdatOrbitalInfoRequestMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="onOrbitUpdateDeadline">
+			<wsdl:documentation>The operation is called if the orbit update deadline of an object has expired.
+            		</wsdl:documentation>
+			<wsdl:input message="tns:onOrbitUpdateDeadlineRequestMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="onUpdateManoeuvreInfo">
+			<wsdl:documentation>The operation is called if a manoeuvre is inserted or updated.&lt;/p&gt;
+            		</wsdl:documentation>
+			<wsdl:input message="tns:onUpdateManoeuvreInfoRequestMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

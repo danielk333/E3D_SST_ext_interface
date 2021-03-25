@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa/ssensor/1.2/SubscribeRequestType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/ssensor/1.2/SubscribeRequestType"  xmlns:add="http://www.w3.org/2005/08/addressing" >
+	<xsd:import namespace="http://www.w3.org/2005/08/addressing" schemaLocation="../../../../../wsdl/wsaddr.xsd"/>
+	<xsd:element name="SubscribeRequestType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ListenerEndpoint" type="add:EndpointReferenceType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

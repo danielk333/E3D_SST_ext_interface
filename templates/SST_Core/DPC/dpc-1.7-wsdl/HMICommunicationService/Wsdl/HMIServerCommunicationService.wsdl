@@ -1,0 +1,2066 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:tns="http://com.dms.ssa/HMIServerCommunicationService/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://com.dms.ssa/HMIServerCommunicationService/" 
+ name="HMICommunicationServiceImplService">
+<types>
+		<xsd:schema>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc"
+				schemaLocation="../../DPCCommonTypes/dpc.xsd"></xsd:import>
+		</xsd:schema>
+		<xsd:schema>
+			<xsd:import namespace="http://com.dms.ssa/HMIServerCommunicationService/"
+				schemaLocation="../Schemas/HMIServerCommunicationService.xsd"></xsd:import>
+		</xsd:schema>
+	</types>
+	<message name="startDPC">
+		<part name="parameters" element="tns:startDPC"></part>
+	</message>
+	<message name="startDPCResponse">
+		<part name="parameters" element="tns:startDPCResponse"></part>
+	</message>
+	<message name="FaultMessageType">
+		<part xmlns:ns1="http://esa.ssa/dpc/2.1/dpc" name="fault"
+			element="ns1:DPCErrorType"></part>
+	</message>
+	<message name="activeSensor">
+		<part name="parameters" element="tns:activeSensor"></part>
+	</message>
+	<message name="activeSensorResponse">
+		<part name="parameters" element="tns:activeSensorResponse"></part>
+	</message>
+	<message name="addNewSensor">
+		<part name="parameters" element="tns:addNewSensor"></part>
+	</message>
+	<message name="addNewSensorResponse">
+		<part name="parameters" element="tns:addNewSensorResponse"></part>
+	</message>
+	<message name="removeObject">
+		<part name="parameters" element="tns:removeObject"></part>
+	</message>
+	<message name="removeObjectResponse">
+		<part name="parameters" element="tns:removeObjectResponse"></part>
+	</message>
+	<message name="removeSensor">
+		<part name="parameters" element="tns:removeSensor"></part>
+	</message>
+	<message name="removeSensorResponse">
+		<part name="parameters" element="tns:removeSensorResponse"></part>
+	</message>
+		<message name="removeConfigTP">
+		<part name="parameters" element="tns:removeConfigTP"></part>
+	</message>
+	<message name="removeConfigTPResponse">
+		<part name="parameters" element="tns:removeConfigTPResponse"></part>
+	</message>
+	<message name="setConfigAncillary">
+		<part name="parameters" element="tns:setConfigAncillary"></part>
+	</message>
+	<message name="setConfigAncillaryResponse">
+		<part name="parameters" element="tns:setConfigAncillaryResponse"></part>
+	</message>
+	<message name="getOrbits">
+		<part name="parameters" element="tns:getOrbits"></part>
+	</message>
+	<message name="getOrbitsResponse">
+		<part name="parameters" element="tns:getOrbitsResponse"></part>
+	</message>
+	<message name="getObjectsID">
+		<part name="parameters" element="tns:getObjectsID"></part>
+	</message>
+	<message name="getObjectsIDResponse">
+		<part name="parameters" element="tns:getObjectsIDResponse"></part>
+	</message>
+	<message name="getProviders">
+		<part name="parameters" element="tns:getProviders"></part>
+	</message>
+	<message name="getProvidersResponse">
+		<part name="parameters" element="tns:getProvidersResponse"></part>
+	</message>
+	<message name="getOrbitDeterminationIDFilterBy">
+		<part name="parameters" element="tns:getOrbitDeterminationIDFilterBy"></part>
+	</message>
+	<message name="getOrbitDeterminationIDFilterByResponse">
+		<part name="parameters" element="tns:getOrbitDeterminationIDFilterByResponse"></part>
+	</message>
+	<message name="setConfigThirdPartyData">
+		<part name="parameters" element="tns:setConfigThirdPartyData"></part>
+	</message>
+	<message name="setConfigThirdPartyDataResponse">
+		<part name="parameters" element="tns:setConfigThirdPartyDataResponse"></part>
+	</message>
+	<message name="getObjectsFilterBy">
+		<part name="parameters" element="tns:getObjectsFilterBy"></part>
+	</message>
+	<message name="getObjectsFilterByResponse">
+		<part name="parameters" element="tns:getObjectsFilterByResponse"></part>
+	</message>
+	<message name="getPlanningRequestId">
+		<part name="parameters" element="tns:getPlanningRequestId"></part>
+	</message>
+	<message name="getPlanningRequestIdResponse">
+		<part name="parameters" element="tns:getPlanningRequestIdResponse"></part>
+	</message>
+	<message name="getThirdPartyDataDetails">
+		<part name="parameters" element="tns:getThirdPartyDataDetails"></part>
+	</message>
+	<message name="getThirdPartyDataDetailsResponse">
+		<part name="parameters" element="tns:getThirdPartyDataDetailsResponse"></part>
+	</message>
+	<message name="getQualityMonitoringId">
+		<part name="parameters" element="tns:getQualityMonitoringId"></part>
+	</message>
+	<message name="getQualityMonitoringIdResponse">
+		<part name="parameters" element="tns:getQualityMonitoringIdResponse"></part>
+	</message>
+	<message name="setHMIExecutionTimeThreshold">
+		<part name="parameters" element="tns:setHMIExecutionTimeThreshold"></part>
+	</message>
+	<message name="setHMIExecutionTimeThresholdResponse">
+		<part name="parameters" element="tns:setHMIExecutionTimeThresholdResponse"></part>
+	</message>
+	<message name="setConfigEphemerides">
+		<part name="parameters" element="tns:setConfigEphemerides"></part>
+	</message>
+	<message name="setConfigEphemeridesResponse">
+		<part name="parameters" element="tns:setConfigEphemeridesResponse"></part>
+	</message>
+	<message name="getNumberOfCorrelation">
+		<part name="parameters" element="tns:getNumberOfCorrelation"></part>
+	</message>
+	<message name="getNumberOfCorrelationResponse">
+		<part name="parameters" element="tns:getNumberOfCorrelationResponse"></part>
+	</message>
+	<message name="getConfigAccuracy">
+		<part name="parameters" element="tns:getConfigAccuracy"></part>
+	</message>
+	<message name="getConfigAccuracyResponse">
+		<part name="parameters" element="tns:getConfigAccuracyResponse"></part>
+	</message>
+	<message name="setConfigLookUpTable">
+		<part name="parameters" element="tns:setConfigLookUpTable"></part>
+	</message>
+	<message name="setConfigLookUpTableResponse">
+		<part name="parameters" element="tns:setConfigLookUpTableResponse"></part>
+	</message>
+	<message name="getPlanningRequestIDFilterBy">
+		<part name="parameters" element="tns:getPlanningRequestIDFilterBy"></part>
+	</message>
+	<message name="getPlanningRequestIDFilterByResponse">
+		<part name="parameters" element="tns:getPlanningRequestIDFilterByResponse"></part>
+	</message>
+	<message name="getODProcessID">
+		<part name="parameters" element="tns:getODProcessID"></part>
+	</message>
+	<message name="getODProcessIDResponse">
+		<part name="parameters" element="tns:getODProcessIDResponse"></part>
+	</message>
+	<message name="getNumberOfThirdPartyData">
+		<part name="parameters" element="tns:getNumberOfThirdPartyData"></part>
+	</message>
+	<message name="getNumberOfThirdPartyDataResponse">
+		<part name="parameters" element="tns:getNumberOfThirdPartyDataResponse"></part>
+	</message>
+	<message name="getCatalogue">
+		<part name="parameters" element="tns:getCatalogue"></part>
+	</message>
+	<message name="getCatalogueResponse">
+		<part name="parameters" element="tns:getCatalogueResponse"></part>
+	</message>
+	<message name="getThirdPartyDataFilterBy">
+		<part name="parameters" element="tns:getThirdPartyDataFilterBy"></part>
+	</message>
+	<message name="getThirdPartyDataFilterByResponse">
+		<part name="parameters" element="tns:getThirdPartyDataFilterByResponse"></part>
+	</message>
+	<message name="getOrbitDeterminationDetails">
+		<part name="parameters" element="tns:getOrbitDeterminationDetails"></part>
+	</message>
+	<message name="getOrbitDeterminationDetailsResponse">
+		<part name="parameters" element="tns:getOrbitDeterminationDetailsResponse"></part>
+	</message>
+	<message name="getElementsManualOperation">
+		<part name="parameters" element="tns:getElementsManualOperation"></part>
+	</message>
+	<message name="getElementsManualOperationResponse">
+		<part name="parameters" element="tns:getElementsManualOperationResponse"></part>
+	</message>
+	<message name="getManualOperationDetails">
+		<part name="parameters" element="tns:getManualOperationDetails"></part>
+	</message>
+	<message name="getManualOperationDetailsResponse">
+		<part name="parameters" element="tns:getManualOperationDetailsResponse"></part>
+	</message>
+	<message name="getConfigLookUpTable">
+		<part name="parameters" element="tns:getConfigLookUpTable"></part>
+	</message>
+	<message name="getConfigLookUpTableResponse">
+		<part name="parameters" element="tns:getConfigLookUpTableResponse"></part>
+	</message>
+	<message name="getServiceProcess">
+		<part name="parameters" element="tns:getServiceProcess"></part>
+	</message>
+	<message name="getServiceProcessResponse">
+		<part name="parameters" element="tns:getServiceProcessResponse"></part>
+	</message>
+	<message name="getObjectDetails">
+		<part name="parameters" element="tns:getObjectDetails"></part>
+	</message>
+	<message name="getObjectDetailsResponse">
+		<part name="parameters" element="tns:getObjectDetailsResponse"></part>
+	</message>
+	<message name="setConfigOperationMode">
+		<part name="parameters" element="tns:setConfigOperationMode"></part>
+	</message>
+	<message name="setConfigOperationModeResponse">
+		<part name="parameters" element="tns:setConfigOperationModeResponse"></part>
+	</message>
+	<message name="getNumberOfPlanningRequest">
+		<part name="parameters" element="tns:getNumberOfPlanningRequest"></part>
+	</message>
+	<message name="getNumberOfPlanningRequestResponse">
+		<part name="parameters" element="tns:getNumberOfPlanningRequestResponse"></part>
+	</message>
+	<message name="getNumberOfQualityMonitoring">
+		<part name="parameters" element="tns:getNumberOfQualityMonitoring"></part>
+	</message>
+	<message name="getNumberOfQualityMonitoringResponse">
+		<part name="parameters" element="tns:getNumberOfQualityMonitoringResponse"></part>
+	</message>
+	<message name="setConfigCandidate">
+		<part name="parameters" element="tns:setConfigCandidate"></part>
+	</message>
+	<message name="setConfigCandidateResponse">
+		<part name="parameters" element="tns:setConfigCandidateResponse"></part>
+	</message>
+	<message name="getNumberOfObservations">
+		<part name="parameters" element="tns:getNumberOfObservations"></part>
+	</message>
+	<message name="getNumberOfObservationsResponse">
+		<part name="parameters" element="tns:getNumberOfObservationsResponse"></part>
+	</message>
+	<message name="setHMITimeSpan">
+		<part name="parameters" element="tns:setHMITimeSpan"></part>
+	</message>
+	<message name="setHMITimeSpanResponse">
+		<part name="parameters" element="tns:setHMITimeSpanResponse"></part>
+	</message>
+	<message name="getConfigSensors">
+		<part name="parameters" element="tns:getConfigSensors"></part>
+	</message>
+	<message name="getConfigSensorsResponse">
+		<part name="parameters" element="tns:getConfigSensorsResponse"></part>
+	</message>
+	<message name="getConfigOperationMode">
+		<part name="parameters" element="tns:getConfigOperationMode"></part>
+	</message>
+	<message name="getConfigOperationModeResponse">
+		<part name="parameters" element="tns:getConfigOperationModeResponse"></part>
+	</message>
+	<message name="getCorrelationDetails">
+		<part name="parameters" element="tns:getCorrelationDetails"></part>
+	</message>
+	<message name="getCorrelationDetailsResponse">
+		<part name="parameters" element="tns:getCorrelationDetailsResponse"></part>
+	</message>
+	<message name="getThirdPartyDataIDFilterBy">
+		<part name="parameters" element="tns:getThirdPartyDataIDFilterBy"></part>
+	</message>
+	<message name="getThirdPartyDataIDFilterByResponse">
+		<part name="parameters" element="tns:getThirdPartyDataIDFilterByResponse"></part>
+	</message>
+	<message name="getConfigEphemerides">
+		<part name="parameters" element="tns:getConfigEphemerides"></part>
+	</message>
+	<message name="getConfigEphemeridesResponse">
+		<part name="parameters" element="tns:getConfigEphemeridesResponse"></part>
+	</message>
+	<message name="setConfigDynamicModel">
+		<part name="parameters" element="tns:setConfigDynamicModel"></part>
+	</message>
+	<message name="setConfigDynamicModelResponse">
+		<part name="parameters" element="tns:setConfigDynamicModelResponse"></part>
+	</message>
+	<message name="getObservationsDetails">
+		<part name="parameters" element="tns:getObservationsDetails"></part>
+	</message>
+	<message name="getObservationsDetailsResponse">
+		<part name="parameters" element="tns:getObservationsDetailsResponse"></part>
+	</message>
+	<message name="getNumberOfOD">
+		<part name="parameters" element="tns:getNumberOfOD"></part>
+	</message>
+	<message name="getNumberOfODResponse">
+		<part name="parameters" element="tns:getNumberOfODResponse"></part>
+	</message>
+	<message name="getConfigThresholdOD">
+		<part name="parameters" element="tns:getConfigThresholdOD"></part>
+	</message>
+	<message name="getConfigThresholdODResponse">
+		<part name="parameters" element="tns:getConfigThresholdODResponse"></part>
+	</message>
+	<message name="setConfigSensors">
+		<part name="parameters" element="tns:setConfigSensors"></part>
+	</message>
+	<message name="setConfigSensorsResponse">
+		<part name="parameters" element="tns:setConfigSensorsResponse"></part>
+	</message>
+	<message name="getProcess">
+		<part name="parameters" element="tns:getProcess"></part>
+	</message>
+	<message name="getProcessResponse">
+		<part name="parameters" element="tns:getProcessResponse"></part>
+	</message>
+	<message name="setConfigThresholdOD">
+		<part name="parameters" element="tns:setConfigThresholdOD"></part>
+	</message>
+	<message name="setConfigThresholdODResponse">
+		<part name="parameters" element="tns:setConfigThresholdODResponse"></part>
+	</message>
+	<message name="getConfigThirdPartyData">
+		<part name="parameters" element="tns:getConfigThirdPartyData"></part>
+	</message>
+	<message name="getConfigThirdPartyDataResponse">
+		<part name="parameters" element="tns:getConfigThirdPartyDataResponse"></part>
+	</message>
+	<message name="executeAction">
+		<part name="parameters" element="tns:executeAction"></part>
+	</message>
+	<message name="executeActionResponse">
+		<part name="parameters" element="tns:executeActionResponse"></part>
+	</message>
+	<message name="getHMITimeSpan">
+		<part name="parameters" element="tns:getHMITimeSpan"></part>
+	</message>
+	<message name="getHMITimeSpanResponse">
+		<part name="parameters" element="tns:getHMITimeSpanResponse"></part>
+	</message>
+	<message name="getThirdPartyData">
+		<part name="parameters" element="tns:getThirdPartyData"></part>
+	</message>
+	<message name="getThirdPartyDataResponse">
+		<part name="parameters" element="tns:getThirdPartyDataResponse"></part>
+	</message>
+	<message name="getConfigAncillary">
+		<part name="parameters" element="tns:getConfigAncillary"></part>
+	</message>
+	<message name="getConfigAncillaryResponse">
+		<part name="parameters" element="tns:getConfigAncillaryResponse"></part>
+	</message>
+	<message name="getQualityMonitoringDetails">
+		<part name="parameters" element="tns:getQualityMonitoringDetails"></part>
+	</message>
+	<message name="getQualityMonitoringDetailsResponse">
+		<part name="parameters" element="tns:getQualityMonitoringDetailsResponse"></part>
+	</message>
+	<message name="getPlanningRequestDetails">
+		<part name="parameters" element="tns:getPlanningRequestDetails"></part>
+	</message>
+	<message name="getPlanningRequestDetailsResponse">
+		<part name="parameters" element="tns:getPlanningRequestDetailsResponse"></part>
+	</message>
+	<message name="stopDPC">
+		<part name="parameters" element="tns:stopDPC"></part>
+	</message>
+	<message name="stopDPCResponse">
+		<part name="parameters" element="tns:stopDPCResponse"></part>
+	</message>
+	<message name="getThirdPartyDataId">
+		<part name="parameters" element="tns:getThirdPartyDataId"></part>
+	</message>
+	<message name="getThirdPartyDataIdResponse">
+		<part name="parameters" element="tns:getThirdPartyDataIdResponse"></part>
+	</message>
+	<message name="getSigPosErrorReport">
+		<part name="parameters" element="tns:getSigPosErrorReport"></part>
+	</message>
+	<message name="getSigPosErrorReportResponse">
+		<part name="parameters" element="tns:getSigPosErrorReportResponse"></part>
+	</message>
+	<message name="getNumberOfObservationsInCatalogue">
+		<part name="parameters" element="tns:getNumberOfObservationsInCatalogue"></part>
+	</message>
+	<message name="getNumberOfObservationsInCatalogueResponse">
+		<part name="parameters" element="tns:getNumberOfObservationsInCatalogueResponse"></part>
+	</message>
+	<message name="getConfigCandidate">
+		<part name="parameters" element="tns:getConfigCandidate"></part>
+	</message>
+	<message name="getConfigCandidateResponse">
+		<part name="parameters" element="tns:getConfigCandidateResponse"></part>
+	</message>
+	<message name="getObservationsIDFilterBy">
+		<part name="parameters" element="tns:getObservationsIDFilterBy"></part>
+	</message>
+	<message name="getObservationsIDFilterByResponse">
+		<part name="parameters" element="tns:getObservationsIDFilterByResponse"></part>
+	</message>
+	<message name="getObjectsIDFilterBy">
+		<part name="parameters" element="tns:getObjectsIDFilterBy"></part>
+	</message>
+	<message name="getObjectsIDFilterByResponse">
+		<part name="parameters" element="tns:getObjectsIDFilterByResponse"></part>
+	</message>
+	<message name="getConfigDynamicModel">
+		<part name="parameters" element="tns:getConfigDynamicModel"></part>
+	</message>
+	<message name="getConfigDynamicModelResponse">
+		<part name="parameters" element="tns:getConfigDynamicModelResponse"></part>
+	</message>
+	<message name="getQualityMonitoringIDFilterBy">
+		<part name="parameters" element="tns:getQualityMonitoringIDFilterBy"></part>
+	</message>
+	<message name="getQualityMonitoringIDFilterByResponse">
+		<part name="parameters" element="tns:getQualityMonitoringIDFilterByResponse"></part>
+	</message>
+	<message name="getCorrelationId">
+		<part name="parameters" element="tns:getCorrelationId"></part>
+	</message>
+	<message name="getCorrelationIdResponse">
+		<part name="parameters" element="tns:getCorrelationIdResponse"></part>
+	</message>
+	<message name="getCorrelationIDFilterBy">
+		<part name="parameters" element="tns:getCorrelationIDFilterBy"></part>
+	</message>
+	<message name="getCorrelationIDFilterByResponse">
+		<part name="parameters" element="tns:getCorrelationIDFilterByResponse"></part>
+	</message>
+	<message name="setConfigAccuracy">
+		<part name="parameters" element="tns:setConfigAccuracy"></part>
+	</message>
+	<message name="setConfigAccuracyResponse">
+		<part name="parameters" element="tns:setConfigAccuracyResponse"></part>
+	</message>
+	<message name="getHMIExecutionTimeThreshold">
+		<part name="parameters" element="tns:getHMIExecutionTimeThreshold"></part>
+	</message>
+	<message name="getHMIExecutionTimeThresholdResponse">
+		<part name="parameters" element="tns:getHMIExecutionTimeThresholdResponse"></part>
+	</message>
+	<message name="getNumberOfObjects">
+		<part name="parameters" element="tns:getNumberOfObjects"></part>
+	</message>
+	<message name="getNumberOfObjectsResponse">
+		<part name="parameters" element="tns:getNumberOfObjectsResponse"></part>
+	</message>
+	<message name="getService">
+		<part name="parameters" element="tns:getService"></part>
+	</message>
+	<message name="getServiceResponse">
+		<part name="parameters" element="tns:getServiceResponse"></part>
+	</message>
+	<message name="getStatus">
+		<part name="parameters" element="tns:getStatus"></part>
+	</message>
+	<message name="getStatusResponse">
+		<part name="parameters" element="tns:getStatusResponse"></part>
+	</message>
+	<portType name="HMIServerCommunicationService">
+		<operation name="startDPC">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/startDPCRequest"
+				message="tns:startDPC"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/startDPCResponse"
+				message="tns:startDPCResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/startDPC/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="activeSensor">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/activeSensorRequest"
+				message="tns:activeSensor"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/activeSensorResponse"
+				message="tns:activeSensorResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/activeSensor/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="addNewSensor">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/addNewSensorRequest"
+				message="tns:addNewSensor"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/addNewSensorResponse"
+				message="tns:addNewSensorResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/addNewSensor/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="removeObject">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeObjectRequest"
+				message="tns:removeObject"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeObjectResponse"
+				message="tns:removeObjectResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeObject/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="removeSensor">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeSensorRequest"
+				message="tns:removeSensor"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeSensorResponse"
+				message="tns:removeSensorResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeSensor/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="removeConfigTP">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeConfigTPRequest"
+				message="tns:removeConfigTP"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeConfigTPResponse"
+				message="tns:removeConfigTPResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/removeConfigTP/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigAncillary">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigAncillaryRequest"
+				message="tns:setConfigAncillary"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigAncillaryResponse"
+				message="tns:setConfigAncillaryResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigAncillary/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getOrbits">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitsRequest"
+				message="tns:getOrbits"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitsResponse"
+				message="tns:getOrbitsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbits/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getObjectsID">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsIDRequest"
+				message="tns:getObjectsID"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsIDResponse"
+				message="tns:getObjectsIDResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsID/Fault/FaultMessageType"></fault>
+		</operation>	
+		<operation name="getProviders">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getProvidersRequest"
+				message="tns:getProviders"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getProvidersResponse"
+				message="tns:getProvidersResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getProviders/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getOrbitDeterminationIDFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitDeterminationIDFilterByRequest"
+				message="tns:getOrbitDeterminationIDFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitDeterminationIDFilterByResponse"
+				message="tns:getOrbitDeterminationIDFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitDeterminationIDFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigThirdPartyData">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigThirdPartyDataRequest"
+				message="tns:setConfigThirdPartyData"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigThirdPartyDataResponse"
+				message="tns:setConfigThirdPartyDataResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigThirdPartyData/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getObjectsFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsFilterByRequest"
+				message="tns:getObjectsFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsFilterByResponse"
+				message="tns:getObjectsFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getPlanningRequestId">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestIdRequest"
+				message="tns:getPlanningRequestId"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestIdResponse"
+				message="tns:getPlanningRequestIdResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestId/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getThirdPartyDataDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataDetailsRequest"
+				message="tns:getThirdPartyDataDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataDetailsResponse"
+				message="tns:getThirdPartyDataDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getQualityMonitoringId">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringIdRequest"
+				message="tns:getQualityMonitoringId"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringIdResponse"
+				message="tns:getQualityMonitoringIdResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringId/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setHMIExecutionTimeThreshold">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setHMIExecutionTimeThresholdRequest"
+				message="tns:setHMIExecutionTimeThreshold"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setHMIExecutionTimeThresholdResponse"
+				message="tns:setHMIExecutionTimeThresholdResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setHMIExecutionTimeThreshold/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigEphemerides">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigEphemeridesRequest"
+				message="tns:setConfigEphemerides"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigEphemeridesResponse"
+				message="tns:setConfigEphemeridesResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigEphemerides/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfCorrelation">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfCorrelationRequest"
+				message="tns:getNumberOfCorrelation"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfCorrelationResponse"
+				message="tns:getNumberOfCorrelationResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfCorrelation/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigAccuracy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigAccuracyRequest"
+				message="tns:getConfigAccuracy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigAccuracyResponse"
+				message="tns:getConfigAccuracyResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigAccuracy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigLookUpTable">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigLookUpTableRequest"
+				message="tns:setConfigLookUpTable"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigLookUpTableResponse"
+				message="tns:setConfigLookUpTableResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigLookUpTable/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getPlanningRequestIDFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestIDFilterByRequest"
+				message="tns:getPlanningRequestIDFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestIDFilterByResponse"
+				message="tns:getPlanningRequestIDFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestIDFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getODProcessID">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getODProcessIDRequest"
+				message="tns:getODProcessID"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getODProcessIDResponse"
+				message="tns:getODProcessIDResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getODProcessID/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfThirdPartyData">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfThirdPartyDataRequest"
+				message="tns:getNumberOfThirdPartyData"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfThirdPartyDataResponse"
+				message="tns:getNumberOfThirdPartyDataResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfThirdPartyData/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getCatalogue">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCatalogueRequest"
+				message="tns:getCatalogue"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCatalogueResponse"
+				message="tns:getCatalogueResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCatalogue/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getThirdPartyDataFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataFilterByRequest"
+				message="tns:getThirdPartyDataFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataFilterByResponse"
+				message="tns:getThirdPartyDataFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getOrbitDeterminationDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitDeterminationDetailsRequest"
+				message="tns:getOrbitDeterminationDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitDeterminationDetailsResponse"
+				message="tns:getOrbitDeterminationDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getOrbitDeterminationDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getElementsManualOperation">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getElementsManualOperationRequest"
+				message="tns:getElementsManualOperation"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getElementsManualOperationResponse"
+				message="tns:getElementsManualOperationResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getElementsManualOperation/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getManualOperationDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getManualOperationDetailsRequest"
+				message="tns:getManualOperationDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getManualOperationDetailsResponse"
+				message="tns:getManualOperationDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getManualOperationDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigLookUpTable">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigLookUpTableRequest"
+				message="tns:getConfigLookUpTable"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigLookUpTableResponse"
+				message="tns:getConfigLookUpTableResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigLookUpTable/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getServiceProcess">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getServiceProcessRequest"
+				message="tns:getServiceProcess"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getServiceProcessResponse"
+				message="tns:getServiceProcessResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getServiceProcess/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getObjectDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectDetailsRequest"
+				message="tns:getObjectDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectDetailsResponse"
+				message="tns:getObjectDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigOperationMode">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigOperationModeRequest"
+				message="tns:setConfigOperationMode"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigOperationModeResponse"
+				message="tns:setConfigOperationModeResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigOperationMode/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfPlanningRequest">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfPlanningRequestRequest"
+				message="tns:getNumberOfPlanningRequest"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfPlanningRequestResponse"
+				message="tns:getNumberOfPlanningRequestResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfPlanningRequest/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfQualityMonitoring">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfQualityMonitoringRequest"
+				message="tns:getNumberOfQualityMonitoring"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfQualityMonitoringResponse"
+				message="tns:getNumberOfQualityMonitoringResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfQualityMonitoring/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigCandidate">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigCandidateRequest"
+				message="tns:setConfigCandidate"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigCandidateResponse"
+				message="tns:setConfigCandidateResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigCandidate/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfObservations">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObservationsRequest"
+				message="tns:getNumberOfObservations"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObservationsResponse"
+				message="tns:getNumberOfObservationsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObservations/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setHMITimeSpan">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setHMITimeSpanRequest"
+				message="tns:setHMITimeSpan"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setHMITimeSpanResponse"
+				message="tns:setHMITimeSpanResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setHMITimeSpan/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigSensors">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigSensorsRequest"
+				message="tns:getConfigSensors"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigSensorsResponse"
+				message="tns:getConfigSensorsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigSensors/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigOperationMode">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigOperationModeRequest"
+				message="tns:getConfigOperationMode"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigOperationModeResponse"
+				message="tns:getConfigOperationModeResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigOperationMode/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getCorrelationDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationDetailsRequest"
+				message="tns:getCorrelationDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationDetailsResponse"
+				message="tns:getCorrelationDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getThirdPartyDataIDFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataIDFilterByRequest"
+				message="tns:getThirdPartyDataIDFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataIDFilterByResponse"
+				message="tns:getThirdPartyDataIDFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataIDFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigEphemerides">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigEphemeridesRequest"
+				message="tns:getConfigEphemerides"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigEphemeridesResponse"
+				message="tns:getConfigEphemeridesResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigEphemerides/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigDynamicModel">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigDynamicModelRequest"
+				message="tns:setConfigDynamicModel"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigDynamicModelResponse"
+				message="tns:setConfigDynamicModelResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigDynamicModel/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getObservationsDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObservationsDetailsRequest"
+				message="tns:getObservationsDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObservationsDetailsResponse"
+				message="tns:getObservationsDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObservationsDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfOD">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfODRequest"
+				message="tns:getNumberOfOD"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfODResponse"
+				message="tns:getNumberOfODResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfOD/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigThresholdOD">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigThresholdODRequest"
+				message="tns:getConfigThresholdOD"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigThresholdODResponse"
+				message="tns:getConfigThresholdODResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigThresholdOD/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigSensors">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigSensorsRequest"
+				message="tns:setConfigSensors"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigSensorsResponse"
+				message="tns:setConfigSensorsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigSensors/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getProcess">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getProcessRequest"
+				message="tns:getProcess"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getProcessResponse"
+				message="tns:getProcessResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getProcess/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigThresholdOD">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigThresholdODRequest"
+				message="tns:setConfigThresholdOD"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigThresholdODResponse"
+				message="tns:setConfigThresholdODResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigThresholdOD/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigThirdPartyData">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigThirdPartyDataRequest"
+				message="tns:getConfigThirdPartyData"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigThirdPartyDataResponse"
+				message="tns:getConfigThirdPartyDataResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigThirdPartyData/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="executeAction">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/executeActionRequest"
+				message="tns:executeAction"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/executeActionResponse"
+				message="tns:executeActionResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/executeAction/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getHMITimeSpan">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getHMITimeSpanRequest"
+				message="tns:getHMITimeSpan"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getHMITimeSpanResponse"
+				message="tns:getHMITimeSpanResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getHMITimeSpan/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getThirdPartyData">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataRequest"
+				message="tns:getThirdPartyData"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataResponse"
+				message="tns:getThirdPartyDataResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyData/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigAncillary">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigAncillaryRequest"
+				message="tns:getConfigAncillary"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigAncillaryResponse"
+				message="tns:getConfigAncillaryResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigAncillary/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getQualityMonitoringDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringDetailsRequest"
+				message="tns:getQualityMonitoringDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringDetailsResponse"
+				message="tns:getQualityMonitoringDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getPlanningRequestDetails">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestDetailsRequest"
+				message="tns:getPlanningRequestDetails"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestDetailsResponse"
+				message="tns:getPlanningRequestDetailsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getPlanningRequestDetails/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="stopDPC">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/stopDPCRequest"
+				message="tns:stopDPC"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/stopDPCResponse"
+				message="tns:stopDPCResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/stopDPC/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getThirdPartyDataId">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataIdRequest"
+				message="tns:getThirdPartyDataId"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataIdResponse"
+				message="tns:getThirdPartyDataIdResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getThirdPartyDataId/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getSigPosErrorReport">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getSigPosErrorReportRequest"
+				message="tns:getSigPosErrorReport"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getSigPosErrorReportResponse"
+				message="tns:getSigPosErrorReportResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getSigPosErrorReport/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfObservationsInCatalogue">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObservationsInCatalogueRequest"
+				message="tns:getNumberOfObservationsInCatalogue"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObservationsInCatalogueResponse"
+				message="tns:getNumberOfObservationsInCatalogueResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObservationsInCatalogue/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigCandidate">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigCandidateRequest"
+				message="tns:getConfigCandidate"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigCandidateResponse"
+				message="tns:getConfigCandidateResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigCandidate/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getObservationsIDFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObservationsIDFilterByRequest"
+				message="tns:getObservationsIDFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObservationsIDFilterByResponse"
+				message="tns:getObservationsIDFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObservationsIDFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getObjectsIDFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsIDFilterByRequest"
+				message="tns:getObjectsIDFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsIDFilterByResponse"
+				message="tns:getObjectsIDFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getObjectsIDFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getConfigDynamicModel">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigDynamicModelRequest"
+				message="tns:getConfigDynamicModel"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigDynamicModelResponse"
+				message="tns:getConfigDynamicModelResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getConfigDynamicModel/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getQualityMonitoringIDFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringIDFilterByRequest"
+				message="tns:getQualityMonitoringIDFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringIDFilterByResponse"
+				message="tns:getQualityMonitoringIDFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getQualityMonitoringIDFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getCorrelationId">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationIdRequest"
+				message="tns:getCorrelationId"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationIdResponse"
+				message="tns:getCorrelationIdResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationId/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getCorrelationIDFilterBy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationIDFilterByRequest"
+				message="tns:getCorrelationIDFilterBy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationIDFilterByResponse"
+				message="tns:getCorrelationIDFilterByResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getCorrelationIDFilterBy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="setConfigAccuracy">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigAccuracyRequest"
+				message="tns:setConfigAccuracy"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigAccuracyResponse"
+				message="tns:setConfigAccuracyResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/setConfigAccuracy/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getHMIExecutionTimeThreshold">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getHMIExecutionTimeThresholdRequest"
+				message="tns:getHMIExecutionTimeThreshold"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getHMIExecutionTimeThresholdResponse"
+				message="tns:getHMIExecutionTimeThresholdResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getHMIExecutionTimeThreshold/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getNumberOfObjects">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObjectsRequest"
+				message="tns:getNumberOfObjects"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObjectsResponse"
+				message="tns:getNumberOfObjectsResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getNumberOfObjects/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getService">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getServiceRequest"
+				message="tns:getService"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getServiceResponse"
+				message="tns:getServiceResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getService/Fault/FaultMessageType"></fault>
+		</operation>
+		<operation name="getStatus">
+			<input
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getStatusRequest"
+				message="tns:getStatus"></input>
+			<output
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getStatusResponse"
+				message="tns:getStatusResponse"></output>
+			<fault message="tns:FaultMessageType" name="FaultMessageType"
+				wsam:Action="http://com.dms.ssa/HMIServerCommunicationService/HMIServerCommunicationService/getStatus/Fault/FaultMessageType"></fault>
+		</operation>
+	</portType>
+	<binding name="HMIServerCommunicationServicePortBinding" type="tns:HMIServerCommunicationService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document"></soap:binding>
+		<operation name="startDPC">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigAncillary">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="activeSensor">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="addNewSensor">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+			<operation name="removeSensor">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+				<operation name="removeConfigTP">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getOrbits">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getObjectsID">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getProviders">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getOrbitDeterminationIDFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigThirdPartyData">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getObjectsFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getPlanningRequestId">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getThirdPartyDataDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getQualityMonitoringId">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setHMIExecutionTimeThreshold">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigEphemerides">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfCorrelation">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigAccuracy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigLookUpTable">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getPlanningRequestIDFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getODProcessID">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfThirdPartyData">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getCatalogue">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getThirdPartyDataFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getOrbitDeterminationDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getElementsManualOperation">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getManualOperationDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigLookUpTable">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getServiceProcess">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getObjectDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigOperationMode">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfPlanningRequest">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfQualityMonitoring">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigCandidate">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfObservations">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setHMITimeSpan">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigSensors">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigOperationMode">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getCorrelationDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getThirdPartyDataIDFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigEphemerides">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigDynamicModel">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getObservationsDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfOD">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigThresholdOD">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigSensors">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getProcess">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigThresholdOD">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigThirdPartyData">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="executeAction">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getHMITimeSpan">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getThirdPartyData">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigAncillary">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getQualityMonitoringDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getPlanningRequestDetails">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="stopDPC">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getThirdPartyDataId">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getSigPosErrorReport">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfObservationsInCatalogue">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigCandidate">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getObservationsIDFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getObjectsIDFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getConfigDynamicModel">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getQualityMonitoringIDFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getCorrelationId">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getCorrelationIDFilterBy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="setConfigAccuracy">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getHMIExecutionTimeThreshold">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getNumberOfObjects">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getService">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+		<operation name="getStatus">
+			<soap:operation soapAction=""></soap:operation>
+			<input>
+				<soap:body use="literal"></soap:body>
+			</input>
+			<output>
+				<soap:body use="literal"></soap:body>
+			</output>
+			<fault name="FaultMessageType">
+				<soap:fault name="FaultMessageType" use="literal"></soap:fault>
+			</fault>
+		</operation>
+	</binding>
+	<service name="HMICommunicationServiceImplService">
+		<port name="HMIServerCommunicationServicePort" binding="tns:HMIServerCommunicationServicePortBinding">
+			<soap:address
+				location="http://localhost:8080/HMICommunicationService-ws/HMICommunicationService"></soap:address>
+		</port>
+	</service>
+</definitions>

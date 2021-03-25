@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:tns="http://esa.ssa/dpc/2.1/ComputeTransitionMatrixResponseType" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" targetNamespace="http://esa.ssa/dpc/2.1/ComputeTransitionMatrixResponseType" elementFormDefault="qualified">
+	<import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+	<element name="ComputeTransitionMatrixResponseType">
+		<complexType>
+			<sequence>
+				<element name="TransitionMatrix" type="dpc:TransitionMatrix"/>
+				<element name="ObjectResponse" type="dpc:DPCConfirmationType"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

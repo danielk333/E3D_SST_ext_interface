@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by mjep (dms) -->
+<xsd:schema targetNamespace="http://esa.ssa/ssensor/1.2/OnSensorInactiveRequestType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/ssensor/1.2/OnSensorInactiveRequestType">
+	<xsd:element name="OnSensorInactiveRequestType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SensorID" type="xsd:long" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

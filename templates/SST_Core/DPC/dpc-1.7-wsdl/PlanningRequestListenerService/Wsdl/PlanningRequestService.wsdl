@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:dpc="http://esa.ssa/dpc/2.1/PlanningRequestServiceSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/dpc/2.1/PlanningRequestService" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="PlanningRequestService" targetNamespace="http://esa.ssa/dpc/2.1/PlanningRequestService">
+	<wsdl:import namespace="http://esa.ssa/dpc/2.1/PlanningRequestServiceSchema" location="./PlanningRequestServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../../ssaHeaders/ssaRuntimeService.wsdl" />
+	<wsdl:binding name="PlanningRequestServiceInterfaceBinding" type="dpc:PlanningRequestServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- ======== OPERATIONS =========  -->
+		<wsdl:operation name="planningRequestPlanned">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/PlanningRequestService/planningRequestPlanned/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="planningRequestPlannedFault">
+				<soap:fault name="planningRequestPlannedFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="planningRequestPerformed">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/PlanningRequestService/planningRequestPerformed/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="planningRequestPerformedFault">
+				<soap:fault name="planningRequestPerformedFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PlanningRequestService">
+		<wsdl:port name="PlanningRequestServiceInterfacePort" binding="tns:PlanningRequestServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/dpc/2.1/PlanningRequestService/PlanningRequestService/PlanningRequestServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

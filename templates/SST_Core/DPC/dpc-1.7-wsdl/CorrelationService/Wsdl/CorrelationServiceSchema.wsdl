@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssa="http://ssa.esa.int/common/" xmlns:tns="http://esa.ssa/dpc/2.1/CorrelationServiceSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:crobreq="http://esa.ssa/dpc/2.1/CorrelateObservationsRequestType" xmlns:crobres="http://esa.ssa/dpc/2.1/CorrelateObservationsResponseType" xmlns:crthreq="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataRequestType" xmlns:crthres="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataResponseType" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" name="dpc" targetNamespace="http://esa.ssa/dpc/2.1/CorrelationServiceSchema">
+	<wsdl:types>
+		<xsd:schema attributeFormDefault="qualified" targetNamespace="http://esa.ssa/dpc/2.1/CorrelationServiceSchema" version="1.0">
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+			<!--CorrelateObservations-->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CorrelateObservationsRequestType" schemaLocation="../Schemas/CorrelateObservationsRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CorrelateObservationsResponseType" schemaLocation="../Schemas/CorrelateObservationsResponseType.xsd"/>
+			<!--CorrelateThirdPartyData-->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataRequestType" schemaLocation="../Schemas/CorrelateThirdPartyDataRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataResponseType" schemaLocation="../Schemas/CorrelateThirdPartyDataResponseType.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="CorrelationServiceFaultMessageType">
+		<wsdl:part name="fault" element="dpc:DPCErrorType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateObservationsRequestMessageType">
+		<wsdl:part name="in" element="crobreq:CorrelateObservationsRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateObservationsResponseMessageType">
+		<wsdl:part name="out" element="crobres:CorrelateObservationsResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateThirdPartyDataRequestMessageType">
+		<wsdl:part name="in" element="crthreq:CorrelateThirdPartyDataRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateThirdPartyDataResponseMessageType">
+		<wsdl:part name="out" element="crthres:CorrelateThirdPartyDataResponseType"/>
+	</wsdl:message>
+	<wsdl:portType name="CorrelationServiceInterface">
+		<!--correlateObservations-->
+		<wsdl:operation name="correlateObservations">
+			<wsdl:input message="tns:CorrelateObservationsRequestMessageType"/>
+			<wsdl:output message="tns:CorrelateObservationsResponseMessageType"/>
+			<wsdl:fault name="correlateObservationsFault" message="tns:CorrelationServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--correlateThirdPartyData-->
+		<wsdl:operation name="correlateThirdPartyData">
+			<wsdl:input message="tns:CorrelateThirdPartyDataRequestMessageType"/>
+			<wsdl:output message="tns:CorrelateThirdPartyDataResponseMessageType"/>
+			<wsdl:fault name="correlateThirdPartyDataFault" message="tns:CorrelationServiceFaultMessageType"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

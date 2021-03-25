@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MMSOServiceInterface" targetNamespace="http://esa.ssa.gen.catalogue/mmsos/service/1.2/" xmlns:mmsos="http://esa.ssa.gen.catalogue/mmsos/data/1.2/" xmlns:tns="http://esa.ssa.gen.catalogue/mmsos/service/1.2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://esa.ssa.gen.catalogue/mmsos/service/1.2/">
+			<xsd:import namespace="http://esa.ssa.gen.catalogue/mmsos/data/1.2/" schemaLocation="./MMSOSDataModel.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<!-- MMSO Service Fault message -->
+	<wsdl:message name="mmsoServiceFaultMsg">
+		<wsdl:part element="mmsos:mmsoServiceFault" name="fault"/>
+	</wsdl:message>
+	<!-- MMSO Service operation messages -->
+	<wsdl:message name="createObjectRequestMsg">
+		<wsdl:part element="mmsos:createObjectRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="createObjectResponseMsg">
+		<wsdl:part element="mmsos:createObjectResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveObjectIdsRequestMsg">
+		<wsdl:part element="mmsos:retrieveObjectIdsRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveObjectIdsResponseMsg">
+		<wsdl:part element="mmsos:retrieveObjectIdsResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveDPCObjectsRequestMsg">
+		<wsdl:part element="mmsos:retrieveDPCObjectsRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveDPCObjectsResponseMsg">
+		<wsdl:part element="mmsos:retrieveDPCObjectsResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveObjectRequestMsg">
+		<wsdl:part element="mmsos:retrieveObjectRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveObjectResponseMsg">
+		<wsdl:part element="mmsos:retrieveObjectResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="updateObjectRequestMsg">
+		<wsdl:part element="mmsos:updateObjectRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="updateObjectResponseMsg">
+		<wsdl:part element="mmsos:updateObjectResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="deleteObjectRequestMsg">
+		<wsdl:part element="mmsos:deleteObjectRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="deleteObjectResponseMsg">
+		<wsdl:part element="mmsos:deleteObjectResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="invalidateObjectRequestMsg">
+		<wsdl:part element="mmsos:invalidateObjectRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="invalidateObjectResponseMsg">
+		<wsdl:part element="mmsos:invalidateObjectResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="mergeObjectsRequestMsg">
+		<wsdl:part element="mmsos:mergeObjectsRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="mergeObjectsResponseMsg">
+		<wsdl:part element="mmsos:mergeObjectsResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="assignCosparIDRequestMsg">
+		<wsdl:part element="mmsos:assignCosparIDRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="assignCosparIDResponseMsg">
+		<wsdl:part element="mmsos:assignCosparIDResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="getSSAIDForCosparIDRequestMsg">
+		<wsdl:part element="mmsos:translateCosparIDRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="getSSAIDForCosparIDResponseMsg">
+		<wsdl:part element="mmsos:translateCosparIDResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="countObjectRequestMsg">
+		<wsdl:part element="mmsos:countObjectRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="countObjectResponseMsg">
+		<wsdl:part element="mmsos:countObjectResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="addTrackingDataRequestMsg">
+		<wsdl:part element="mmsos:addTrackingDataRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="addTrackingDataResponseMsg">
+		<wsdl:part element="mmsos:addTrackingDataResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveTrackingDataIdsRequestMsg">
+		<wsdl:part element="mmsos:retrieveTrackingDataIdsRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveTrackingDataIdsResponseMsg">
+		<wsdl:part element="mmsos:retrieveTrackingDataIdsResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveTrackingDataRequestMsg">
+		<wsdl:part element="mmsos:retrieveTrackingDataRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveTrackingDataResponseMsg">
+		<wsdl:part element="mmsos:retrieveTrackingDataResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="countTrackingDataRequestMsg">
+		<wsdl:part element="mmsos:countTrackingDataRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="countTrackingDataResponseMsg">
+		<wsdl:part element="mmsos:countTrackingDataResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="updateTrackingDataRequestMsg">
+		<wsdl:part element="mmsos:updateTrackingDataRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="updateTrackingDataResponseMsg">
+		<wsdl:part element="mmsos:updateTrackingDataResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="deleteTrackingDataRequestMsg">
+		<wsdl:part element="mmsos:deleteTrackingDataRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="deleteTrackingDataResponseMsg">
+		<wsdl:part element="mmsos:deleteTrackingDataResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="addOrbitRequestMsg">
+		<wsdl:part element="mmsos:addOrbitRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="addOrbitResponseMsg">
+		<wsdl:part element="mmsos:addOrbitResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveCurrentOrbitRequestMsg">
+		<wsdl:part element="mmsos:retrieveCurrentOrbitRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveCurrentOrbitResponseMsg">
+		<wsdl:part element="mmsos:retrieveCurrentOrbitResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveOrbitIdsRequestMsg">
+		<wsdl:part element="mmsos:retrieveOrbitIdsRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveOrbitIdsResponseMsg">
+		<wsdl:part element="mmsos:retrieveOrbitIdsResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveOrbitRequestMsg">
+		<wsdl:part element="mmsos:retrieveOrbitRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveOrbitResponseMsg">
+		<wsdl:part element="mmsos:retrieveOrbitResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="getThirdPartyOrbitDataRequestMsg">
+		<wsdl:part element="mmsos:getThirdPartyOrbitDataRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="getThirdPartyOrbitDataResponseMsg">
+		<wsdl:part element="mmsos:getThirdPartyOrbitDataResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="updateOrbitRequestMsg">
+		<wsdl:part element="mmsos:updateOrbitRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="updateOrbitResponseMsg">
+		<wsdl:part element="mmsos:updateOrbitResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="deleteOrbitRequestMsg">
+		<wsdl:part element="mmsos:deleteOrbitRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="deleteOrbitResponseMsg">
+		<wsdl:part element="mmsos:deleteOrbitResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="setOrbitUpdateDeadlineRequestMsg">
+		<wsdl:part element="mmsos:setOrbitUpdateDeadlineRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="setOrbitUpdateDeadlineResponseMsg">
+		<wsdl:part element="mmsos:setOrbitUpdateDeadlineResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="clearOrbitUpdateDeadlineRequestMsg">
+		<wsdl:part element="mmsos:clearOrbitUpdateDeadlineRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="clearOrbitUpdateDeadlineResponseMsg">
+		<wsdl:part element="mmsos:clearOrbitUpdateDeadlineResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="countOrbitRequestMsg">
+		<wsdl:part element="mmsos:countOrbitRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="countOrbitResponseMsg">
+		<wsdl:part element="mmsos:countOrbitResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="addMeanElementRequestMsg">
+		<wsdl:part element="mmsos:addMeanElementRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="addMeanElementResponseMsg">
+		<wsdl:part element="mmsos:addMeanElementResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="updateMeanElementRequestMsg">
+		<wsdl:part element="mmsos:updateMeanElementRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="updateMeanElementResponseMsg">
+		<wsdl:part element="mmsos:updateMeanElementResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="deleteMeanElementRequestMsg">
+		<wsdl:part element="mmsos:deleteMeanElementRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="deleteMeanElementResponseMsg">
+		<wsdl:part element="mmsos:deleteMeanElementResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveMeanElementRequestMsg">
+		<wsdl:part element="mmsos:retrieveMeanElementRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveMeanElementResponseMsg">
+		<wsdl:part element="mmsos:retrieveMeanElementResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="countMeanElementRequestMsg">
+		<wsdl:part element="mmsos:countMeanElementRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="countMeanElementResponseMsg">
+		<wsdl:part element="mmsos:countMeanElementResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="addEphemerisRequestMsg">
+		<wsdl:part element="mmsos:addEphemerisRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="addEphemerisResponseMsg">
+		<wsdl:part element="mmsos:addEphemerisResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveCurrentEphemerisRequestMsg">
+		<wsdl:part element="mmsos:retrieveCurrentEphemerisRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveCurrentEphemerisResponseMsg">
+		<wsdl:part element="mmsos:retrieveCurrentEphemerisResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveEphemerisIdsRequestMsg">
+		<wsdl:part element="mmsos:retrieveEphemerisIdsRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveEphemerisIdsResponseMsg">
+		<wsdl:part element="mmsos:retrieveEphemerisIdsResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveEphemerisRequestMsg">
+		<wsdl:part element="mmsos:retrieveEphemerisRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveEphemerisResponseMsg">
+		<wsdl:part element="mmsos:retrieveEphemerisResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="formatEphemerisRequestMsg">
+		<wsdl:part element="mmsos:formatEphemerisRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="formatEphemerisResponseMsg">
+		<wsdl:part element="mmsos:formatEphemerisResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="updateEphemerisRequestMsg">
+		<wsdl:part element="mmsos:updateEphemerisRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="updateEphemerisResponseMsg">
+		<wsdl:part element="mmsos:updateEphemerisResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="deleteEphemerisRequestMsg">
+		<wsdl:part element="mmsos:deleteEphemerisRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="deleteEphemerisResponseMsg">
+		<wsdl:part element="mmsos:deleteEphemerisResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="countEphemerisRequestMsg">
+		<wsdl:part element="mmsos:countEphemerisRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="countEphemerisResponseMsg">
+		<wsdl:part element="mmsos:countEphemerisResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="addManoeuvreRequestMsg">
+		<wsdl:part element="mmsos:addManoeuvreRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="addManoeuvreResponseMsg">
+		<wsdl:part element="mmsos:addManoeuvreResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveManoeuvreIdsRequestMsg">
+		<wsdl:part element="mmsos:retrieveManoeuvreIdsRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveManoeuvreIdsResponseMsg">
+		<wsdl:part element="mmsos:retrieveManoeuvreIdsResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveManoeuvreRequestMsg">
+		<wsdl:part element="mmsos:retrieveManoeuvreRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="retrieveManoeuvreResponseMsg">
+		<wsdl:part element="mmsos:retrieveManoeuvreResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="updateManoeuvreRequestMsg">
+		<wsdl:part element="mmsos:updateManoeuvreRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="updateManoeuvreResponseMsg">
+		<wsdl:part element="mmsos:updateManoeuvreResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="deleteManoeuvreRequestMsg">
+		<wsdl:part element="mmsos:deleteManoeuvreRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="deleteManoeuvreResponseMsg">
+		<wsdl:part element="mmsos:deleteManoeuvreResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="subscribeRequestMsg">
+		<wsdl:part element="mmsos:subscribeRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="subscribeResponseMsg">
+		<wsdl:part element="mmsos:subscribeResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="unsubscribeRequestMsg">
+		<wsdl:part element="mmsos:unsubscribeRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="unsubscribeResponseMsg">
+		<wsdl:part element="mmsos:unsubscribeResponse" name="out"/>
+	</wsdl:message>
+	<wsdl:message name="setFragmentationEventToObjectRequestMsg">
+		<wsdl:part element="mmsos:setFragmentationEventToObjectRequest" name="in"/>
+	</wsdl:message>
+	<wsdl:message name="setFragmentationEventToObjectResponseMsg">
+		<wsdl:part element="mmsos:setFragmentationEventToObjectResponse" name="out"/>
+	</wsdl:message>
+	<!-- MMSO DPC Extended Catalog -->
+	<wsdl:message name="GetDPCObjectDataRequestMessageType">
+		<wsdl:part name="in" element="mmsos:getDPCObjectDataRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetDPCObjectDataResponseMessageType">
+		<wsdl:part name="out" element="mmsos:getDPCObjectDataResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GetDPCObjectDataPreviousToRequestMessageType">
+		<wsdl:part name="in" element="mmsos:getDPCObjectDataPreviousToRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetDPCObjectDataPreviousToResponseMessageType">
+		<wsdl:part name="out" element="mmsos:getDPCObjectDataPreviousToResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateDPCObjectDataRequestMessageType">
+		<wsdl:part name="in" element="mmsos:updateDPCObjectDataRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateDPCObjectDataResponseMessageType">
+		<wsdl:part name="out" element="mmsos:updateDPCObjectDataResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GetDPCCatalogRequestMessageType">
+		<wsdl:part name="in" element="mmsos:getDPCCatalogRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetDPCCatalogResponseMessageType">
+		<wsdl:part name="out" element="mmsos:getDPCCatalogResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GetOutOfDateObjectsRequestMessageType">
+		<wsdl:part name="in" element="mmsos:getOutOfDateObjectsRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetOutOfDateObjectsResponseMessageType">
+		<wsdl:part name="out" element="mmsos:getOutOfDateObjectsResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GetCatalogueOverviewRequestMessageType">
+		<wsdl:part name="in" element="mmsos:GetCatalogueOverviewRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetCatalogueOverviewResponseMessageType">
+		<wsdl:part name="out" element="mmsos:GetCatalogueOverviewResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GetCatalogueOverviewReportRequestMessageType">
+		<wsdl:part name="in" element="mmsos:GetCatalogueOverviewReportRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetCatalogueOverviewReportResponseMessageType">
+		<wsdl:part name="out" element="mmsos:GetCatalogueOverviewReportResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GetCatalogMaxEpochRequestMessageType">
+		<wsdl:part name="in" element="mmsos:getCatalogMaxEpochRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetCatalogMaxEpochResponseMessageType">
+		<wsdl:part name="out" element="mmsos:getCatalogMaxEpochResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GetSSIMCatalogRequestMessageType">
+		<wsdl:part name="in" element="mmsos:getSSIMCatalogRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GetSSIMCatalogResponseMessageType">
+		<wsdl:part name="out" element="mmsos:getSSIMCatalogResponseType"/>
+	</wsdl:message>
+	<wsdl:portType name="MMSOServiceInterface">
+		<wsdl:operation name="createObject">
+			<wsdl:documentation>&lt;p&gt;creates a new object in the
+                catalogue.&lt;/p&gt;&lt;p&gt;The service returns the
+                unique id of the object&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:createObjectRequestMsg"/>
+			<wsdl:output message="tns:createObjectResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="createObjectFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveObjectIds">
+			<wsdl:documentation>&lt;p&gt;returns the list of object ids 
+		   (plus their respective name) currently maintained by the service. 
+		   The operation is useful for iterating over objects.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:retrieveObjectIdsRequestMsg"/>
+			<wsdl:output message="tns:retrieveObjectIdsResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveObjectIdsFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveDPCObjects">
+			<wsdl:documentation>&lt;p&gt;returns the list of object ids 
+		   currently maintained by the service. 
+		   The operation is useful for displaying catalog objects in DPC HMI&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:retrieveDPCObjectsRequestMsg"/>
+			<wsdl:output message="tns:retrieveDPCObjectsResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveDPCObjectsFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveObject">
+			<wsdl:documentation>&lt;p&gt;retrieves an object from the
+                catalogue together with its complete data structure&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:retrieveObjectRequestMsg"/>
+			<wsdl:output message="tns:retrieveObjectResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveObjectFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateObject">
+			<wsdl:documentation>&lt;p&gt;updates an entire object. The
+                object is identified by its id. The new data will
+                overwrite and replace old data.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:updateObjectRequestMsg"/>
+			<wsdl:output message="tns:updateObjectResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="updateObjectFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteObject">
+			<wsdl:documentation>&lt;p&gt;deletes an object set from the
+                catalogue.&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:deleteObjectRequestMsg"/>
+			<wsdl:output message="tns:deleteObjectResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="deleteObjectFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="invalidateObject">
+			<wsdl:documentation>&lt;p&gt;Marks an object as invalid. Object data is maintaining in the catalogue but
+			the object is considered as no-valid and will not be used by the system.&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:invalidateObjectRequestMsg"/>
+			<wsdl:output message="tns:invalidateObjectResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="invalidateObjectFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="mergeObjects">
+			<wsdl:documentation>&lt;p&gt;Meges a list of objets.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:mergeObjectsRequestMsg"/>
+			<wsdl:output message="tns:mergeObjectsResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="mergeObjectsFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="assignCosparID">
+			<wsdl:input message="tns:assignCosparIDRequestMsg"/>
+			<wsdl:output message="tns:assignCosparIDResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="assignCosparIDFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getSSAIDForCosparID">
+			<wsdl:input message="tns:getSSAIDForCosparIDRequestMsg"/>
+			<wsdl:output message="tns:getSSAIDForCosparIDResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getSSAIDForCosparIDFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="countObject">
+			<wsdl:input message="tns:countObjectRequestMsg"/>
+			<wsdl:output message="tns:countObjectResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="countObjectFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="addTrackingData">
+			<wsdl:input message="tns:addTrackingDataRequestMsg"/>
+			<wsdl:output message="tns:addTrackingDataResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="addTrackingDataFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveTrackingDataIds">
+			<wsdl:input message="tns:retrieveTrackingDataIdsRequestMsg"/>
+			<wsdl:output message="tns:retrieveTrackingDataIdsResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveTrackingDataIdsFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveTrackingData">
+			<wsdl:input message="tns:retrieveTrackingDataRequestMsg"/>
+			<wsdl:output message="tns:retrieveTrackingDataResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveTrackingDataFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="countTrackingData">
+			<wsdl:input message="tns:countTrackingDataRequestMsg"/>
+			<wsdl:output message="tns:countTrackingDataResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="countTrackingDataFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateTrackingData">
+			<wsdl:input message="tns:updateTrackingDataRequestMsg"/>
+			<wsdl:output message="tns:updateTrackingDataResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="updateTrackingDataFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteTrackingData">
+			<wsdl:input message="tns:deleteTrackingDataRequestMsg"/>
+			<wsdl:output message="tns:deleteTrackingDataResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="deleteTrackingDataFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="addOrbit">
+			<wsdl:documentation>&lt;p&gt;The operation adds an orbit
+                data set to the list of orbits of the given object.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:addOrbitRequestMsg"/>
+			<wsdl:output message="tns:addOrbitResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="addOrbitFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveCurrentOrbit">
+			<wsdl:documentation>&lt;p&gt;retrieves the current orbit of
+                an object. The current one is the one added
+                latest&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:retrieveCurrentOrbitRequestMsg"/>
+			<wsdl:output message="tns:retrieveCurrentOrbitResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveCurrentOrbitFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveOrbitIds">
+			<wsdl:documentation>&lt;p&gt;retrieves the ids of the list
+                of orbits currently stored with an object. The operation
+                is useful for iterating over the orbit data.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:retrieveOrbitIdsRequestMsg"/>
+			<wsdl:output message="tns:retrieveOrbitIdsResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveOrbitIdsFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveOrbit">
+			<wsdl:documentation>&lt;p&gt;retrieves entries from
+                	the list of orbits stored for an object. The data can be
+                	identified by the unique id of the orbit or can be selected
+                	applying the proivided filter&lt;/p&gt;
+            		</wsdl:documentation>
+			<wsdl:input message="tns:retrieveOrbitRequestMsg"/>
+			<wsdl:output message="tns:retrieveOrbitResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveOrbitFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getThirdPartyOrbitData">
+			<wsdl:input message="tns:getThirdPartyOrbitDataRequestMsg"/>
+			<wsdl:output message="tns:getThirdPartyOrbitDataResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getThirdPartyOrbitDataFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateOrbit">
+			<wsdl:documentation>&lt;p&gt;updates an entry in the list of
+                orbits stored for an object. The data is identified by
+                the unique id of the orbit. The new data will overwrite
+                and replace old data.&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:updateOrbitRequestMsg"/>
+			<wsdl:output message="tns:updateOrbitResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="updateOrbitFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteOrbit">
+			<wsdl:documentation>&lt;p&gt;deletes an orbit data set from
+                the list of orbits maintained for the
+                object.&lt;/p&gt;&lt;p&gt;The data set is identified by
+                the unique id returned when creating it.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:deleteOrbitRequestMsg"/>
+			<wsdl:output message="tns:deleteOrbitResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="deleteOrbitFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="setOrbitUpdateDeadline">
+			<wsdl:documentation>&lt;p&gt;sets the deadline until when
+                the service expects orbit updates for a list of
+                objects&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:setOrbitUpdateDeadlineRequestMsg"/>
+			<wsdl:output message="tns:setOrbitUpdateDeadlineResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="setOrbitUpdateDeadlineFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="clearOrbitUpdateDeadline">
+			<wsdl:documentation>&lt;p&gt;clears the deadline for orbit
+                updates for a given list of objects&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:clearOrbitUpdateDeadlineRequestMsg"/>
+			<wsdl:output message="tns:clearOrbitUpdateDeadlineResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="clearOrbitUpdateDeadlineFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="countOrbit">
+			<wsdl:input message="tns:countOrbitRequestMsg"/>
+			<wsdl:output message="tns:countOrbitResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="countOrbitFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="addMeanElement">
+			<wsdl:input message="tns:addMeanElementRequestMsg"/>
+			<wsdl:output message="tns:addMeanElementResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="addMeanElementFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateMeanElement">
+			<wsdl:input message="tns:updateMeanElementRequestMsg"/>
+			<wsdl:output message="tns:updateMeanElementResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="updateMeanElementFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteMeanElement">
+			<wsdl:documentation>&lt;p&gt;deletes a mean element data set
+                from the list of mean elements maintained for the
+                object.&lt;/p&gt;&lt;p&gt;The data set is identified by
+                the unique id returned when creating it.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:deleteMeanElementRequestMsg"/>
+			<wsdl:output message="tns:deleteMeanElementResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="deleteMeanElementFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveMeanElement">
+			<wsdl:input message="tns:retrieveMeanElementRequestMsg"/>
+			<wsdl:output message="tns:retrieveMeanElementResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveMeanElementFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="countMeanElement">
+			<wsdl:input message="tns:countMeanElementRequestMsg"/>
+			<wsdl:output message="tns:countMeanElementResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="countMeanElementFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="addEphemeris">
+			<wsdl:documentation>&lt;p&gt;The operation adds an ephemeris
+                data set to the list of ephemerides of the given
+                object.&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:addEphemerisRequestMsg"/>
+			<wsdl:output message="tns:addEphemerisResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="addEphemerisFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveCurrentEphemeris">
+			<wsdl:documentation>&lt;p&gt;retrieves the current ephemeris
+                of an object. The current one is the one added
+                latest&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:retrieveCurrentEphemerisRequestMsg"/>
+			<wsdl:output message="tns:retrieveCurrentEphemerisResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveCurrentEphemerisFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveEphemerisIds">
+			<wsdl:documentation>&lt;p&gt;retrieves the ids of the list
+                of ephemerides currently stored with an object. The
+                operation is useful for iterating over the ephemeris
+                data.&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:retrieveEphemerisIdsRequestMsg"/>
+			<wsdl:output message="tns:retrieveEphemerisIdsResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveEphemerisIdsFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveEphemeris">
+			<wsdl:documentation>&lt;p&gt;retrieves a entries from
+                the list of ephemerides stored for an object. The data
+                can be identified by the unique id of the
+                ephemeris or selected by a filter&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:retrieveEphemerisRequestMsg"/>
+			<wsdl:output message="tns:retrieveEphemerisResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveEphemerisFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="formatEphemeris">
+			<wsdl:input message="tns:formatEphemerisRequestMsg"/>
+			<wsdl:output message="tns:formatEphemerisResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="formatEphemerisFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateEphemeris">
+			<wsdl:documentation>&lt;p&gt;updates an entry in the list of
+                ephemerides stored for an object. The data is identified
+                by the unique id of the ephemeris. The new data will
+                overwrite and replace old data.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:updateEphemerisRequestMsg"/>
+			<wsdl:output message="tns:updateEphemerisResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="updateEphemerisFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteEphemeris">
+			<wsdl:documentation>&lt;p&gt;deletes an ephemeris data set
+                from the list of ephemerides maintained for the
+                object.&lt;/p&gt;&lt;p&gt;The data set is identified by
+                the unique id returned when creating it.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:deleteEphemerisRequestMsg"/>
+			<wsdl:output message="tns:deleteEphemerisResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="deleteEphemerisFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="countEphemeris">
+			<wsdl:input message="tns:countEphemerisRequestMsg"/>
+			<wsdl:output message="tns:countEphemerisResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="countEphemerisFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="addManoeuvre">
+			<wsdl:documentation>&lt;p&gt;The operation adds a manoeuvre
+                data set to the list of &lt;b&gt;&lt;/b&gt;manoeuvres
+                &lt;b&gt;&lt;/b&gt;of the given object.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:addManoeuvreRequestMsg"/>
+			<wsdl:output message="tns:addManoeuvreResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="addManoeuvreFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveManoeuvreIds">
+			<wsdl:documentation>&lt;p&gt;retrieves the ids of the list
+                of manoeuvres currently stored with an object. The
+                operation is useful for iterating over the manoeuvre
+                data.&lt;/p&gt; </wsdl:documentation>
+			<wsdl:input message="tns:retrieveManoeuvreIdsRequestMsg"/>
+			<wsdl:output message="tns:retrieveManoeuvreIdsResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveManoeuvreIdsFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="retrieveManoeuvre">
+			<wsdl:documentation>&lt;p&gt;retrieves a single entry from
+                the list of manoeuvres stored for an object. The data is
+                identified by the unique id of the manoeuvre.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:retrieveManoeuvreRequestMsg"/>
+			<wsdl:output message="tns:retrieveManoeuvreResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="retrieveManoeuvreFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateManoeuvre">
+			<wsdl:documentation>&lt;p&gt;updates an entry in the list of
+                manoeuvres stored for an object. The data is identified
+                by the unique id of the manoeuvre . The new data will
+                overwrite and replace old data.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:updateManoeuvreRequestMsg"/>
+			<wsdl:output message="tns:updateManoeuvreResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="updateManoeuvreFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteManoeuvre">
+			<wsdl:documentation>&lt;p&gt;deletes a manoeuvre data set
+                from the list of manoeuvres maintained for the
+                object.&lt;/p&gt;&lt;p&gt;The data set is identified by
+                the unique id returned when creating it.&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:deleteManoeuvreRequestMsg"/>
+			<wsdl:output message="tns:deleteManoeuvreResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="deleteManoeuvreFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="subscribe">
+			<wsdl:documentation>&lt;p&gt;subscribes a client to changes
+                in the object catalogue.)&lt;/p&gt;&lt;p&gt;As soon as any of
+                the catalogue objects is updated (orbit, manoeuvre,
+                ephemeris) the client end point will be
+                notified.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:subscribeRequestMsg"/>
+			<wsdl:output message="tns:subscribeResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="subscribeFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="unsubscribe">
+			<wsdl:documentation>&lt;p&gt;un-subscribes a client from
+                changes made in the catalogue. The client is identified
+                by its subscriberId or endPoint&lt;/p&gt;
+            </wsdl:documentation>
+			<wsdl:input message="tns:unsubscribeRequestMsg"/>
+			<wsdl:output message="tns:unsubscribeResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="unsubscribeFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="setFragmentationEventToObject">
+			<wsdl:input message="tns:setFragmentationEventToObjectRequestMsg"/>
+			<wsdl:output message="tns:setFragmentationEventToObjectResponseMsg"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="setFragmentationEventToObjectFault"/>
+		</wsdl:operation>
+		<!-- MMSO DPC Extended Catalogue -->
+		<!--getDPCObjectData -->
+		<wsdl:operation name="getDPCObjectData">
+			<wsdl:input message="tns:GetDPCObjectDataRequestMessageType"/>
+			<wsdl:output message="tns:GetDPCObjectDataResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getDPCObjectDataFault"/>
+		</wsdl:operation>
+		<!--getDPCObjectDataPreviousTo -->
+		<wsdl:operation name="getDPCObjectDataPreviousTo">
+			<wsdl:input message="tns:GetDPCObjectDataPreviousToRequestMessageType"/>
+			<wsdl:output message="tns:GetDPCObjectDataPreviousToResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getDPCObjectDataPreviousToFault"/>
+		</wsdl:operation>
+		<!--updateDPCObjectData -->
+		<wsdl:operation name="updateDPCObjectData">
+			<wsdl:input message="tns:UpdateDPCObjectDataRequestMessageType"/>
+			<wsdl:output message="tns:UpdateDPCObjectDataResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="updateDPCObjectDataFault"/>
+		</wsdl:operation>
+		<!--getDPCCatalog -->
+		<wsdl:operation name="getDPCCatalog">
+			<wsdl:input message="tns:GetDPCCatalogRequestMessageType"/>
+			<wsdl:output message="tns:GetDPCCatalogResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getDPCCatalogFault"/>
+		</wsdl:operation>
+		<!--getOutOfDateObjects-->
+		<wsdl:operation name="getOutOfDateObjects">
+			<wsdl:input message="tns:GetOutOfDateObjectsRequestMessageType"/>
+			<wsdl:output message="tns:GetOutOfDateObjectsResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getOutOfDateObjectsFault"/>
+		</wsdl:operation>
+		<!--retrieveDPCCatalogOverview -->
+		<wsdl:operation name="getCatalogueOverview">
+			<wsdl:input message="tns:GetCatalogueOverviewRequestMessageType"/>
+			<wsdl:output message="tns:GetCatalogueOverviewResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getCatalogueOverviewFault"/>
+		</wsdl:operation>
+		<!--retrieveDPCCatalogOverviewReport -->
+		<wsdl:operation name="getCatalogueOverviewReport">
+			<wsdl:input message="tns:GetCatalogueOverviewReportRequestMessageType"/>
+			<wsdl:output message="tns:GetCatalogueOverviewReportResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getCatalogueOverviewReportFault"/>
+		</wsdl:operation>
+		<!--getCatalogMaxEpoch-->
+		<wsdl:operation name="getCatalogMaxEpoch">
+			<wsdl:input message="tns:GetCatalogMaxEpochRequestMessageType"/>
+			<wsdl:output message="tns:GetCatalogMaxEpochResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getCatalogMaxEpochFault"/>
+		</wsdl:operation>
+		<!-- Get catalog formatted to be used by the SSIM -->
+		<wsdl:operation name="getSSIMCatalog">
+			<wsdl:input message="tns:GetSSIMCatalogRequestMessageType"/>
+			<wsdl:output message="tns:GetSSIMCatalogResponseMessageType"/>
+			<wsdl:fault message="tns:mmsoServiceFaultMsg" name="getSSIMCatalogFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

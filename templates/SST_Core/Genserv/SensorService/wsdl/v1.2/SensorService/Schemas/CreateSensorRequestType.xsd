@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa/ssensor/1.2/CreateSensorRequestType" xmlns:tns="http://esa.ssa/ssensor/1.2/CreateSensorRequestType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="http://esa.ssa.sst/2.1/common/sensors/common/" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml">
+	<xsd:import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-namespace-1.1.xsd"/>
+	<xsd:import namespace="http://esa.ssa.sst/2.1/common/sensors/common/" schemaLocation="../../../../../../commonSSTDataModel/esa/ssa/sst/common/sensors/common/common.xsd"/>
+	<xsd:element name="CreateSensorRequestType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="startApplicability" type="ndm:epochType" minOccurs="0"/>
+				<xsd:choice>
+					<xsd:element name="OpticalGroundSensor" type="com:OpticalGroundSensorType"/>
+					<xsd:element name="OpticalSpaceSensor" type="com:OpticalSpaceSensorType"/>
+					<xsd:element name="RadarGroundSensor" type="com:RadarGroundSensorType"/>
+					<xsd:element name="SLRGroundSensor" type="com:SLRGroundSensorType"/>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

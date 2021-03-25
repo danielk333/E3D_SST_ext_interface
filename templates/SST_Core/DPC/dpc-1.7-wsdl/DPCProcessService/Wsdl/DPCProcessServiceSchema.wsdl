@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ssa="http://ssa.esa.int/common/" xmlns:tns="http://esa.ssa/dpc/2.1/DPCProcessServiceSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" xmlns:covpreq="http://esa.ssa/dpc/2.1/CheckOrbitValidityPeriodRequestType" xmlns:covpres="http://esa.ssa/dpc/2.1/CheckOrbitValidityPeriodResponseType" xmlns:gorqreq="http://esa.ssa/dpc/2.1/GenerateObservationRequestRequestType" xmlns:gorqres="http://esa.ssa/dpc/2.1/GenerateObservationRequestResponseType" xmlns:setupreq="http://esa.ssa/dpc/2.1/SetupDynamicModelRequestType" xmlns:setupres="http://esa.ssa/dpc/2.1/SetupDynamicModelResponseType" xmlns:propreq="http://esa.ssa/dpc/2.1/PropagateRequestType" xmlns:propres="http://esa.ssa/dpc/2.1/PropagateResponseType" xmlns:propsvreq="http://esa.ssa/dpc/2.1/PropagateStateVectorRequestType" xmlns:propsvres="http://esa.ssa/dpc/2.1/PropagateStateVectorResponseType" xmlns:ctranreq="http://esa.ssa/dpc/2.1/ComputeTransitionMatrixRequestType" xmlns:ctranres="http://esa.ssa/dpc/2.1/ComputeTransitionMatrixResponseType" xmlns:pcovreq="http://esa.ssa/dpc/2.1/PropagateCovarianceMatrixRequestType" xmlns:pcovres="http://esa.ssa/dpc/2.1/PropagateCovarianceMatrixResponseType" xmlns:intsvreq="http://esa.ssa/dpc/2.1/InterpolateStateVectorRequestType" xmlns:intsvres="http://esa.ssa/dpc/2.1/InterpolateStateVectorResponseType" xmlns:pireq="http://esa.ssa/dpc/2.1/PerformInitialRequestType" xmlns:pires="http://esa.ssa/dpc/2.1/PerformInitialResponseType" xmlns:prreq="http://esa.ssa/dpc/2.1/PerformRoutineRequestType" xmlns:prres="http://esa.ssa/dpc/2.1/PerformRoutineResponseType" xmlns:crobreq="http://esa.ssa/dpc/2.1/CorrelateObservationsRequestType"  xmlns:crthreq="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataRequestType" xmlns:crthres="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataResponseType" xmlns:data="http://esa.ssa/dpc/2.1/DPCProcessData" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="dpc" targetNamespace="http://esa.ssa/dpc/2.1/DPCProcessServiceSchema">
+	<wsdl:types>
+		<xsd:schema attributeFormDefault="qualified" targetNamespace="http://esa.ssa/dpc/2.1/DPCProcessServiceSchema" version="1.0">
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CheckOrbitValidityPeriodRequestType" schemaLocation="../../CatalogueQualityMonitoringService/Schemas/CheckOrbitValidityPeriodRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CheckOrbitValidityPeriodResponseType" schemaLocation="../../CatalogueQualityMonitoringService/Schemas/CheckOrbitValidityPeriodResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/GenerateObservationRequestRequestType" schemaLocation="../../CatalogueQualityMonitoringService/Schemas/GenerateObservationRequestRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/GenerateObservationRequestResponseType" schemaLocation="../../CatalogueQualityMonitoringService/Schemas/GenerateObservationRequestResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/SetupDynamicModelRequestType" schemaLocation="../../OrbitPropagationService/Schemas/SetupDynamicModelRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/SetupDynamicModelResponseType" schemaLocation="../../OrbitPropagationService/Schemas/SetupDynamicModelResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PropagateRequestType" schemaLocation="../../OrbitPropagationService/Schemas/PropagateRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PropagateResponseType" schemaLocation="../../OrbitPropagationService/Schemas/PropagateResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PropagateStateVectorRequestType" schemaLocation="../../OrbitPropagationService/Schemas/PropagateStateVectorRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PropagateStateVectorResponseType" schemaLocation="../../OrbitPropagationService/Schemas/PropagateStateVectorResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/ComputeTransitionMatrixRequestType" schemaLocation="../../OrbitPropagationService/Schemas/ComputeTransitionMatrixRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/ComputeTransitionMatrixResponseType" schemaLocation="../../OrbitPropagationService/Schemas/ComputeTransitionMatrixResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PropagateCovarianceMatrixRequestType" schemaLocation="../../OrbitPropagationService/Schemas/PropagateCovarianceMatrixRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PropagateCovarianceMatrixResponseType" schemaLocation="../../OrbitPropagationService/Schemas/PropagateCovarianceMatrixResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/InterpolateStateVectorRequestType" schemaLocation="../../OrbitPropagationService/Schemas/InterpolateStateVectorRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/InterpolateStateVectorResponseType" schemaLocation="../../OrbitPropagationService/Schemas/InterpolateStateVectorResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PerformInitialRequestType" schemaLocation="../../OrbitDeterminationService/Schemas/PerformInitialRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PerformInitialResponseType" schemaLocation="../../OrbitDeterminationService/Schemas/PerformInitialResponseType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PerformRoutineRequestType" schemaLocation="../../OrbitDeterminationService/Schemas/PerformRoutineRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/PerformRoutineResponseType" schemaLocation="../../OrbitDeterminationService/Schemas/PerformRoutineResponseType.xsd"/>
+			<!--CorrelateObservations-->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CorrelateObservationsRequestType" schemaLocation="../../CorrelationService/Schemas/CorrelateObservationsRequestType.xsd"/>
+			<!--CorrelateThirdPartyData-->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataRequestType" schemaLocation="../../CorrelationService/Schemas/CorrelateThirdPartyDataRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/CorrelateThirdPartyDataResponseType" schemaLocation="../../CorrelationService/Schemas/CorrelateThirdPartyDataResponseType.xsd"/>
+			<!--DPCProcessData-->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/DPCProcessData" schemaLocation="../Schemas/DPCProcessData.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="DPCProcessServiceFaultMessageType">
+		<wsdl:part name="fault" element="dpc:DPCErrorType"/>
+	</wsdl:message>
+	<wsdl:message name="CheckOrbitValidityPeriodRequestMessageType">
+		<wsdl:part name="in" element="covpreq:CheckOrbitValidityPeriodRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="CheckOrbitValidityPeriodResponseMessageType">
+		<wsdl:part name="out" element="covpres:CheckOrbitValidityPeriodResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="GenerateObservationRequestRequestMessageType">
+		<wsdl:part name="in" element="gorqreq:GenerateObservationRequestRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="GenerateObservationRequestResponseMessageType">
+		<wsdl:part name="out" element="gorqres:GenerateObservationRequestResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="PropagateRequestMessageType">
+		<wsdl:part name="in" element="propreq:PropagateRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="PropagateResponseMessageType">
+		<wsdl:part name="out" element="propres:PropagateResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="SetupDynamicModelRequestMessageType">
+		<wsdl:part name="in" element="setupreq:SetupDynamicModelRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="SetupDynamicModelResponseMessageType">
+		<wsdl:part name="out" element="setupres:SetupDynamicModelResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="PropagateStateVectorRequestMessageType">
+		<wsdl:part name="in" element="propsvreq:PropagateStateVectorRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="PropagateStateVectorResponseMessageType">
+		<wsdl:part name="out" element="propsvres:PropagateStateVectorResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="ComputeTransitionMatrixRequestMessageType">
+		<wsdl:part name="in" element="ctranreq:ComputeTransitionMatrixRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="ComputeTransitionMatrixResponseMessageType">
+		<wsdl:part name="out" element="ctranres:ComputeTransitionMatrixResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="PropagateCovarianceMatrixRequestMessageType">
+		<wsdl:part name="in" element="pcovreq:PropagateCovarianceMatrixRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="PropagateCovarianceMatrixResponseMessageType">
+		<wsdl:part name="out" element="pcovres:PropagateCovarianceMatrixResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="InterpolateStateVectorRequestMessageType">
+		<wsdl:part name="in" element="intsvreq:InterpolateStateVectorRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="InterpolateStateVectorResponseMessageType">
+		<wsdl:part name="out" element="intsvres:InterpolateStateVectorResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="PerformInitialRequestMessageType">
+		<wsdl:part name="in" element="pireq:PerformInitialRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="PerformInitialResponseMessageType">
+		<wsdl:part name="out" element="pires:PerformInitialResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="PerformRoutineRequestMessageType">
+		<wsdl:part name="in" element="prreq:PerformRoutineRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="PerformRoutineResponseMessageType">
+		<wsdl:part name="out" element="data:PerformRoutineResidualResponseType"/>
+	</wsdl:message>
+	
+	<wsdl:message name="IODRequestMessageType">
+		<wsdl:part name="in" element="data:IODRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="IODResponseMessageType">
+		<wsdl:part name="out" element="data:IODResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="RODRequestMessageType">
+		<wsdl:part name="in" element="data:RODRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="RODResponseMessageType">
+		<wsdl:part name="out" element="data:RODResponseType"/>
+	</wsdl:message>
+	
+	<wsdl:message name="CorrelateNewObjectRequestMessageType">
+		<wsdl:part name="in" element="data:CorrelateNewObjectRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateObservationsRequestMessageType">
+		<wsdl:part name="in" element="crobreq:CorrelateObservationsRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateObservationsResponseMessageType">
+		<wsdl:part name="out" element="data:CorrelateAndODResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateThirdPartyDataRequestMessageType">
+		<wsdl:part name="in" element="crthreq:CorrelateThirdPartyDataRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="CorrelateThirdPartyDataResponseMessageType">
+		<wsdl:part name="out" element="data:CorrelateCandidatesResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="CalculateOrbitTypeRequestMessageType">
+		<wsdl:part name="in" element="data:CalculateOrbitTypeRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="CalculateOrbitTypeResponseMessageType">
+		<wsdl:part name="out" element="data:CalculateOrbitTypeResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateAgendaRequestMessageType">
+		<wsdl:part name="in" element="data:UpdateAgendaRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="UpdateAgendaResponseMessageType">
+		<wsdl:part name="out" element="data:UpdateAgendaResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="SaveAgendaRequestMessageType">
+		<wsdl:part name="in" element="data:SaveAgendaRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="SaveAgendaResponseMessageType">
+		<wsdl:part name="out" element="data:SaveAgendaResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="LoadAgendaRequestMessageType">
+		<wsdl:part name="in" element="data:LoadAgendaRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="LoadAgendaResponseMessageType">
+		<wsdl:part name="out" element="data:LoadAgendaResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="UnloadAgendaRequestMessageType">
+		<wsdl:part name="in" element="data:UnloadAgendaRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="UnloadAgendaResponseMessageType">
+		<wsdl:part name="out" element="data:UnloadAgendaResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveAgendaObjectRequestMessageType">
+		<wsdl:part name="in" element="data:RemoveAgendaObjectRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="RemoveAgendaObjectResponseMessageType">
+		<wsdl:part name="out" element="data:RemoveAgendaObjectResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="LogCleanupRequestMessageType">
+		<wsdl:part name="in" element="data:LogCleanupRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="LogCleanupResponseMessageType">
+		<wsdl:part name="out" element="data:LogCleanupResponseType"/>
+	</wsdl:message>
+	
+	<wsdl:message name="SVOeds2EgdsRequestMessageType">
+		<wsdl:part name="in" element="data:SVOeds2EgdsRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="SVOeds2EgdsResponseMessageType">
+		<wsdl:part name="out" element="data:SVOeds2EgdsResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="SVEgds2OedsRequestMessageType">
+		<wsdl:part name="in" element="data:SVEgds2OedsRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="SVEgds2OedsResponseMessageType">
+		<wsdl:part name="out" element="data:SVEgds2OedsResponseType"/>
+	</wsdl:message>
+	
+	<wsdl:message name="COVOeds2EgdsRequestMessageType">
+		<wsdl:part name="in" element="data:COVOeds2EgdsRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="COVOeds2EgdsResponseMessageType">
+		<wsdl:part name="out" element="data:COVOeds2EgdsResponseType"/>
+	</wsdl:message>
+	<wsdl:message name="COVEgds2OedsRequestMessageType">
+		<wsdl:part name="in" element="data:COVEgds2OedsRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="COVEgds2OedsResponseMessageType">
+		<wsdl:part name="out" element="data:COVEgds2OedsResponseType"/>
+	</wsdl:message>
+	
+	<wsdl:portType name="DPCProcessServiceInterface">
+		<!--checkOrbitValidityPeriod-->
+		<wsdl:operation name="checkOrbitValidityPeriod">
+			<wsdl:input message="tns:CheckOrbitValidityPeriodRequestMessageType"/>
+			<wsdl:output message="tns:CheckOrbitValidityPeriodResponseMessageType"/>
+			<wsdl:fault name="checkOrbitValidityPeriodFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--generateObservationRequest-->
+		<wsdl:operation name="generateObservationRequest">
+			<wsdl:input message="tns:GenerateObservationRequestRequestMessageType"/>
+			<wsdl:output message="tns:GenerateObservationRequestResponseMessageType"/>
+			<wsdl:fault name="generateObservationRequestFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--propagate-->
+		<wsdl:operation name="propagate">
+			<wsdl:input message="tns:PropagateRequestMessageType"/>
+			<wsdl:output message="tns:PropagateResponseMessageType"/>
+			<wsdl:fault name="propagateFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--setupDynamicModel-->
+		<wsdl:operation name="setupDynamicModel">
+			<wsdl:input message="tns:SetupDynamicModelRequestMessageType"/>
+			<wsdl:output message="tns:SetupDynamicModelResponseMessageType"/>
+			<wsdl:fault name="setupDynamicModelFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--propagateStateVector-->
+		<wsdl:operation name="propagateStateVector">
+			<wsdl:input message="tns:PropagateStateVectorRequestMessageType"/>
+			<wsdl:output message="tns:PropagateStateVectorResponseMessageType"/>
+			<wsdl:fault name="propagateStateVectorFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--computeTransitionMatrix-->
+		<wsdl:operation name="computeTransitionMatrix">
+			<wsdl:input message="tns:ComputeTransitionMatrixRequestMessageType"/>
+			<wsdl:output message="tns:ComputeTransitionMatrixResponseMessageType"/>
+			<wsdl:fault name="computeTransitionMatrixFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--propagateCovarianceMatrix-->
+		<wsdl:operation name="propagateCovarianceMatrix">
+			<wsdl:input message="tns:PropagateCovarianceMatrixRequestMessageType"/>
+			<wsdl:output message="tns:PropagateCovarianceMatrixResponseMessageType"/>
+			<wsdl:fault name="propagateCovarianceMatrixFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--interpolateStateVector-->
+		<wsdl:operation name="interpolateStateVector">
+			<wsdl:input message="tns:InterpolateStateVectorRequestMessageType"/>
+			<wsdl:output message="tns:InterpolateStateVectorResponseMessageType"/>
+			<wsdl:fault name="interpolateStateVectorFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--performInitial-->
+		<wsdl:operation name="performInitial">
+			<wsdl:input message="tns:PerformInitialRequestMessageType"/>
+			<wsdl:output message="tns:PerformInitialResponseMessageType"/>
+			<wsdl:fault name="performInitialFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--performRoutine-->
+		<wsdl:operation name="performRoutine">
+			<wsdl:input message="tns:PerformRoutineRequestMessageType"/>
+			<wsdl:output message="tns:PerformRoutineResponseMessageType"/>
+			<wsdl:fault name="performRoutineFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		
+		<!--initialOD-->
+		<wsdl:operation name="initialOD">
+			<wsdl:input message="tns:IODRequestMessageType"/>
+			<wsdl:output message="tns:IODResponseMessageType"/>
+			<wsdl:fault name="initialODFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--routineOD-->
+		<wsdl:operation name="routineOD">
+			<wsdl:input message="tns:RODRequestMessageType"/>
+			<wsdl:output message="tns:RODResponseMessageType"/>
+			<wsdl:fault name="routineODFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		
+		<!--correlateObservations-->
+		<wsdl:operation name="correlateObservations">
+			<wsdl:input message="tns:CorrelateObservationsRequestMessageType"/>
+			<wsdl:output message="tns:CorrelateObservationsResponseMessageType"/>
+			<wsdl:fault name="correlateObservationsFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--correlateNewObject-->
+		<wsdl:operation name="correlateNewObject">
+			<wsdl:input message="tns:CorrelateNewObjectRequestMessageType"/>
+			<wsdl:output message="tns:CorrelateObservationsResponseMessageType"/>
+			<wsdl:fault name="correlateNewObjectFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--correlateThirdPartyData-->
+		<wsdl:operation name="correlateThirdPartyData">
+			<wsdl:input message="tns:CorrelateThirdPartyDataRequestMessageType"/>
+			<wsdl:output message="tns:CorrelateThirdPartyDataResponseMessageType"/>
+			<wsdl:fault name="correlateThirdPartyDataFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--calculateOrbitType-->
+		<wsdl:operation name="calculateOrbitType">
+			<wsdl:input message="tns:CalculateOrbitTypeRequestMessageType"/>
+			<wsdl:output message="tns:CalculateOrbitTypeResponseMessageType"/>
+			<wsdl:fault name="calculateOrbitTypeFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--updateAgenda-->
+		<wsdl:operation name="updateAgenda">
+			<wsdl:input message="tns:UpdateAgendaRequestMessageType"/>
+			<wsdl:output message="tns:UpdateAgendaResponseMessageType"/>
+			<wsdl:fault name="updateAgendaFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--saveAgenda-->
+		<wsdl:operation name="saveAgenda">
+			<wsdl:input message="tns:SaveAgendaRequestMessageType"/>
+			<wsdl:output message="tns:SaveAgendaResponseMessageType"/>
+			<wsdl:fault name="saveAgendaFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--loadAgenda-->
+		<wsdl:operation name="loadAgenda">
+			<wsdl:input message="tns:LoadAgendaRequestMessageType"/>
+			<wsdl:output message="tns:LoadAgendaResponseMessageType"/>
+			<wsdl:fault name="loadAgendaFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--unloadAgenda-->
+		<wsdl:operation name="unloadAgenda">
+			<wsdl:input message="tns:UnloadAgendaRequestMessageType"/>
+			<wsdl:output message="tns:UnloadAgendaResponseMessageType"/>
+			<wsdl:fault name="unloadAgendaFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--removeAgendaObject-->
+		<wsdl:operation name="removeAgendaObject">
+			<wsdl:input message="tns:RemoveAgendaObjectRequestMessageType"/>
+			<wsdl:output message="tns:RemoveAgendaObjectResponseMessageType"/>
+			<wsdl:fault name="removeAgendaObjectFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--logCleanup-->
+		<wsdl:operation name="logCleanup">
+			<wsdl:input message="tns:LogCleanupRequestMessageType"/>
+			<wsdl:output message="tns:LogCleanupResponseMessageType"/>
+			<wsdl:fault name="logCleanupFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--convertSVOeds2Egds-->
+		<wsdl:operation name="convertSVOeds2Egds">
+			<wsdl:input message="tns:SVOeds2EgdsRequestMessageType"/>
+			<wsdl:output message="tns:SVOeds2EgdsResponseMessageType"/>
+			<wsdl:fault name="convertSVOeds2EgdsFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--convertSVEgds2Oeds-->
+		<wsdl:operation name="convertSVEgds2Oeds">
+			<wsdl:input message="tns:SVEgds2OedsRequestMessageType"/>
+			<wsdl:output message="tns:SVEgds2OedsResponseMessageType"/>
+			<wsdl:fault name="convertSVEgds2OedsFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--convertCOVOeds2Egds-->
+		<wsdl:operation name="convertCOVOeds2Egds">
+			<wsdl:input message="tns:COVOeds2EgdsRequestMessageType"/>
+			<wsdl:output message="tns:COVOeds2EgdsResponseMessageType"/>
+			<wsdl:fault name="convertCOVOeds2EgdsFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+		<!--convertCOVEgds2Oeds-->
+		<wsdl:operation name="convertCOVEgds2Oeds">
+			<wsdl:input message="tns:COVEgds2OedsRequestMessageType"/>
+			<wsdl:output message="tns:COVEgds2OedsResponseMessageType"/>
+			<wsdl:fault name="convertCOVEgds2OedsFault" message="tns:DPCProcessServiceFaultMessageType"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

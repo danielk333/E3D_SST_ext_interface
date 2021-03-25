@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://esa.ssa/dpc/2.1/PropagateCovarianceMatrixRequestType" xmlns:eCCSDS="http://esa.ssa.sst/2.1/CCSDS/" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" xmlns:ndm="urn:ccsds:recommendation:navigation:schema:ndmxml" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/dpc/2.1/PropagateCovarianceMatrixRequestType" elementFormDefault="qualified">
+	<import namespace="urn:ccsds:recommendation:navigation:schema:ndmxml" schemaLocation="../../../../../commonSSTDataModel/CCSDS/ndmxml-1.0-navwg-common.xsd"/>
+	<import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
+	<import namespace="http://esa.ssa.sst/2.1/CCSDS/" schemaLocation="../../../../../commonSSTDataModel/esa/ssa/sst/extendedCCSDS/extendedCCSDS.xsd"/>
+	<element name="PropagateCovarianceMatrixRequestType">
+		<complexType>
+			<sequence>
+				<element name="InitialTime" type="ndm:epochType"/>
+				<element name="FinalPropagationTime" type="ndm:epochType"/>
+				<element name="CovarianceMatrix" type="ndm:covarianceMatrixType"/>
+				<element name="CovarianceMatrixParameteres" type="eCCSDS:CovarianceMatrixParametersType"/>
+				<element name="CovarianceMatrixAddData" type="dpc:CovarianceMatrixAddDataType"/>
+				<element name="TransitionMatrix" type="dpc:TransitionMatrix"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

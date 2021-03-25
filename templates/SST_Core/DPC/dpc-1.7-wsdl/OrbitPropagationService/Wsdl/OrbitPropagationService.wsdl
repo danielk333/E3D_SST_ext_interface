@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:dpc="http://esa.ssa/dpc/2.1/OrbitPropagationServiceSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/dpc/2.1/OrbitPropagationService" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="OrbitPropagationService" targetNamespace="http://esa.ssa/dpc/2.1/OrbitPropagationService">
+	<wsdl:import namespace="http://esa.ssa/dpc/2.1/OrbitPropagationServiceSchema" location="./OrbitPropagationServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../../ssaHeaders/ssaRuntimeService.wsdl" />
+	<wsdl:binding name="OrbitPropagationServiceInterfaceBinding" type="dpc:OrbitPropagationServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- ======== OPERATIONS =========  -->
+		<wsdl:operation name="propagate">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/OrbitPropagationService/propagate/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="propagateFault">
+				<soap:fault name="propagateFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="setupDynamicModel">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/OrbitPropagationService/setupDynamicModel/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="setupDynamicModelFault">
+				<soap:fault name="setupDynamicModelFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="propagateStateVector">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/OrbitPropagationService/propagateStateVector/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="propagateStateVectorFault">
+				<soap:fault name="propagateStateVectorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="computeTransitionMatrix">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/OrbitPropagationService/computeTransitionMatrix/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="computeTransitionMatrixFault">
+				<soap:fault name="computeTransitionMatrixFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="propagateCovarianceMatrix">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/OrbitPropagationService/propagateCovarianceMatrix/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="propagateCovarianceMatrixFault">
+				<soap:fault name="propagateCovarianceMatrixFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="interpolateStateVector">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/OrbitPropagationService/interpolateStateVector/"/>
+			<wsdl:input>
+				<soap:body parts="in" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="out" use="literal"/>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="interpolateStateVectorFault">
+				<soap:fault name="interpolateStateVectorFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="OrbitPropagationService">
+		<wsdl:port name="OrbitPropagationServiceInterfacePort" binding="tns:OrbitPropagationServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/dpc/2.1/OrbitPropagationService/OrbitPropagationService/OrbitPropagationServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

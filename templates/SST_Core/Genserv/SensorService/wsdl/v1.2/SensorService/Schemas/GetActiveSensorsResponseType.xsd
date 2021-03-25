@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://esa.ssa/ssensor/1.2/GetActiveSensorsResponseType" xmlns:ssensor="http://esa.ssa/ssensor/1.2/ssensor"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/ssensor/1.2/GetActiveSensorsResponseType">
+	<xsd:import namespace="http://esa.ssa/ssensor/1.2/ssensor" schemaLocation="../CommonTypes/sensorcommontypes.xsd"/>
+	<xsd:element name="GetActiveSensorsResponseType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="SensorID" type="xsd:long" maxOccurs="unbounded"/>
+				<xsd:element name="ObjectResponse" type="ssensor:SENSORConfirmationType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
