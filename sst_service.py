@@ -19,7 +19,7 @@ import xml.etree
 import tornado.ioloop
 import tornado.web
 
-from config import ROOT, DEBUG
+from config import ROOT, DEBUG, config
 
 
 class SoapEnvelope:
@@ -58,7 +58,7 @@ class SoapEnvelope:
 class WsdlService:
 
     def __init__(self, wsdl):
-        self.wsdl = wsdl
+        self.wsdl = xmlschema.extras.wsdl.Wsdl11Document(wsdl)
         self.load_operations()
         self.load_actions()
 
@@ -171,13 +171,12 @@ class IndexHandler(tornado.web.RequestHandler):
 
 
     def post(self, schema_file, *args, **kwargs):
-        try:
-            ip = env['HTTP_X_FORWARDED_FOR'].split(',')[-1].strip()
-        except KeyError:
-            ip = env['REMOTE_ADDR']
-        logging.info(f'Handling request from {ip}')
+        _path = pathlib.Path('./templates')
+        schema_file = _path / (schema_file + '.wsdl')
 
-        service = WsdlService(schema_file)
+        logging.info(f'Handling request from {self.request.remote_ip}')
+
+        service = WsdlService(str(schema_file))
 
         xml_str = self.request.body.decode()
         envelope = SoapEnvelope()
@@ -208,8 +207,11 @@ def main():
         cookie_secret=cookie_secret,
     )
 
-    app.listen(PORT, HOST)
-    logging.info(f"Listening on {HOST}:{PORT}")
+    app.listen(
+        config.getint('SST Server', 'port'), 
+        config.get('SST Server', 'host'),
+    )
+    logging.info(f"Listening on {config.get('SST Server', 'host')}:{config.getint('SST Server', 'port')}")
 
     try:
         tornado.ioloop.IOLoop.current().start()

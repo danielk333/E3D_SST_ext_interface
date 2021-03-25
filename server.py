@@ -13,9 +13,10 @@ from sst_service import main as service_main
 
 class SSTService(Daemon):
 
-    def __init__(self, config):
+    def __init__(self, config, schema_path):
         super().__init__(config.get('General', 'Daemon path'))
         self.config = config
+        self.schema_path = schema_path
 
         if self.config.getboolean('General', 'Enable terminal logging'):
             tlevel = self.config.get('General', 'Terminal logging level').upper()
@@ -39,7 +40,7 @@ class SSTService(Daemon):
     def run(self):
         self.__run = True
         
-        self.client = SSTClient(self.config, self.logger)
+        self.client = SSTClient(self.config, self.logger, self.schema_path)
 
         self.server_thread = threading.Thread(target=service_main)
         self.client_thread = threading.Thread(target=self.client.run)
@@ -69,9 +70,9 @@ class SSTService(Daemon):
 
 
 if __name__ == "__main__":
-    from config import config
+    from config import config, CCSDS
 
-    daemon = SSTService(config)
+    daemon = SSTService(config, CCSDS)
 
     if len(sys.argv) == 2:
         if 'run' == sys.argv[1]:

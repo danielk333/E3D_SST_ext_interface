@@ -22,11 +22,13 @@ class SSTClient:
     :param configparser.ConfigParser config: The server configuration.
     :param bool delivery_log: If :code:`True` a internal list is kept of all files/data that has been delivered, can be considered a intentional memory leak and should only be used for testing.
     '''
-    def __init__(self, config, logger, delivery_log=False):
+    def __init__(self, config, logger, schema_path, delivery_log=False):
         self.logger = logger
         self.config = config
         self.delivery_log = delivery_log
         self.deliveries = []
+
+        self._dry_run = False
 
         inbox = config.get('SST Client', 'Inbox')
         inbox = pathlib.Path(inbox).absolute()
@@ -44,7 +46,7 @@ class SSTClient:
         self.file_ext = [x.strip() for x in self.file_ext]
         self.logger.debug(f'SSTClient: file extensions={self.file_ext}')
 
-        self.schema = xmlschema.XMLSchema(REQUESTS['TDM']['schema'])
+        self.schema = xmlschema.XMLSchema(schema_path)
 
 
 
@@ -73,16 +75,17 @@ class SSTClient:
                     self.logger.debug(f'SST Client: file "{file}" not valid TDM-XML:')
                     self.logger.exception(e)
 
-                client = Client('http://localhost:8001/deliver.wsdl', cache=None)
-                out = client.service.deliver_tdm(xml_data)
+                client = Client('http://localhost:8001/?wsdl', cache=None)
+                out = client.service.get_tdm(xml_data)
                 
                 if out:
-                    shutil.move(file, self.archive / file.name)
-                    self.logger.debug(f'SSTClient: Delivery completed')
+                    if not self._dry_run:
+                        shutil.move(file, self.archive / file.name)
+                    self.logger.info(f'SSTClient: Delivery completed "{out}"')
                     if self.delivery_log:
                         self.deliveries += [file]
                 else:
-                    self.logger.debug(f'SSTClient: Delivery failed "{raw}"')
+                    self.logger.info(f'SSTClient: Delivery failed "{out}"')
 
             time.sleep(self.config.getfloat('SST Client', 'Deliver interval'))
 
@@ -91,3 +94,13 @@ class SSTClient:
         self.__run = False
         self.logger.info('SST Client: STOPPED')
 
+
+if __name__ == '__main__':
+    from config import CCSDS
+    from config import config as cfg
+    import logging
+
+    client = SSTClient(cfg, logging, CCSDS)
+    client._dry_run = True
+
+    client.run()

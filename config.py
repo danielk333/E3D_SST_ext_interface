@@ -1,11 +1,11 @@
 import sys
 import pathlib
 import configparser
-import lxml
-
-import services 
+import logging
 
 config = configparser.ConfigParser()
+
+CCSDS = './templates/commonSSTDataModel/CCSDS/ndmxml-1.0-master.xsd'
 
 ROOT = pathlib.Path(__file__).resolve().parent
 DEBUG = True
@@ -18,6 +18,7 @@ logging.basicConfig(
     level=level,
     format='%(asctime)s %(levelname)s %(message)s',
 )
+
 
 path = ROOT/'config.conf'
 
@@ -51,7 +52,6 @@ if path.exists():
 else:
     with open(path, 'w') as cfgfile:
         config.write(cfgfile)
-
 
 HTTP_200 = '200 OK'
 HTTP_404 = '404 Not Found'
