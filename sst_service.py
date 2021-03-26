@@ -151,6 +151,17 @@ class WsdlService:
 
         return ret
 
+    def get_tdm(self, data):
+        _ns = '{e3d.sst.test}'
+        d = data[f'{_ns}get_tdm'][0]
+        oid = d[f'{_ns}oid']
+        with open('./data/tracklets/tdm.xml', 'r') as f:
+            tdm = f.read()
+        ret = {
+            f'{_ns}get_tdmResult': tdm,
+        }
+        return ret
+
 
 
 class IndexHandler(tornado.web.RequestHandler):
