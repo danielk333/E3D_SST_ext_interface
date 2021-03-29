@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:tns="http://esa.ssa/dpc/2.1/SubmitThirdPartyDataResponseType" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" targetNamespace="http://esa.ssa/dpc/2.1/SubmitThirdPartyDataResponseType" elementFormDefault="qualified">
-	<import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../../DPCCommonTypes/dpc.xsd"/>
-	<element name="SubmitThirdPartyDataResponseType" type="dpc:DPCConfirmationType"/>
-</schema>

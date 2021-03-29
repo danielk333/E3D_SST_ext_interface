@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://esa.ssa/ssensor/1.2/SetActiveSensorsResponseType" xmlns:tns="http://esa.ssa/ssensor/1.2/SetActiveSensorsResponseType" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ssensor="http://esa.ssa/ssensor/1.2/ssensor">
-	<xsd:import namespace="http://esa.ssa/ssensor/1.2/ssensor" schemaLocation="../CommonTypes/sensorcommontypes.xsd"/>
-	<xsd:element name="SetActiveSensorsResponseType" type="ssensor:SENSORConfirmationType"/>
-</xsd:schema>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:dpc="http://esa.ssa/dpc/2.1/SSTDataProcessingServiceSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://esa.ssa/dpc/2.1/SSTDataProcessingService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://esa.ssa/dpc/2.1/SSTDataProcessingService" xmlns:ssa="http://esa.ssa.common/ssaRuntimeService/" name="SSTDataProcessingService" targetNamespace="http://esa.ssa/dpc/2.1/SSTDataProcessingService">
+	<wsdl:import namespace="http://esa.ssa/dpc/2.1/SSTDataProcessingServiceSchema" location="SSTDataProcessingServiceSchema.wsdl"/>
+	<wsdl:import namespace="http://esa.ssa.common/ssaRuntimeService/" location="../ssaHeaders/ssaRuntimeService.wsdl"/>
+	<wsdl:binding name="SSTDataProcessingServiceInterfaceBinding" type="dpc:SSTDataProcessingServiceInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!-- ======== OPERATIONS =========  -->
+		<wsdl:operation name="submitObservationData">
+			<soap:operation soapAction="http://esa.ssa/dpc/2.1/SSTDataProcessingService/submitObservationData/" style="document"/>
+			<wsdl:input>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="in" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:header message="ssa:SSARuntimeMessage" part="header" use="literal"/>
+				<soap:body parts="out" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="submitObservationDataFault">
+				<soap:fault name="submitObservationDataFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SSTDataProcessingService">
+		<wsdl:port name="SSTDataProcessingServiceInterfacePort" binding="tns:SSTDataProcessingServiceInterfaceBinding">
+			<soap:address location="http://esa.ssa/dpc/2.1/SSTDataProcessingService/SSTDataProcessingService/SSTDataProcessingServiceInterfacePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

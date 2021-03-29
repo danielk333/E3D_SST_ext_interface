@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:ssensor="http://esa.ssa/ssensor/1.2/ssensor" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://esa.ssa/ssensor/1.2/SetBiasesResponseType" targetNamespace="http://esa.ssa/ssensor/1.2/SetBiasesResponseType">
-	<xsd:import namespace="http://esa.ssa/ssensor/1.2/ssensor" schemaLocation="../CommonTypes/sensorcommontypes.xsd"/>
-	<xsd:element name="SetBiasesResponseType" type="ssensor:SENSORConfirmationType"/>
-</xsd:schema>

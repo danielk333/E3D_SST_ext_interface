@@ -98,6 +98,10 @@ class WsdlService:
                 ns_prefix = '{' + part.target_namespace + '}'
 
                 results = xml_data.findall(f'.//{ns_prefix}{part_name}')
+                print(results)
+                from lxml import etree
+                elem_str = xml.etree.ElementTree.tostring(part.type.elem)
+                print(print(etree.tostring(etree.XML(elem_str.decode()), pretty_print=True).decode()))
 
                 if len(results) > 0:
                     if datas is None:
@@ -129,9 +133,10 @@ class WsdlService:
             outputs[name] = returns
         return outputs
 
+
     def __call__(self, xml_data):
         inputs = self.get_input(xml_data)
-        
+
         datas = {}
         for key in inputs:
             func = self.actions[key]
@@ -142,14 +147,8 @@ class WsdlService:
         
         return outputs
 
-    def say_hello(self, data):
-        _ns = '{spyne.examples.hello.soap}'
-        d = data[f'{_ns}say_hello'][0]
-        ret = {
-            f'{_ns}say_helloResult': {f'{_ns}string': [d[f'{_ns}name']]*d[f'{_ns}times']},
-        }
 
-        return ret
+class SSTService(WsdlService):
 
     def get_tdm(self, data):
         _ns = '{e3d.sst.test}'
@@ -167,13 +166,17 @@ class WsdlService:
 class IndexHandler(tornado.web.RequestHandler):
     SUPPORTED_METHODS = ('GET','POST')
 
+    def initialize(self, template_path, Service):
+        self.template_path = template_path
+        self.Service = Service
+
     def set_default_headers(self):
         self.set_header('Content-type', 'text/xml; charset=utf-8')
 
 
     def get(self, schema_file, *args, **kwargs):
         if schema_file.endswith('.wsdl') or schema_file.endswith('.xsd'):
-            if (ROOT / 'templates' / schema_file).is_file():
+            if (ROOT / self.template_path / schema_file).is_file():
                 self.render(schema_file)
             else:
                 self.write('<nope></nope>')
@@ -182,12 +185,12 @@ class IndexHandler(tornado.web.RequestHandler):
 
 
     def post(self, schema_file, *args, **kwargs):
-        _path = pathlib.Path('./templates')
+        _path = pathlib.Path('.') / self.template_path
         schema_file = _path / (schema_file + '.wsdl')
 
         logging.info(f'Handling request from {self.request.remote_ip}')
 
-        service = WsdlService(str(schema_file))
+        service = self.Service(str(schema_file))
 
         xml_str = self.request.body.decode()
         envelope = SoapEnvelope()
@@ -203,14 +206,14 @@ class IndexHandler(tornado.web.RequestHandler):
         self.write(soap_response)
         
 
-def main():
+def run_server(port, host, Service, template_path):
     cookie_secret = secrets.token_hex()
 
-    handlers = [(r'/(.*)', IndexHandler, {})]
+    handlers = [(r'/(.*)', IndexHandler, {'template_path': template_path, 'Service': Service})]
 
     app = tornado.web.Application(
         handlers=handlers,
-        template_path=ROOT / 'templates',
+        template_path=ROOT / template_path,
         static_url_prefix=f'/static/',
         static_path=ROOT / 'static',
         xsrf_cookies=False,
@@ -218,16 +221,19 @@ def main():
         cookie_secret=cookie_secret,
     )
 
-    app.listen(
-        config.getint('SST Server', 'port'), 
-        config.get('SST Server', 'host'),
-    )
-    logging.info(f"Listening on {config.get('SST Server', 'host')}:{config.getint('SST Server', 'port')}")
+    app.listen(port, host)
+    logging.info(f"Listening on {host}:{port}")
 
     try:
         tornado.ioloop.IOLoop.current().start()
     except KeyboardInterrupt:
         pass
+
+def main():
+    host = config.get('SST Server', 'host')
+    port = config.getint('SST Server', 'port')
+    run_server(port, host, Service = SSTService, template_path = 'templates')
+
 
 
 if __name__=='__main__':

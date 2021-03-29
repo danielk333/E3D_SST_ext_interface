@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+targetNamespace="http://esa.ssa/dpc/2.1/SubmitObservationDataRequestType" 
+xmlns="http://www.w3.org/2001/XMLSchema" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="http://esa.ssa/dpc/2.1/SubmitObservationDataRequestType" 
+xmlns:eCCSDS="http://esa.ssa.sst/2.1/CCSDS/"
+elementFormDefault="qualified">
+	<xsd:import namespace="http://esa.ssa.sst/2.1/CCSDS/" schemaLocation="../commonSSTDataModel/esa/ssa/sst/extendedCCSDS/extendedCCSDS.xsd"/>
+	<xsd:complexType name="SSTTrackingDataObservationType">
+		<xsd:sequence>
+			<xsd:element name="PlanningRequestID" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="measures" type="eCCSDS:extendedTdmType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<element name="SubmitObservationDataRequestType">
+		<complexType>
+			<sequence>
+				<element name="measure" type="tns:SSTTrackingDataObservationType"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

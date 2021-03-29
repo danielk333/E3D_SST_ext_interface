@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+targetNamespace="http://esa.ssa/dpc/2.1/dpc" 
+xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="http://esa.ssa/dpc/2.1/dpc" 
+elementFormDefault="qualified">
+
+	<xsd:simpleType name="DPCErrorCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="DPC RUNTIME EXCEPTION"/>
+			<xsd:enumeration value="DPC OPERATION EXCEPTION"/>
+			<xsd:enumeration value="REQUEST FAILED"/>
+			<xsd:enumeration value="ARCHIVE SERVICE NOT AVAILABLE"/>
+			<xsd:enumeration value="SST CATALOGUE NOT AVAILABLE"/>
+			<xsd:enumeration value="INPUT PARAMETER EXCEPTION"/>
+			<xsd:enumeration value="UNABLE TO GET DPC CURRENT STATUS"/>
+			<xsd:enumeration value="UNABLE TO START DPC"/>
+			<xsd:enumeration value="UNABLE TO STOP DPC"/>
+			<xsd:enumeration value="WRONG OBJECT ID"/>
+			<xsd:enumeration value="UNSUCCESSFUL ORBIT DETERMINATION"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="DPCErrorType">
+		<xsd:complexContent>
+			<xsd:extension base="dpc:DPCObjectResponseType">
+				<xsd:sequence>
+					<xsd:element ref="dpc:DPCErrorCodeType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="DPCErrorType" type="dpc:DPCErrorType" substitutionGroup="dpc:DPCObjectResponseType"/>
+	<xsd:complexType name="DPCObjectResponseType" abstract="true"/>
+	<xsd:element name="DPCObjectResponseType" type="dpc:DPCObjectResponseType"/>
+	<xsd:element name="DPCErrorCodeType" type="dpc:DPCErrorCodeType"/>
+</xsd:schema>

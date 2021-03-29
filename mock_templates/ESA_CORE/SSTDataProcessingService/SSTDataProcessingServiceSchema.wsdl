@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+xmlns:ssa="http://ssa.esa.int/common/" 
+xmlns:tns="http://esa.ssa/dpc/2.1/SSTDataProcessingServiceSchema" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:sobdreq="http://esa.ssa/dpc/2.1/SubmitObservationDataRequestType" 
+xmlns:sobdres="http://esa.ssa/dpc/2.1/SubmitObservationDataResponseType" 
+xmlns:dpc="http://esa.ssa/dpc/2.1/dpc" 
+name="dpc" targetNamespace="http://esa.ssa/dpc/2.1/SSTDataProcessingServiceSchema">
+	<wsdl:types>
+		<xsd:schema attributeFormDefault="qualified" targetNamespace="http://esa.ssa/dpc/2.1/SSTDataProcessingServiceSchema" version="1.0">
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/dpc" schemaLocation="../DPCCommonTypes/dpc.xsd"/>
+			<!-- SubmitObservationData -->
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/SubmitObservationDataRequestType" schemaLocation="./SubmitObservationDataRequestType.xsd"/>
+			<xsd:import namespace="http://esa.ssa/dpc/2.1/SubmitObservationDataResponseType" schemaLocation="./SubmitObservationDataResponseType.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="SSTDataProcessingServiceFaultMessageType">
+		<wsdl:part name="fault" element="dpc:DPCErrorType"/>
+	</wsdl:message>
+	<wsdl:message name="SubmitObservationDataRequestMessageType">
+		<wsdl:part name="in" element="sobdreq:SubmitObservationDataRequestType"/>
+	</wsdl:message>
+	<wsdl:message name="SubmitObservationDataResponseMessageType">
+		<wsdl:part name="out" element="sobdres:SubmitObservationDataResponseType"/>
+	</wsdl:message>
+	<wsdl:portType name="SSTDataProcessingServiceInterface">
+		<!-- submitObservationData -->
+		<wsdl:operation name="submitObservationData">
+			<wsdl:input message="tns:SubmitObservationDataRequestMessageType"/>
+			<wsdl:output message="tns:SubmitObservationDataResponseMessageType"/>
+			<wsdl:fault name="submitObservationDataFault" message="tns:SSTDataProcessingServiceFaultMessageType"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

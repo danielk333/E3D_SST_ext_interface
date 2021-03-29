@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:ssensor="http://esa.ssa/ssensor/1.2/ssensor" 
-	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-	xmlns:tns="http://esa.ssa/ssensor/1.2/UnsubscribeResponseType"
-	 targetNamespace="http://esa.ssa/ssensor/1.2/UnsubscribeResponseType">
-	<xsd:import namespace="http://esa.ssa/ssensor/1.2/ssensor" schemaLocation="../CommonTypes/sensorcommontypes.xsd"/>
-	<xsd:element name="UnsubscribeResponseType" type="ssensor:SENSORConfirmationType"/>
-</xsd:schema>
