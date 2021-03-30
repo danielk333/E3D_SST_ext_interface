@@ -1,3 +1,5 @@
 sorts>=4.0.0
 lxml>=4.5.2
-pytest>=5.2.2
+suds-py3==1.4.4.1
+tornado==6.1
+xmlschema==1.5.3

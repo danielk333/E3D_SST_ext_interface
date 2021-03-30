@@ -20,8 +20,53 @@ Requires python>=3.7
     cd E3D_SST_ext_interface
     pip install -r requirements
 
-    #Then test the implementation
-    pytest
+
+Testing
+---------------
+
+Testing the Mock server
+
+.. code-block:: bash
+
+    #Start mock server
+    python mock_server.py
+
+In second shell
+
+.. code-block:: bash
+
+    #Connect test client to server
+    python tests/test_mock_server.py
+
+
+Testing the SST client service (delivery)
+
+.. code-block:: bash
+
+    #Start mock server
+    python mock_server.py
+
+In second shell
+
+.. code-block:: bash
+
+    #Start SST Client service
+    python sst_service.py
+
+Testing the SST Service (observations)
+
+.. code-block:: bash
+
+    #Start SST Service server
+    python mock_server.py
+
+In second shell
+
+.. code-block:: bash
+
+    #Run mock ESA Core client
+    python mock_client.py
+
 
 
 Running

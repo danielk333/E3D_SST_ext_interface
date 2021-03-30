@@ -5,8 +5,6 @@ import logging
 
 config = configparser.ConfigParser()
 
-CCSDS = './templates/commonSSTDataModel/CCSDS/ndmxml-1.0-master.xsd'
-
 ROOT = pathlib.Path(__file__).resolve().parent
 DEBUG = False
 

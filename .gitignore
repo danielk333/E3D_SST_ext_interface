@@ -1,6 +1,8 @@
 #development folder
 
 dev/
+data/tracklets/*.xml
+data/archive/*.xml
 
 # Compiled source #
 ###################

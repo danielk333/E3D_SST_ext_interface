@@ -9,6 +9,8 @@ import pathlib
 import shutil
 import os
 
+import lxml.etree
+
 from suds.client import Client
 from suds.cache import ObjectCache
 
@@ -22,7 +24,7 @@ class SSTClient:
     :param configparser.ConfigParser config: The server configuration.
     :param bool delivery_log: If :code:`True` a internal list is kept of all files/data that has been delivered, can be considered a intentional memory leak and should only be used for testing.
     '''
-    def __init__(self, config, logger, schema_path, delivery_log=False):
+    def __init__(self, config, logger, delivery_log=False):
         self.logger = logger
         self.config = config
         self.delivery_log = delivery_log
@@ -46,13 +48,17 @@ class SSTClient:
         self.file_ext = [x.strip() for x in self.file_ext]
         self.logger.debug(f'SSTClient: file extensions={self.file_ext}')
 
-        self.schema = xmlschema.XMLSchema(schema_path)
-
 
 
     def run(self):
         self.logger.info('SSTClient: STARTED')
         self.__run = True
+
+        client = Client(
+            'http://localhost:8009/ESA_CORE/SSTDataProcessingService/SSTDataProcessingService.wsdl',
+            location='http://localhost:8009/ESA_CORE/SSTDataProcessingService/SSTDataProcessingService',
+            cache=None,
+        )
 
         while self.__run:
             self.logger.debug('SSTClient: looking for new tracklets to deliver')
@@ -68,24 +74,64 @@ class SSTClient:
             for file in files:
                 with open(file, 'r') as r:
                     xml_data = r.read()
-
-                try:
-                    self.schema.decode(xml_data)
-                except Exception as e:
-                    self.logger.debug(f'SST Client: file "{file}" not valid TDM-XML:')
-                    self.logger.exception(e)
-
-                client = Client('http://localhost:8001/?wsdl', cache=None)
-                out = client.service.get_tdm(xml_data)
                 
+                method = client.wsdl.services[0].ports[0].methods['submitObservationData']
+                message = method.binding.input.get_message(method, [], {})
+
+                ns_req = '{http://esa.ssa/dpc/2.1/SubmitObservationDataRequestType}'
+                ns_CCSDS = '{urn:ccsds:recommendation:navigation:schema:ndmxml}'
+                ns_eCCSDS = '{http://esa.ssa.sst/2.1/CCSDS/}'
+
+                NSMAP = {
+                    'tns': ns_req[1:-1],
+                    'CCSDS': ns_CCSDS[1:-1],
+                    'eCCSDS': ns_eCCSDS[1:-1],
+                }
+
+                dont_ns = [
+                    'CREATION_DATE',
+                    'ORIGINATOR',
+                    'TIME_SYSTEM',
+                    'PARTICIPANT_1',
+                    'PARTICIPANT_2',
+                    'PARTICIPANT_3',
+                ]
+                delte_tags = [
+                    'MESSAGE_ID',
+                    'COMMENT',
+                ]
+
+                tdm = lxml.etree.XML(xml_data.encode())
+
+                for tag in tdm.iter():
+                    if tag.tag in delte_tags:
+                        tag.getparent().remove(tag)
+                        continue
+                    if tag.tag not in dont_ns:
+                        tag.tag = f'{ns_eCCSDS}{tag.tag}'
+
+                message = lxml.etree.XML(str(message).encode())
+
+                measure = message.findall(f'.//{ns_req}measure')[0]
+
+                measures = lxml.etree.Element(f'{ns_req}measures', nsmap = NSMAP)
+                measures.attrib[f'{ns_eCCSDS}id'] = 'CCSDS_TDM_VERS'
+                measures.attrib[f'{ns_eCCSDS}version'] = '2.0'
+                measure.append(measures)
+                
+                for el in tdm:
+                    measures.append(el)
+
+                out = client.service.submitObservationData(__inject={'msg': lxml.etree.tostring(message, pretty_print=True)})
+
                 if out:
                     if not self._dry_run:
                         shutil.move(file, self.archive / file.name)
-                    self.logger.info(f'SSTClient: Delivery completed "{out}"')
+                    self.logger.info(f'SSTClient: Delivery completed {file.name}\n Response="{out}"')
                     if self.delivery_log:
                         self.deliveries += [file]
                 else:
-                    self.logger.info(f'SSTClient: Delivery failed "{out}"')
+                    self.logger.info(f'SSTClient: Delivery failed {file.name}\n Response="{out}"')
 
             time.sleep(self.config.getfloat('SST Client', 'Deliver interval'))
 
@@ -96,11 +142,10 @@ class SSTClient:
 
 
 if __name__ == '__main__':
-    from config import CCSDS
     from config import config as cfg
     import logging
 
-    client = SSTClient(cfg, logging, CCSDS)
+    client = SSTClient(cfg, logging)
     client._dry_run = True
 
     client.run()

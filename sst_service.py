@@ -20,7 +20,12 @@ import tornado.ioloop
 import tornado.web
 
 from config import ROOT, DEBUG, config
+from actions import EPOCH, pop, simulate_measurements, simulate_scan
 
+try:
+    from astropy.time import Time
+except ImportError:
+    Time = None
 
 class SoapEnvelope:
     """ 
@@ -145,16 +150,43 @@ class WsdlService:
 
 class SSTService(WsdlService):
 
-    def get_tdm(self, data, parts):
-        _ns = '{e3d.sst.test}'
-        d = data[f'{_ns}get_tdm'][0]
-        oid = d[f'{_ns}oid']
-        with open('./data/tracklets/tdm.xml', 'r') as f:
-            tdm = f.read()
-        ret = {
-            f'{_ns}get_tdmResult': tdm,
-        }
-        return ret
+    ns = 'http://eiscat3d.com/SSTService'
+
+    def requestTracking(self, data, parts):
+        ns = '{' + SSTService.ns + '}'
+        req = data[f'{ns}requestTracking'][0]
+        oid = req[f'{ns}objectID']
+        
+        if oid < len(pop) and oid >= 0:
+            tdms = simulate_measurements(oid)
+            for tid, tdm in enumerate(tdms):
+                with open(ROOT / 'data' / 'tracklets' / f'oid{oid}_track{tid}.xml', 'w') as f:
+                    f.write(tdm)
+            return {f'{ns}requestTrackingResult': 'REQUEST APPROVED'}
+        else:
+            return {f'{ns}requestTrackingResult': 'REQUEST DENIED'}
+
+        return None
+
+    def requestSurvey(self, data, parts):
+        ns = '{' + SSTService.ns + '}'
+
+        req = data[f'{ns}requestSurvey'][0]
+
+        #iso
+        t0 = Time(req[f'{ns}startTime'], format='iso', scale='utc')
+        t1 = Time(req[f'{ns}stopTime'], format='iso', scale='utc')
+        scan_time = req[f'{ns}surveySeconds']
+
+        logging.info(f'Scanning from {t0} to {t1} for {scan_time} seconds')
+        pop_tdms = simulate_scan((t0 - EPOCH).sec, (t1 - EPOCH).sec, noise=False)
+
+        for oid, tdms in enumerate(pop_tdms):
+            for tid, tdm in enumerate(tdms):
+                with open(ROOT / 'data' / 'tracklets' / f'oid{oid}_scan{tid}.xml', 'w') as f:
+                    f.write(tdm)
+
+        return {f'{ns}requestSurveyResult': 'REQUEST APPROVED'}
 
 
 
@@ -234,8 +266,3 @@ def main():
 
 if __name__=='__main__':
     main()
-
-
-
-    # from lxml import etree
-    # print(etree.tostring(etree.XML(xml_str.encode()), pretty_print=True).decode())
