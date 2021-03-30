@@ -8,12 +8,12 @@ config = configparser.ConfigParser()
 CCSDS = './templates/commonSSTDataModel/CCSDS/ndmxml-1.0-master.xsd'
 
 ROOT = pathlib.Path(__file__).resolve().parent
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     level = logging.DEBUG
 else:
-    level = logging.WARNING
+    level = logging.INFO
 logging.basicConfig(
     level=level,
     format='%(asctime)s %(levelname)s %(message)s',

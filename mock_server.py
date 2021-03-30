@@ -4,9 +4,11 @@ from sst_service import run_server, WsdlService
 
 class ESACore(WsdlService):
 
-    def submitObservationData(self, data):
-        print(data)
-        return None
+    def submitObservationData(self, data, parts):
+        ns = '{http://esa.ssa/dpc/2.1/SubmitObservationDataResponseType}'
+        return {
+            f'{ns}DPCConfirmationCodeType': 'SUCCESSFUL DATA RETRIEVAL',
+        }
 
 if __name__ == '__main__':
     host = 'localhost'

@@ -67,13 +67,13 @@ class WsdlService:
         self.operations = {}
 
         for srv_name, srv in self.wsdl.services.items():
-            logging.debug(f'Service: {srv.name}')
+            logging.info(f'Service: {srv.name}')
 
             for port_name, port in srv.ports.items():
-                logging.debug(f' - Port: {port.name}')
+                logging.info(f' - Port: {port.name}')
 
                 for op_names, op in port.binding.operations.items():
-                    logging.debug(f' -- Operation: {op.name}')
+                    logging.info(f' -- Operation: {op.name}')
                     self.operations[op.name] = op
 
 
@@ -94,14 +94,9 @@ class WsdlService:
 
             for part_name, part in operation.input.message.parts.items():
 
-                logging.debug(f' --- Parsing Input part: {part.name}')
-                ns_prefix = '{' + part.target_namespace + '}'
+                logging.info(f' --- Parsing Input part: {part.name}')
 
-                results = xml_data.findall(f'.//{ns_prefix}{part_name}')
-                print(results)
-                from lxml import etree
-                elem_str = xml.etree.ElementTree.tostring(part.type.elem)
-                print(print(etree.tostring(etree.XML(elem_str.decode()), pretty_print=True).decode()))
+                results = xml_data.findall(f'.//{part.name}')
 
                 if len(results) > 0:
                     if datas is None:
@@ -125,7 +120,7 @@ class WsdlService:
             operation = self.operations[name]
             returns = []
             for part_name, part in operation.output.message.parts.items():
-                logging.debug(f' --- Encoding Output part: {part.name}')
+                logging.info(f' --- Encoding Output part: {part.name}')
 
                 ns_prefix = '{' + part.target_namespace + '}'
                 returns += [part.encode(data)]
@@ -141,7 +136,7 @@ class WsdlService:
         for key in inputs:
             func = self.actions[key]
             if func is not None:
-                datas[key] = func(inputs[key])
+                datas[key] = func(inputs[key], self.operations[key].output.message.parts)
         
         outputs = self.get_output(datas)
         
@@ -150,7 +145,7 @@ class WsdlService:
 
 class SSTService(WsdlService):
 
-    def get_tdm(self, data):
+    def get_tdm(self, data, parts):
         _ns = '{e3d.sst.test}'
         d = data[f'{_ns}get_tdm'][0]
         oid = d[f'{_ns}oid']
@@ -188,11 +183,12 @@ class IndexHandler(tornado.web.RequestHandler):
         _path = pathlib.Path('.') / self.template_path
         schema_file = _path / (schema_file + '.wsdl')
 
+        xml_str = self.request.body.decode()
+
         logging.info(f'Handling request from {self.request.remote_ip}')
 
         service = self.Service(str(schema_file))
 
-        xml_str = self.request.body.decode()
         envelope = SoapEnvelope()
         xml_root = xml.etree.ElementTree.XML(xml_str)
 
@@ -238,3 +234,8 @@ def main():
 
 if __name__=='__main__':
     main()
+
+
+
+    # from lxml import etree
+    # print(etree.tostring(etree.XML(xml_str.encode()), pretty_print=True).decode())

@@ -1,9 +1,14 @@
 import sys
 import pathlib
 
-from suds.client import Client
+from lxml import objectify
+import lxml.etree
+
+from suds.client import SoapClient, Client
 from suds.cache import ObjectCache
 from suds.xsd.doctor import Import, ImportDoctor
+
+from actions import simulate_measurements
 
 def get_client():
     return Client(
@@ -15,27 +20,55 @@ def get_client():
 def test_SSTDataProcessingService():
     client = get_client()
 
+    method = client.wsdl.services[0].ports[0].methods['submitObservationData']
+    message = method.binding.input.get_message(method, [], {})
+
     ns_req = '{http://esa.ssa/dpc/2.1/SubmitObservationDataRequestType}'
     ns_CCSDS = '{urn:ccsds:recommendation:navigation:schema:ndmxml}'
     ns_eCCSDS = '{http://esa.ssa.sst/2.1/CCSDS/}'
 
-    # from lxml import objectify
-    # o= objectify.fromstring(xml)
+    NSMAP = {
+        'tns': ns_req[1:-1],
+        'CCSDS': ns_CCSDS[1:-1],
+        'eCCSDS': ns_eCCSDS[1:-1],
+    }
 
-    tdm = client.factory.create(f'{ns_eCCSDS}extendedTdmType')
+    message = lxml.etree.XML(str(message).encode())
 
-    tdm._version = '1.0'
-    tdm._id = 'CCSDS_TDM_VERS'
+    measure = message.findall(f'.//{ns_req}measure')[0]
 
-    segment = client.factory.create(f'{ns_CCSDS}tdmSegment')
+    measures = lxml.etree.Element(f'{ns_req}measures', nsmap = NSMAP)
+    measures.attrib[f'{ns_eCCSDS}id'] = 'CCSDS_TDM_VERS'
+    measures.attrib[f'{ns_eCCSDS}version'] = '2.0'
+    measure.append(measures)
+    
+    dont_ns = [
+        'CREATION_DATE',
+        'ORIGINATOR',
+        'TIME_SYSTEM',
+        'PARTICIPANT_1',
+        'PARTICIPANT_2',
+        'PARTICIPANT_3',
+    ]
+    delte_tags = [
+        'MESSAGE_ID',
+        'COMMENT',
+    ]
 
-    tdm.body.segment.append(segment)
+    tdms = simulate_measurements(0)
 
-    inp = client.factory.create(f'{ns_req}SSTTrackingDataObservationType')
-    inp.PlanningRequestID = 42
-    inp.measures.append(tdm)
+    tdm = lxml.etree.XML(tdms[0])
+    for tag in tdm.iter():
+        if tag.tag in delte_tags:
+            tag.getparent().remove(tag)
+            continue
+        if tag.tag not in dont_ns:
+            tag.tag = f'{ns_eCCSDS}{tag.tag}'
 
-    outp = client.service.submitObservationData(inp)
+    for el in tdm:
+        measures.append(el)
+
+    outp = client.service.submitObservationData(__inject={'msg': lxml.etree.tostring(message, pretty_print=True)})
 
     print(outp)
 
