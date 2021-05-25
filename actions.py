@@ -95,12 +95,12 @@ def simulate_measurements(object_index, samples=10, max_h = 24.0, noise=False):
 
             meta = dict(
                 COMMENT = 'Generated from E3D External interface prototype',
-                PARTICIPANT_1 = f'EISCAT 3D TX {0}',
-                PARTICIPANT_2 = f'Catalog object id {obj.oid}',
-                PARTICIPANT_3 = f'EISCAT 3D RX {rxi}',
                 TIME_SYSTEM = 'UTC',
                 START_TIME = t_vec.min().CCSDS_epoch,
                 STOP_TIME = t_vec.max().CCSDS_epoch,
+                PARTICIPANT_1 = f'EISCAT 3D TX {0}',
+                PARTICIPANT_2 = f'Catalog object id {obj.oid}',
+                PARTICIPANT_3 = f'EISCAT 3D RX {rxi}',
                 MODE = 'SEQUENTIAL',
                 PATH = '1,2,3',
                 TRANSMIT_BAND = 'VHF',

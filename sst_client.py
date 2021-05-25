@@ -95,6 +95,16 @@ class SSTClient:
                     'PARTICIPANT_1',
                     'PARTICIPANT_2',
                     'PARTICIPANT_3',
+                    'START_TIME',
+                    'STOP_TIME',
+                    'MODE',
+                    'PATH',
+                    'TRANSMIT_BAND',
+                    'RECEIVE_BAND',
+                    'TIMETAG_REF',
+                    'INTEGRATION_INTERVAL',
+                    'INTEGRATION_REF',
+                    'RANGE_UNITS',
                 ]
                 delte_tags = [
                     'MESSAGE_ID',
