@@ -10,8 +10,10 @@ import io
 
 try:
     import numpy as np
+    from astropy.time import Time, TimeDelta
 except ImportError:
     np = None
+    Time, TimeDelta = (None, None)
 
 try:
     import sorts
@@ -63,6 +65,7 @@ def simulate_measurements(object_index, samples=10, max_h = 24.0, noise=False):
     controllers = []
     for ps in passes[0][0]:
         _t = np.linspace(ps.start(), ps.end(), num=samples)
+        _t = np.round(_t*10)/10.0
         _st = obj.get_state(_t)
 
         track = sorts.controller.Tracker(
@@ -87,15 +90,27 @@ def simulate_measurements(object_index, samples=10, max_h = 24.0, noise=False):
 
     tdms = []
     for rxi in range(len(data[0])):
-
-        meta = dict(
-            COMMENT = 'Generated from E3D External interface prototype',
-            PARTICIPANT_1 = f'EISCAT 3D TX {0}',
-            PARTICIPANT_2 = f'Catalog object id {obj.oid}',
-            PARTICIPANT_3 = f'EISCAT 3D RX {rxi}',
-        )
-
         for d in data[0][rxi]:
+            t_vec = EPOCH + TimeDelta(d['t'], format='sec')
+
+            meta = dict(
+                COMMENT = 'Generated from E3D External interface prototype',
+                PARTICIPANT_1 = f'EISCAT 3D TX {0}',
+                PARTICIPANT_2 = f'Catalog object id {obj.oid}',
+                PARTICIPANT_3 = f'EISCAT 3D RX {rxi}',
+                TIME_SYSTEM = 'UTC',
+                START_TIME = t_vec.min().CCSDS_epoch,
+                STOP_TIME = t_vec.max().CCSDS_epoch,
+                MODE = 'SEQUENTIAL',
+                PATH = '1,2,3',
+                TRANSMIT_BAND = 'VHF',
+                RECEIVE_BAND = 'VHF',
+                TIMETAG_REF = 'TRANSMIT',
+                INTEGRATION_INTERVAL = 0.1,
+                INTEGRATION_REF = 'END',
+                RANGE_UNITS = 'km',
+            )
+
             data_tdm = np.empty(
                 (len(d['t']),), 
                 dtype=[
@@ -104,9 +119,9 @@ def simulate_measurements(object_index, samples=10, max_h = 24.0, noise=False):
                     ('DOPPLER_INSTANTANEOUS', 'f8'),
                 ],
             )
-            data_tdm['RANGE'] = d['range']
-            data_tdm['DOPPLER_INSTANTANEOUS'] = d['range_rate']
-            data_tdm['EPOCH'] = (EPOCH + d['t']).datetime64
+            data_tdm['RANGE'] = d['range']*1e-3
+            data_tdm['DOPPLER_INSTANTANEOUS'] = d['range_rate']*1e-3
+            data_tdm['EPOCH'] = t_vec.datetime64
 
             stream = io.StringIO()
 
